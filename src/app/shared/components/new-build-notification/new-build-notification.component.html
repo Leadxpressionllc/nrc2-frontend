@@ -1,0 +1,5 @@
+<div class="w-100 text-center fs-md" *ngIf="isNewAppVersionAvailable$ | async">
+  <alert type="warning" [dismissible]="true" class="app-version-alert">
+    A new version of this app is ready to use. <a class="text-primary" (click)="reloadApp()">Reload now</a>
+  </alert>
+</div>

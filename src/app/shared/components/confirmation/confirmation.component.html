@@ -1,0 +1,16 @@
+<div class="position-relative">
+  <div class="modal-body text-center pt-5">
+    <div class="mb-2 display-4">
+      <span class="material-icons text-danger"> {{ data.icon }} </span>
+    </div>
+
+    <h4 class="h4 mb-3">{{ data.heading }}</h4>
+
+    <p class="text-gray-600 mb-0" [innerHTML]="data.message"></p>
+  </div>
+
+  <div class="modal-footer gap-3 justify-content-center border-0 pb-5">
+    <button type="button" class="btn btn-outline-danger" (click)="onClose(false)">{{ data.cancelButtontext }}</button>
+    <button type="button" class="btn btn-danger text-white" (click)="onContinue()">{{ data.yesButtonText }}</button>
+  </div>
+</div>

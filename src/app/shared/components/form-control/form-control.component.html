@@ -1,0 +1,6 @@
+<div class="form-group has-feedback">
+  <ng-content></ng-content>
+  <div class="form-control-feedback" *ngIf="!valueControl.disabled && valueControl.dirty && valueControl.errors">
+    <span>{{ valueControl.errors | translateMessage: name : validations | async }}</span>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{ data?.heading }}</h4>
+  <button type="button" class="btn btn-white p-0" aria-label="Close" (click)="onCloseEvent(false)">
+    <span class="material-icons fs-4">close</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <p [innerHTML]="data?.message"></p>
+</div>
+
+<div *ngIf="data?.type == 'alert'" class="modal-footer">
+  <button type="button" class="btn btn-theme {{ data?.okButtonClass }}" (click)="onCloseEvent(true)">
+    {{ data?.okButtonText ? data?.okButtonText : 'Ok' }}
+  </button>
+</div>
+
+<div *ngIf="data?.type == 'confirm'" class="modal-footer">
+  <button type="button" class="btn btn-dark {{ data?.failureButtonClass }}" (click)="onCloseEvent(false)">
+    {{ data?.failureButtonText ? data?.failureButtonText : 'No' }}
+  </button>
+
+  <button type="button" class="btn btn-theme {{ data?.successButtonClass }}" (click)="onCloseEvent(true)">
+    {{ data?.successButtonText ? data?.successButtonText : 'Yes' }}
+  </button>
+</div>

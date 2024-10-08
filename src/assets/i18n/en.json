@@ -1,0 +1,31 @@
+{
+  "validations": {
+    "invalidEmail": "Invalid email address.",
+    "required": "{{name}} is required.",
+    "requiredMultiSelect": "{{name}} are required.",
+    "matchWith": "Password and Confirm Password do not match.",
+    "pastDate": "{{name}} cannot be in the past.",
+    "futureDate": "{{name}} cannot be in the future.",
+    "isGreaterThan": "{{name}} cannot be greater than {{target}}.",
+    "isNotGreaterThan": "{{name}} should be greater than {{target}}.",
+    "isLessThan": "{{name}} cannot be less than {{target}}.",
+    "isNotLessThanThan": "{{name}} should be less than {{target}}.",
+    "notUnique": "{{name}} is not unique.",
+    "ngbDateCustom": "Date is invalid, required date format is {{format}}",
+    "minlength": "Must be at least {{requiredLength}} characters long",
+    "maxlength": "Cannot exceed {{requiredLength}} characters",
+    "lengthCheck": "{{name}} length should be {{minLength}}-{{maxLength}} characters",
+    "phoneNumberInvalid": "{{name}} is not valid",
+    "invalidUrl": "{{name}} is not valid",
+    "InvalidMask": "{{name}} is not valid",
+    "invalidPattern": "{{message}}",
+    "min": "{{name}} should be greater than {{min}}",
+    "max": "{{name}} should not be greater than {{max}}"
+  },
+
+  "errorMessages": {
+    "internetConnectionError": "An unexpected error has occurred. Please check your internet connection and try again.",
+    "somethingWentWrong": "Something went wrong.",
+    "unexpectedError": "An unexpected error has occurred. Please try again after few minutes"
+  }
+}
