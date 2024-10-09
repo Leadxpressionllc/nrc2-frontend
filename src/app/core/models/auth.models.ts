@@ -1,26 +1,43 @@
+import { User } from './user.models';
+
 export interface AuthInfo {
-  user: LoggedInUser;
+  user: User;
+  sourceInfo: UserSourceInfo;
   token: string;
 }
 
-export interface LoggedInUser {
+export interface UserSourceInfo {
   id: string;
-  firstName: string;
-  lastName: string;
+  trafficType: string;
+  sourceId?: string;
+  subSource1?: string;
+  subSource2?: string;
+  subSource3?: string;
+}
+
+export interface LoginRequest {
   email: string;
-  gender: string;
-  address: string;
-  city: string;
-  state: string;
-  country: string;
-  zipCode: string;
+  password: string;
 }
 
 export interface SignupRequest {
   firstName: string;
   lastName: string;
   email: string;
+  dob: string;
+  gender: string;
+  phone: string;
+  streetAddress: string;
+  zipCode: string;
 
-  password: string;
-  phoneNumber: string;
+  jornayaId: string;
+  sourceInfo?: SignupSourceInfo;
+}
+
+export interface SignupSourceInfo {
+  sid: string;
+  subid1: string;
+  subid2: string;
+  subid3: string;
+  subid4: string;
 }
