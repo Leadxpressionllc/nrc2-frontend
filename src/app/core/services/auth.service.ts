@@ -1,11 +1,12 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, Injector } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { addLoader } from '@core/loader-context';
 import { User } from '@core/models';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { AuthInfo, LoggedInUser, SignupRequest } from '../models/auth.models';
+import { BehaviorSubject, map, Observable } from 'rxjs';
+import { AuthInfo, UserSourceInfo, LoginRequest, SignupRequest } from '../models/auth.models';
+import { EmitterService } from './emitter.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -15,32 +16,60 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private injector: Injector
+    private emitterService: EmitterService
   ) {
     this.authInfoSubject = new BehaviorSubject<AuthInfo>(<AuthInfo>this.getAuthInfo());
   }
 
-  // login(loginBody: LoginRequest): Observable<AuthInfo> {
-  //   return this.httpClient
-  //     .post<AuthTokenResponse>(constants.apiUrl.auth.login, loginBody, {
-  //       context: addLoader('loginLoader'),
-  //     })
-  //     .pipe(
-  //       map((response: AuthTokenResponse) => {
-  //         const authInfo = this._storeAuthInfoInLocalStorage(response);
-  //         const assetStorageService = this.injector.get(AssetStorageService);
-  //         assetStorageService.populateAssetStorageData();
-  //         return authInfo;
-  //       }),
-  //       catchError((error: any) => {
-  //         return throwError(() => error);
-  //       })
-  //     );
-  // }
+  login(loginBody: LoginRequest): Observable<AuthInfo> {
+    return this.httpClient
+      .post<AuthInfo>(constants.apiUrl.auth.login, loginBody, {
+        context: addLoader('loginLoader'),
+      })
+      .pipe(
+        map((authInfo: AuthInfo) => {
+          this._updateAuthInfoInLocalStorage(authInfo);
+          return authInfo;
+        })
+      );
+  }
 
-  signupRequest(signupRequest: SignupRequest): Observable<Response> {
-    return this.httpClient.post<Response>(constants.apiUrl.auth.signup, signupRequest, {
-      context: addLoader('signupLoader'),
+  signup(signupRequest: SignupRequest): Observable<AuthInfo> {
+    return this.httpClient
+      .post<AuthInfo>(constants.apiUrl.auth.signup, signupRequest, {
+        context: addLoader('signupLoader'),
+      })
+      .pipe(
+        map((authInfo: AuthInfo) => {
+          this._updateAuthInfoInLocalStorage(authInfo);
+          return authInfo;
+        })
+      );
+  }
+
+  autoLogin(userId: string): Observable<AuthInfo> {
+    return this.httpClient
+      .post<AuthInfo>(constants.apiUrl.auth.autoLogin, userId, {
+        context: addLoader('autoLoginLoader'),
+      })
+      .pipe(
+        map((authInfo: AuthInfo) => {
+          this._updateAuthInfoInLocalStorage(authInfo);
+          return authInfo;
+        })
+      );
+  }
+
+  logout(redirectToLoginPage: boolean): void {
+    this._removeAuthInfoFromLocalStorage();
+    if (redirectToLoginPage) {
+      this.emitterService.emit(constants.events.logout);
+    }
+  }
+
+  unsubscribeUserByEmail(email: string): Observable<any> {
+    return this.httpClient.post(constants.apiUrl.auth.unsubscribeByEmail, email, {
+      context: addLoader('unsubscribeUserLoader'),
     });
   }
 
@@ -84,31 +113,42 @@ export class AuthService {
     return '/surveys';
   }
 
+  getUserId(): string | undefined {
+    const user = this._getLoggedInUser();
+    return user?.id;
+  }
+
+  getLoggedInUserSourceInfo(): UserSourceInfo | undefined {
+    const authInfo = this.getAuthInfo();
+    return authInfo?.sourceInfo;
+  }
+
   updateLoggedInUserInfo(user: User): void {
     const authInfo = this.getAuthInfo();
 
     if (authInfo) {
       authInfo.user.firstName = user.firstName;
       authInfo.user.lastName = user.lastName;
-      this._updateAuthInfoInLocationStorage(authInfo);
+      this._updateAuthInfoInLocalStorage(authInfo);
     }
   }
 
-  private _getLoggedInUser(): LoggedInUser | null {
+  updateLoggedInUserInfoInLocalStorage(user: User): void {
+    const authInfo = this.getAuthInfo();
+    if (authInfo) {
+      authInfo.user = user;
+      localStorage.setItem(constants.localStorageSessionKey, JSON.stringify(authInfo));
+      this._updateAuthInfoInLocalStorage(authInfo);
+      this.authInfoSubject.next(authInfo);
+    }
+  }
+
+  private _getLoggedInUser(): User | null {
     const authInfo = this.getAuthInfo();
     return authInfo ? authInfo.user : null;
   }
 
-  private _storeAuthInfoInLocalStorage(response: any): AuthInfo {
-    const authInfo: AuthInfo = {
-      user: this._decodeTokenAndMapLoggedInUser(response.accessToken),
-      token: response.accessToken,
-    };
-    this._updateAuthInfoInLocationStorage(authInfo);
-    return authInfo;
-  }
-
-  private _updateAuthInfoInLocationStorage(authInfo: AuthInfo): void {
+  private _updateAuthInfoInLocalStorage(authInfo: AuthInfo): void {
     localStorage.setItem(constants.localStorageSessionKey, JSON.stringify(authInfo));
     this.authInfoSubject.next(authInfo);
   }
@@ -119,17 +159,5 @@ export class AuthService {
       return true;
     }
     return false;
-  }
-
-  private _decodeTokenAndMapLoggedInUser(token: string): LoggedInUser {
-    const decodedToken = this.jwtHelper.decodeToken(token);
-    return {
-      ...decodedToken,
-    };
-  }
-
-  getUserId(): string | undefined {
-    const user = this._getLoggedInUser();
-    return user?.id;
   }
 }

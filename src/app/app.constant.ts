@@ -3,19 +3,36 @@ export const constants = {
 
   apiUrl: {
     auth: {
+      login: '/login',
       signup: '/signup',
+      autoLogin: '/auto-login',
+      unsubscribeByEmail: 'unsubscribe-by-email',
     },
 
     users: {
       base: '/users',
+      trackWelcomeEmail: 'users/track-welcome-email',
     },
 
     surveys: {
       base: '/surveys',
+      liveSurvey: 'surveys/live',
+      liveSurveyId: 'surveys/live/id',
     },
 
     offers: {
       base: '/offers',
+      bySurveyId: 'offers/by-survey',
+      specialOffers: 'offers/special-offers',
+      logUserReturnedFromLinkoutOffer: 'offers/log-user-returned',
+    },
+
+    jobs: {
+      base: '/jobs',
+    },
+
+    signupFlow: {
+      base: '/flow',
     },
   },
 
