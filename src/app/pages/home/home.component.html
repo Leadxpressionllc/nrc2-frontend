@@ -1,3 +1,429 @@
-<p>home works!</p>
+<header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
+  <nrc-header></nrc-header>
+</header>
 
-<nrc-signup-form></nrc-signup-form>
+<!-- %%%%% HERO SECTION %%%%%% -->
+<section class="hero-section p-3 top-section-pt overlay" style="background-image: url('../../../assets/images/hero-image-home.jpg')">
+  <div class="container-md px-md-3 px-0">
+    <div class="row g-3 g-lg-5 h-100">
+      <!-- ### Hero details -->
+      <div class="col-xl-7 col-lg-6 d-flex flex-column row-md-gap-4 row-gap-3 justify-content-around align-items-start">
+        <div class="d-flex align-items-center column-gap-4 row-gap-2 flex-wrap text-shadow-white fs-5 mt-md-0 mt-sm-3">
+          <strong
+            ><span class="material-symbols-outlined text-secondary" *ngFor="let _ of [].constructor(5)">star</span>
+            <span class="ms-1">4.9 Rating</span></strong
+          >
+          <strong
+            ><span class="material-symbols-outlined text-secondary">new_releases</span>
+            <span class="ms-1">2000+ Verified Customer</span></strong
+          >
+        </div>
+        <h1 class="display-3 fw-bold text-shadow-white pe-xl-5">
+          Find The Relief <span class="text-primary">Specifically Designed</span> To Meet Your Needs
+        </h1>
+
+        <div
+          class="d-sm-inline-flex d-flex gap-2 align-items-center bg-glass rounded-pill p-md-2 p-3 pe-md-4 shadow-sm"
+          style="--bg-color: var(--bs-warning-rgb)"
+        >
+          <svg
+            class="spinner img-fluid"
+            style="--width: auto; --height: auto"
+            width="60"
+            height="61"
+            viewBox="0 0 60 61"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M27.043 3.745a4 4 0 0 1 5.914 0l1.528 1.677a4 4 0 0 0 4.17 1.118l2.162-.689a4 4 0 0 1 5.121 2.957l.485 2.216a4 4 0 0 0 3.053 3.053l2.216.485a4 4 0 0 1 2.957 5.121l-.689 2.162a4 4 0 0 0 1.118 4.17l1.677 1.528a4 4 0 0 1 0 5.914l-1.677 1.528a4 4 0 0 0-1.118 4.17l.689 2.162a4 4 0 0 1-2.957 5.121l-2.216.485a4 4 0 0 0-3.053 3.053l-.485 2.216a4 4 0 0 1-5.121 2.957l-2.162-.689a4 4 0 0 0-4.17 1.118l-1.528 1.677a4 4 0 0 1-5.914 0l-1.528-1.677a4 4 0 0 0-4.17-1.118l-2.162.689a4 4 0 0 1-5.121-2.957l-.485-2.216a4 4 0 0 0-3.053-3.053l-2.216-.485a4 4 0 0 1-2.957-5.121l.689-2.162a4 4 0 0 0-1.118-4.17l-1.677-1.528a4 4 0 0 1 0-5.914l1.677-1.528a4 4 0 0 0 1.118-4.17l-.689-2.162a4 4 0 0 1 2.957-5.121l2.216-.485a4 4 0 0 0 3.053-3.053l.485-2.216a4 4 0 0 1 5.121-2.957l2.162.689a4 4 0 0 0 4.17-1.118z"
+              fill="#DC3545"
+            />
+            <path
+              d="M16.067 35.5v-10H21.4v1.667H18v1.6h3.067v1.666H18V35.5zm6.705 0v-10h3.055q1.09 0 1.856.433.778.434 1.189 1.156.411.71.411 1.567 0 .777-.344 1.41-.334.634-.956 1.045l2.644 4.389H28.44l-2.223-3.8h-1.51v3.8zm1.933-5.467h1.078q.545 0 .889-.2.345-.21.511-.522.167-.322.167-.655 0-.59-.434-.967-.433-.39-1.133-.389h-1.078zM31.63 35.5v-10h5.333v1.733h-3.4v1.534h2.623v1.666h-2.623V33.7h3.4v1.8zm7 0v-10h5.334v1.733h-3.4v1.534h2.622v1.666h-2.623V33.7h3.4v1.8z"
+              fill="#fff"
+            />
+          </svg>
+          <p class="mb-0 fs-md">
+            <strong class="fw-semibold d-block"><span class="text-danger">Hurry!</span> Limited To First 100 Spots Only!</strong>
+            Your spot is reserved for
+            <time class="fw-semibold d-inline-block"
+              ><span class="material-symbols-outlined text-danger">alarm_on</span> 02:18 Minutes</time
+            >
+          </p>
+        </div>
+        <p class="fs-4 pe-lg-5 me-xl-5 text-shadow-white d-md-block d-none">
+          We aim to be your go-to resource for exploring different assistance options. With our detailed financial aid blog and optional
+          assistance survey, uncover new ways to tackle everyday challenges.
+        </p>
+      </div>
+
+      <!-- ### Hero form -->
+      <div class="col-lg">
+        <nrc-signup-form></nrc-signup-form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% COUNT SECTION %%%%%% -->
+<section class="bg-dark text-white p-3 bg-pattern-topography">
+  <div class="container">
+    <ul class="list-unstyled d-flex gap-3 justify-content-around flex-wrap">
+      <li class="fs-5 text-center">
+        <h5 class="display-5 fw-bold text-secondary mb-0">431</h5>
+        Reliefs Found
+      </li>
+      <li class="fs-5 text-center">
+        <h5 class="display-5 fw-bold text-secondary mb-0">38</h5>
+        Total Spots
+      </li>
+      <li class="fs-5 text-center">
+        <h5 class="display-5 fw-bold text-secondary mb-0">22</h5>
+        Spots Left
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- %%%%% FINANCIAL FREEDOM SECTION %%%%%% -->
+<section class="bg-light py-5 overflow-hidden">
+  <div class="container py-lg-5">
+    <div class="row g-lg-5 g-3">
+      <div class="col-lg d-flex align-items-center justify-content-center order-lg-1">
+        <div class="position-relative">
+          <img
+            class="img-fluid floating-shapes fs-move-2 top-0 start-0"
+            width="180"
+            height="190"
+            src="../../../assets/images/si-financial-freedom-1.png"
+            alt=""
+          />
+          <img
+            class="img-fluid floating-shapes fs-move-1 bottom-0 end-0"
+            width="350"
+            src="../../../assets/images/si-financial-freedom-2.png"
+            alt=""
+          />
+          <img
+            class="img-fluid"
+            src="../../../assets/images/si-financial-freedom.png"
+            alt="The agencies & private sector has billions of dollars set aside to give out for social programs to help Americans in need. You can check your eligibility today!"
+          />
+        </div>
+      </div>
+      <div class="col-lg-6 order-lg-0">
+        <h3 class="display-3 fw-bold mb-3">Get Ready For Financial Freedom</h3>
+        <p class="fs-5 pe-lg-5 text-gray-600 mb-4">
+          Get ready to take control of your finances and start living the life you've always wanted!
+        </p>
+
+        <ul class="check-list list-unstyled d-flex flex-column gap-3 mb-4 fs-5">
+          <li class="position-relative">
+            <strong>Zero Processing Fees:</strong>
+            Absolutely! Send mobile top up with zero processing fees. What you see is what you pay—no hidden charges or additional costs.
+          </li>
+          <li class="position-relative">
+            <strong>Exceptional Value:</strong>
+            Benefit from our strong industry partnerships for top-up services. Get the best value when you choose TalknShare.
+          </li>
+          <li class="position-relative">
+            <strong>Safe and Protected:</strong>
+            Secure payments with Visa, Mastercard, and PayPal. Your personal info and payment details are protected, ensuring peace of mind.
+          </li>
+          <li class="position-relative">
+            <strong>Highly Reputable:</strong>
+            Trusted telecom industry experience, strong networks. Get the best deals when transferring mobile credit with us.
+          </li>
+        </ul>
+
+        <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon">
+          Discover Your Resources <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% 3 EASY STEPS TO UNLOCK SAVINGS SECTION %%%%%% -->
+<section class="py-5">
+  <div class="container py-lg-5 text-center position-relative overflow-hidden">
+    <img class="floating-shapes fs-move-1 top-0 start-0" src="../../../assets/images/nrc-shape-1.svg" alt="" />
+    <h3 class="display-3 fw-bold mb-3">Get Ready For Financial Freedom</h3>
+    <p class="fs-5 text-gray-600 col-lg-8 mx-auto mb-md-5 mb-4">
+      Follow our simple, three-step process to unlock essential savings. It’s fast, easy, and designed to help you access the opportunities
+      you need.
+    </p>
+
+    <div class="col-xl-10 mx-auto mb-4">
+      <div class="row g-lg-5 g-3">
+        <div class="col-md-4">
+          <div class="d-inline-flex bg-primary text-white fs-2 rounded-4 p-3 mb-3">
+            <span class="material-symbols-outlined">person_add</span>
+          </div>
+          <h6 class="h5 mb-3">
+            <strong class="fs-3 d-block">Step 1:</strong>
+            Sign Up Online
+          </h6>
+          <p class="px-xl-4">
+            Register online for savings programs tailored to your eligibility, all from the comfort of your home. This quick sign-up process
+            connects you to valuable resources designed to maximize your savings.
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <div class="d-inline-flex bg-primary text-white fs-2 rounded-4 p-3 mb-3">
+            <span class="material-symbols-outlined">list_alt_check</span>
+          </div>
+          <h6 class="h5 mb-3">
+            <strong class="fs-3 d-block">Step 2:</strong>
+            Complete Your Eligibility Survey
+          </h6>
+          <p class="px-xl-4">
+            Take a brief eligibility survey to identify which savings programs you qualify for. This ensures you receive personalized
+            recommendations for financial assistance and discounts.
+          </p>
+        </div>
+
+        <div class="col-md-4">
+          <div class="d-inline-flex bg-primary text-white fs-2 rounded-4 p-3 mb-3">
+            <span class="material-symbols-outlined">person_play</span>
+          </div>
+          <h6 class="h5 mb-3">
+            <strong class="fs-3 d-block">Step 3:</strong>
+            Start Enjoying Your Savings
+          </h6>
+          <p class="px-xl-4">
+            Begin reaping the benefits of savings on everyday expenses, including groceries, medical bills, housing, and more. Enjoy
+            significant savings that enhance your financial well-being.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon">
+      Start Your Journey <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </div>
+</section>
+
+<!-- %%%%% DISCOVER ASSISTANCE AND  SUPPORT RESOURCES SECTION %%%%%% -->
+<section class="py-5 bg-light overflow-hidden">
+  <div class="container py-lg-5 text-center position-relative">
+    <img class="floating-shapes fs-move-left-right top-0 end-0" src="../../../assets/images/nrc-shape-2.svg" alt="" />
+    <h3 class="display-3 fw-bold mb-3">
+      Discover Assistance and <br class="d-sm-block d-none" />
+      Support Resources
+    </h3>
+    <p class="fs-5 text-gray-600 col-lg-8 mx-auto mb-md-5 mb-4">
+      We aim to be your go-to resource for exploring different assistance options. With our detailed financial aid blog and optional
+      assistance survey, uncover new ways to tackle everyday challenges.
+    </p>
+
+    <div class="row g-lg-4 g-3 text-start mb-lg-5 mb-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">school</span> Education</h6>
+          <p class="mb-0 fs-md">
+            The agencies & private sector has billions of dollars set aside to give out for social programs to help Americans in need. You
+            can check your eligibility today!
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">accessible_forward</span> Disability Benefits</h6>
+          <p class="mb-0 fs-md">
+            We aim to be your go-to resource for exploring different assistance options. With our detailed financial aid blog and optional
+            assistance survey, uncover new ways to tackle everyday challenges.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">health_and_safety</span> Insurance</h6>
+          <p class="mb-0 fs-md">
+            We specialize in offering full support for Medicare supplement insurance, long-term care, short-term care, specialized health
+            coverage, life insurance, annuities, and retirement planning.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">assured_workload</span> Debt Assistance</h6>
+          <p class="mb-0 fs-md">
+            Dealing with debt can be overwhelming, but you don’t have to do it alone. Personal loans and debt repair services can help you
+            take control and move toward a stronger financial future.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">home_and_garden</span> Housing</h6>
+          <p class="mb-0 fs-md">
+            Local organizations offer housing programs and benefits for low-income families struggling to find housing. Explore available
+            options in your area to receive support.
+          </p>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="bg-glass p-4 rounded-3 shadow-sm h-100">
+          <h6 class="text-primary h3"><span class="material-symbols-outlined">approval_delegation</span> Financial Resources</h6>
+          <p class="mb-0 fs-md">
+            Discover a variety of trusted resources for assistance with our free tool, designed to streamline your search and quickly
+            connect you to the support you need.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon">
+      Check If You Qualify <span class="material-symbols-outlined">arrow_forward</span>
+    </button>
+  </div>
+</section>
+
+<!-- %%%%% WHY CHOOSE US NATIONAL RESOURCE CONNECT SECTION %%%%%% -->
+<section class="py-5">
+  <div class="container py-lg-5">
+    <div class="row g-lg-5 g-3">
+      <div class="col-md d-flex align-items-center justify-content-center order-md-1">
+        <img
+          class="img-fluid"
+          src="../../../assets/images/why-choose-us.png"
+          alt="The agencies & private sector has billions of dollars set aside to give out for social programs to help Americans in need. You can check your eligibility today!"
+        />
+      </div>
+      <div class="col-md-7 order-md-0">
+        <h3 class="display-3 fw-bold mb-3">
+          Why Choose Us <br class="d-lg-block d-none" />
+          National Resource Connect
+        </h3>
+
+        <div class="d-flex gap-3 align-items-center column-gap-4 flex-wrap mb-4">
+          <p class="d-inline-flex align-items-center gap-1 bg-primary p-3 fs-5 rounded-pill text-white mb-0 text-nowrap">
+            <span class="material-symbols-outlined fs-6" *ngFor="let _ of [].constructor(5)">star</span>
+            <span class="ms-1">4.9 Rating</span>
+          </p>
+          <img class="img-fluid" src="../../../assets/images/users-avatar.png" alt="Users Avatar" />
+        </div>
+
+        <p class="fs-5 pe-lg-5 mb-4">
+          Register online with National Resource Connect to access information on financial aid, affordable housing, and transportation
+          discounts. These resources are designed to help you overcome financial challenges and save money.
+        </p>
+
+        <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon">
+          Find Your Support <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% FAQ SECTION %%%%%% -->
+<section class="py-5 bg-gray-200">
+  <div class="container py-lg-5 text-center position-relative">
+    <h3 class="display-3 fw-bold mb-lg-5 mb-3">Frequently Asked Questions</h3>
+
+    <div class="col-xl-8 col-md-10 mx-auto">
+      <accordion class="custom-accordion card-accordion" [closeOthers]="true">
+        <!-- %%% According Group -->
+        <accordion-group class="shadow-sm">
+          <div class="d-flex gap-2 align-items-center" accordion-heading>
+            <h5 class="fs-5 py-1 mb-0 text-start">What types of financial aid are available?</h5>
+            <span class="ms-auto toggle-icon" (click)="$event.stopPropagation()">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </span>
+          </div>
+          <div class="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dolor, itaque architecto ipsam ea quis blanditiis beatae
+            repellat placeat accusantium.
+          </div>
+        </accordion-group>
+        <!-- %%% According Group -->
+        <accordion-group class="shadow-sm">
+          <div class="d-flex gap-2 align-items-center" accordion-heading>
+            <h5 class="fs-5 py-1 mb-0 text-start">How can I apply for affordable housing?</h5>
+            <span class="ms-auto toggle-icon" (click)="$event.stopPropagation()">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </span>
+          </div>
+          <div class="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dolor, itaque architecto ipsam ea quis blanditiis beatae
+            repellat placeat accusantium.
+          </div>
+        </accordion-group>
+        <!-- %%% According Group -->
+        <accordion-group class="shadow-sm">
+          <div class="d-flex gap-2 align-items-center" accordion-heading>
+            <h5 class="fs-5 py-1 mb-0 text-start">What medical support resources are offered?</h5>
+            <span class="ms-auto toggle-icon" (click)="$event.stopPropagation()">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </span>
+          </div>
+          <div class="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dolor, itaque architecto ipsam ea quis blanditiis beatae
+            repellat placeat accusantium.
+          </div>
+        </accordion-group>
+        <!-- %%% According Group -->
+        <accordion-group class="shadow-sm">
+          <div class="d-flex gap-2 align-items-center" accordion-heading>
+            <h5 class="fs-5 py-1 mb-0 text-start">Are transportation discounts available?</h5>
+            <span class="ms-auto toggle-icon" (click)="$event.stopPropagation()">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </span>
+          </div>
+          <div class="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dolor, itaque architecto ipsam ea quis blanditiis beatae
+            repellat placeat accusantium.
+          </div>
+        </accordion-group>
+        <!-- %%% According Group -->
+        <accordion-group class="shadow-sm">
+          <div class="d-flex gap-2 align-items-center" accordion-heading>
+            <h5 class="fs-5 py-1 mb-0 text-start">How do I determine my eligibility for these programs?</h5>
+            <span class="ms-auto toggle-icon" (click)="$event.stopPropagation()">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </span>
+          </div>
+          <div class="text-start">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis dolor, itaque architecto ipsam ea quis blanditiis beatae
+            repellat placeat accusantium.
+          </div>
+        </accordion-group>
+      </accordion>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% BOTTOM BANNER SECTION %%%%%% -->
+<section class="bg-primary text-white py-5 bg-pattern-topography">
+  <div class="container py-lg-4">
+    <div class="row g-lg-5 g-3">
+      <div class="col-lg-6">
+        <h4 class="display-6 fw-bold mb-3">Transform Your Life with National Resource Connect</h4>
+
+        <p class="pe-lg-5 mb-0">
+          Access essential financial, health, and lifestyle resources tailored for your family. Join National Resource Connect today and
+          transform your life with personalized insights and savings solutions.
+        </p>
+      </div>
+
+      <div class="col-lg d-flex align-items-center justify-content-lg-end">
+        <button class="btn btn-light text-primary px-md-5 px-4 btn-lg btn-icon">
+          Explore Available Options <span class="material-symbols-outlined">arrow_forward</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% FOOTER %%%%%% -->
+<nrc-footer [showFooterInfo]="true"></nrc-footer>

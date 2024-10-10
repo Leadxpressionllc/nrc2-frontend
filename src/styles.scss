@@ -1,1 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
+// 1. Include functions first (so you can manipulate colors, SVGs, calc, etc)
+@import 'bootstrap/scss/functions';
+
+// 2. Include any default variable overrides here
+@import 'assets/scss/custom-variables';
+
+// 3. Include remainder of required Bootstrap stylesheets (including any separate color mode stylesheets)
+@import 'bootstrap/scss/variables';
+
+// 4. Include any default map overrides here
+@import 'assets/scss/custom-maps';
+
+// 5. Include remainder of required parts
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';
+@import 'bootstrap/scss/root';
+
+// 6. Optionally include any other parts as needed (components, helpers, grids, containers, etc.)
+@import 'bootstrap/scss/utilities';
+@import 'bootstrap/scss/reboot';
+@import 'bootstrap/scss/type';
+@import 'bootstrap/scss/images';
+@import 'bootstrap/scss/containers';
+@import 'bootstrap/scss/grid';
+@import 'bootstrap/scss/helpers';
+@import 'bootstrap/scss/transitions';
+@import 'bootstrap/scss/buttons';
+@import 'bootstrap/scss/button-group';
+@import 'bootstrap/scss/forms';
+@import 'bootstrap/scss/dropdown';
+@import 'bootstrap/scss/alert';
+@import 'bootstrap/scss/modal';
+@import 'bootstrap/scss/close';
+@import 'bootstrap/scss/card';
+@import 'bootstrap/scss/accordion';
+
+// 7. Optionally include utilities API last to generate classes based on the Sass map in `_utilities.scss`
+@import 'assets/scss/custom-utilities';
+@import 'bootstrap/scss/utilities/api';
+@import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker';
+
+// 8. Components override or custom components
+@import 'assets/scss/component/buttons';
+@import 'assets/scss/component/form';
+@import 'assets/scss/component/daterangepicker';
+@import 'assets/scss/component/dropdown';
+@import 'assets/scss/component/accordion';
+
+// 10. Add additional custom code here
+@import 'assets/scss/base';
+@import 'assets/scss/colors';
+@import 'assets/scss/typography';
+@import 'assets/scss/common';
+@import 'assets/scss/theme';

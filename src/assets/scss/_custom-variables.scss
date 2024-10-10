@@ -1,0 +1,59 @@
+// Variables
+// These are bootstrap variables override
+
+//
+//
+// COLOR TOKENS
+$primary: #0076ae;
+$secondary: #5bbc5f;
+
+$info: #50dfb8;
+$dark: #202224;
+$light: #e9f8ff;
+
+$success: #19bc4f;
+$warning: #ffd464;
+$danger: #dc3545;
+
+//
+//
+// TYPOGRAPHY
+$font-family-sans-serif: 'Afacad', sans-serif;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+$headings-font-weight: $font-weight-bold;
+
+$line-height-sm: 1 !default;
+$line-height-base: 1.25 !default;
+$line-height-lg: 1.5 !default;
+
+//
+//
+// BASE
+$body-color: $dark;
+
+//
+//
+// FORM
+$input-btn-padding-x: 1rem;
+$input-btn-padding-y: 0.75rem;
+
+// $input-border-width: 0px;
+
+$form-check-input-checked-border-color: $primary;
+
+//
+//
+// BUTTONS
+$btn-font-weight: $font-weight-medium;
+
+//
+//
+// SHADOWS
+$box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
+$box-shadow-sm: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+$box-shadow-lg:
+  rgba(17, 17, 26, 0.1) 0px 4px 16px,
+  rgba(17, 17, 26, 0.1) 0px 8px 24px,
+  rgba(17, 17, 26, 0.1) 0px 16px 56px;

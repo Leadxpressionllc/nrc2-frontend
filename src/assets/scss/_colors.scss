@@ -1,0 +1,11 @@
+@each $k, $v in $grays {
+  .text-gray-#{$k} {
+    color: var(--bs-gray-#{$k}) !important;
+  }
+  .bg-gray-#{$k} {
+    background-color: var(--bs-gray-#{$k}) !important;
+  }
+  .border-gray-#{$k} {
+    border-color: var(--bs-gray-#{$k}) !important;
+  }
+}

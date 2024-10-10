@@ -1,0 +1,29 @@
+:root {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+html {
+  color-scheme: light dark;
+  hanging-punctuation: first last;
+
+  @media all and (max-width: 768px) {
+    font-size: 0.875rem;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: var(--bs-primary);
+}
+
+header {
+  z-index: 1100;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :has(:target) {
+    scroll-behavior: smooth;
+    scroll-padding-top: 3rem;
+  }
+}

@@ -1,1 +1,84 @@
-<p>signup-form works!</p>
+<form action="" class="rounded-3 border border-primary border-2 bg-glass p-3 pb-0 position-relative shadow-lg">
+  <h2 class="h3 text-primary mb-3 d-flex gap-2">
+    <span class="material-symbols-outlined">list_alt_check</span> Check If You Qualify For Financial Aid
+  </h2>
+
+  <div class="row g-2 mb-2">
+    <div class="col-12">
+      <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Your Full Name" autocomplete="off" />
+        <label for="fullName">Your Full Name</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-floating">
+        <input type="email" class="form-control" placeholder="Email Address" autocomplete="off" />
+        <label for="email">Email Address</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-floating">
+        <select class="form-select" id="gender" aria-label="Floating label select example">
+          <option selected>Select</option>
+          <option value="1">Male</option>
+          <option value="2">Female</option>
+          <option value="3">Other</option>
+        </select>
+        <label for="gender">Gender</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control input-ic-date input-ic-right"
+          placeholder="Date of Birth"
+          autocomplete="off"
+          bsDatepicker
+          [bsConfig]="{ adaptivePosition: true, showWeekNumbers: false }"
+        />
+        <label for="text">Date of Birth</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Address (Optional)" autocomplete="off" />
+        <label for="address">Address (Optional)</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Zip Code" autocomplete="off" />
+        <label for="text">Zip Code</label>
+      </div>
+    </div>
+    <div class="col-sm-6">
+      <div class="form-floating">
+        <input type="text" class="form-control" placeholder="Phone Number (Optional)" autocomplete="off" />
+        <label for="text">Phone Number (Optional)</label>
+      </div>
+    </div>
+  </div>
+
+  <p>
+    I understand the <a href="">data policy</a> that govern this site, how my data is used, disclosed, and shared & what I get as a user.
+  </p>
+
+  <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon w-100" type="submit">
+    Check If You Qualify <span class="material-symbols-outlined">arrow_forward</span>
+  </button>
+  <p class="mt-3 fs-sm">
+    <em
+      >By clicking "Check If You Qualify", I represent that I am 18+ years of age; I understand that this site is privately owned and is not
+      affiliated with, nor endorsed by any government agency, I agree that the personal information I provide you with may be shared with
+      third parties for other marketing purposes, and agree to the Terms & Conditions and Privacy Policy; and agree to receive email
+      marketing from our Marketing Partners.</em
+    >
+  </p>
+
+  <div class="text-center">
+    <p class="d-inline-flex align-items-center bg-primary text-white px-2 py-1 rounded-top mb-0">
+      <span class="material-symbols-outlined">lock_person</span> <span class="ms-1"> Your information is kept 100% confidential.</span>
+    </p>
+  </div>
+</form>

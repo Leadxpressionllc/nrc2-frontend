@@ -1,0 +1,60 @@
+//
+//
+// Add New in Utilities API
+$utilities: map-merge(
+  $utilities,
+  (
+    'min-height': (
+      property: min-height,
+      class: min-h,
+      responsive: true,
+      values: (
+        100: 100%,
+      ),
+    ),
+  )
+);
+
+//
+//
+// Merge exiting in Utilities API
+$utilities: map-merge(
+  $utilities,
+  (
+    'height':
+      map-merge(
+        map-get($utilities, 'height'),
+        (
+          responsive: true,
+        )
+      ),
+    'width':
+      map-merge(
+        map-get($utilities, 'width'),
+        (
+          responsive: true,
+        )
+      ),
+    'overflow':
+      map-merge(
+        map-get($utilities, 'overflow'),
+        (
+          responsive: true,
+        )
+      ),
+    'overflow-x':
+      map-merge(
+        map-get($utilities, 'overflow-x'),
+        (
+          responsive: true,
+        )
+      ),
+    'overflow-y':
+      map-merge(
+        map-get($utilities, 'overflow-y'),
+        (
+          responsive: true,
+        )
+      ),
+  )
+);
