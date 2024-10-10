@@ -1,0 +1,76 @@
+.btn {
+  --label-v-align: calc(1ex - 1cap);
+  white-space: nowrap;
+  height: 3rem;
+  vertical-align: var(--label-v-align, 1);
+  &:active {
+    border-color: transparent !important;
+  }
+
+  &:focus-visible {
+    outline: none;
+    box-shadow: none !important;
+  }
+
+  &.btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 0.5rem;
+    line-height: 1;
+  }
+
+  &.btn-flat {
+    height: auto;
+    padding: 0;
+  }
+}
+
+[type='button']:focus-visible {
+  outline: none;
+}
+
+// List of buttons and set values to css variables
+$buttons: 'primary', 'secondary', 'danger';
+
+@each $btn-name in $buttons {
+  .btn-#{$btn-name} {
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bs-#{$btn-name});
+    --bs-btn-border-color: var(--bs-#{$btn-name});
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: var(--bs-#{$btn-name});
+    --bs-btn-hover-border-color: var(--bs-#{$btn-name});
+    --bs-btn-focus-shadow-rgb: var(--bs-#{$btn-name}-rgb);
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: var(--bs-#{$btn-name});
+    --bs-btn-active-border-color: var(--bs-#{$btn-name});
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #5d5d5d;
+    --bs-btn-disabled-bg: #b8b8b8;
+    --bs-btn-disabled-border-color: #b8b8b8;
+
+    transition: opacity 250ms ease;
+
+    &:not(.disabled, :disabled):hover {
+      opacity: 0.875;
+    }
+  }
+
+  .btn-outline-#{$btn-name} {
+    --bs-btn-color: var(--bs-#{$btn-name});
+    --bs-btn-border-color: var(--bs-#{$btn-name});
+    --bs-btn-hover-color: var(--bs-#{$btn-name});
+    --bs-btn-hover-bg: var(--bs-gray-200);
+    --bs-btn-hover-border-color: var(--bs-#{$btn-name});
+    --bs-btn-focus-shadow-rgb: var(--bs-#{$btn-name}-rgb);
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: var(--bs-#{$btn-name});
+    --bs-btn-active-border-color: var(--bs-#{$btn-name});
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: #b8b8b8;
+    --bs-btn-disabled-bg: transparent;
+    --bs-btn-disabled-border-color: #b8b8b8;
+    --bs-gradient: none;
+  }
+}

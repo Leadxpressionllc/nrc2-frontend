@@ -1,0 +1,149 @@
+.bg-glass {
+  --bg-color: var(--bs-white-rgb);
+  --bg-alpha: 0.75;
+  background: rgba(var(--bg-color), var(--bg-alpha));
+  backdrop-filter: blur(0.5rem) saturate(2);
+}
+
+.bg-pattern-topography {
+  background-image: url('../images/topography-pattren.svg');
+  background-repeat: repeat;
+  background-attachment: fixed;
+}
+
+.top-section-pt {
+  padding-block-start: 8rem !important;
+
+  @media all and (max-width: 575px) {
+    padding-block-start: 9rem !important;
+  }
+}
+
+.text-shadow-white {
+  text-shadow: 1px 1px 2px var(--bs-white);
+}
+
+.text-shadow-dark {
+  text-shadow: 1px 1px 2px var(--bs-dark);
+}
+
+// loader/spinner
+.spinner {
+  --width: 18px;
+  --height: 18px;
+  position: relative;
+  height: var(--width);
+  width: var(--height);
+  display: inline-block;
+  animation: full-turn 3s infinite;
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+    border-color: var(--bs-secondary) var(--bs-secondary) transparent transparent;
+    border-style: solid;
+    border-radius: 20px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    animation: full-turn 0.7s ease infinite;
+  }
+  &::after {
+    animation: full-turn 0.7s ease 0.1s infinite;
+    background: transparent;
+  }
+}
+
+@keyframes full-turn {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// Section Floating shapes
+.floating-shapes {
+  position: absolute;
+
+  &.fs-move-1 {
+    animation: shape-move-1 10s infinite alternate-reverse;
+  }
+  &.fs-move-2 {
+    animation: shape-move-2 10s infinite alternate;
+  }
+  &.fs-move-left-right {
+    animation: shape-move-left-right 10s infinite alternate-reverse;
+  }
+}
+
+@keyframes shape-move-1 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  25% {
+    transform: translate(20px, 0);
+  }
+
+  50% {
+    transform: translate(30px, -20px);
+  }
+
+  75% {
+    transform: translate(20px, 0);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes shape-move-2 {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  15% {
+    transform: translate(0, 20px);
+  }
+
+  30% {
+    transform: translate(-20px, 20px);
+  }
+
+  45% {
+    transform: translate(-20px, 40px);
+  }
+
+  60% {
+    transform: translate(-25px, 30px);
+  }
+
+  75% {
+    transform: translate(-20px, 20px);
+  }
+
+  90% {
+    transform: translate(0, 20px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes shape-move-left-right {
+  0% {
+    transform: translateX(-20px);
+  }
+
+  100% {
+    transform: translateX(30px);
+  }
+}

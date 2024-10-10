@@ -1,0 +1,341 @@
+// ngx select dropdown
+ngx-select-dropdown.form-select {
+  padding-inline-end: 1rem !important;
+  &.is-valid,
+  &.is-invalid {
+    --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m2 5 6 6 6-6'/%3e%3c/svg%3e");
+    background-image: var(--bs-form-select-bg-img) !important;
+  }
+  &.is-invalid ~ .ngx-select-dropdown-label {
+    color: $danger;
+  }
+}
+.ngx-dropdown-container {
+  .ngx-dropdown-button {
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+    text-transform: initial;
+    min-height: auto !important;
+    box-shadow: none;
+    line-height: 1.5 !important;
+
+    .nsdicon-angle-down,
+    .nsdicon-angle-down {
+      display: none !important;
+    }
+    .display-text {
+      width: calc(100% - 28px) !important;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+  // list container
+  .ngx-dropdown-list-container {
+    padding: 0rem !important;
+    margin-top: 0rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+    max-height: 240px !important;
+    top: 32px !important;
+    left: -1rem;
+    width: calc(100% + 2rem) !important;
+    display: flex;
+    flex-flow: column;
+
+    .search-container {
+      position: sticky !important;
+      top: 0;
+      background-color: $white;
+      padding: 0 !important;
+      margin: 0 !important;
+      z-index: 1;
+
+      input {
+        padding: 1.5rem 0.75rem 0.5rem !important;
+        box-sizing: border-box !important;
+        height: auto !important;
+        font-size: 1.25rem !important;
+
+        background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%3E%0A%20%20%3Cpath%20id%3D%22Icon_ionic-ios-search%22%20data-name%3D%22Icon%20ionic-ios-search%22%20d%3D%22M20.312%2C19.335l-4.45-4.49a6.342%2C6.342%2C0%2C1%2C0-.962.975l4.421%2C4.461a.685.685%2C0%2C0%2C0%2C.967.025A.689.689%2C0%2C0%2C0%2C20.312%2C19.335Zm-9.433-3.462a5.007%2C5.007%2C0%2C1%2C1%2C3.542-1.466A4.977%2C4.977%2C0%2C0%2C1%2C10.879%2C15.873Z%22%20transform%3D%22translate(-4.5%20-4.493)%22%20fill%3D%22%235e6278%22%20opacity%3D%220.9%22%2F%3E%0A%3C%2Fsvg%3E%0A') !important;
+        background-repeat: no-repeat !important;
+        padding-inline-end: calc(1.5em + 0.75rem) !important;
+        background-position: center right calc(0.375em + 0.3595rem) !important;
+        background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.275rem) !important;
+
+        &:focus {
+          border-bottom: 1px solid var(--bs-primary) !important;
+        }
+        &:focus + label {
+          transform: translateY(-0.75rem) scale(0.85) !important;
+        }
+      }
+      label {
+        height: auto !important;
+        left: 0rem !important;
+        padding-inline-start: 0.8rem !important;
+        top: 0;
+        transform: translateY(-0.25rem) !important;
+
+        &.active {
+          transform: translateY(-0.75rem) scale(0.85) !important;
+        }
+      }
+    }
+    // list items
+    .available-items,
+    .selected-items {
+      margin: 0 !important;
+      padding: 0 !important;
+      font-size: 1.167rem !important;
+    }
+
+    .selected-item {
+      padding: 0.75rem !important;
+      background-color: $gray-100 !important;
+      color: var(--bs-primary) !important;
+      word-break: break-word;
+      margin-bottom: 0 !important;
+
+      padding-right: calc(1.5em + 1.25rem) !important;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23484848' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+      background-repeat: no-repeat;
+      background-position: right calc(0.375em + 0.3595rem) center;
+      background-size: 1rem 1rem;
+      .nsdicon-close {
+        position: absolute;
+        right: 0.5rem;
+        top: 1px;
+        font-family: monospace;
+        font-weight: 100 !important;
+      }
+      &:hover {
+        background-color: var(--bs-focused) !important;
+      }
+    }
+
+    .available-items {
+      overflow: auto;
+      div:not(.available-item) {
+        padding: 0.75rem !important;
+      }
+
+      .available-item {
+        padding: 0.75rem !important;
+        word-break: break-word;
+
+        &.active {
+          background-color: var(--bs-gray-200) !important;
+          color: $dark !important;
+        }
+
+        &:hover {
+          background-color: var(--bs-focused) !important;
+        }
+        &:has(> span.disabled) {
+          pointer-events: none;
+        }
+      }
+      li {
+        padding-inline-start: 0.5rem !important;
+      }
+    }
+
+    hr {
+      margin: 0 !important;
+      opacity: 0.1 !important;
+    }
+  }
+
+  .nsdicon-close {
+    display: none !important;
+  }
+}
+
+.select-dropwdown-sm {
+  .ngx-dropdown-list-container {
+    .search-container {
+      input {
+        &:focus + label {
+          transform: translateY(0.25rem) !important;
+        }
+      }
+      label {
+        transform: translateY(1.25rem) !important;
+
+        &.active {
+          transform: translateY(0.25rem) !important;
+        }
+      }
+    }
+  }
+}
+
+.select-dropdown-multi {
+  .ngx-dropdown-list-container {
+    .available-items {
+      overflow: unset !important;
+    }
+  }
+}
+
+// ngx dropdown-menu
+.dropdown-menu {
+  min-width: 140px;
+  padding: 0;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  overflow: hidden;
+
+  .dropdown-item {
+    padding: 0.5rem 1rem;
+    font-size: 1.167rem;
+
+    &:hover {
+      background-color: var(--bs-focused);
+      color: $dark;
+    }
+  }
+}
+
+// ngx context-menu
+.ngx-contextmenu {
+  --ngx-contextmenu-font-family: $font-family-sans-serif;
+  --ngx-contextmenu-item-padding: 0.5rem 1rem;
+  --ngx-contextmenu-padding: 0;
+  --ngx-contextmenu-text-color: $dark !important;
+  --ngx-contextmenu-min-width: 100px;
+
+  .ngx-contextmenu--item-content {
+    &:hover {
+      background-color: var(--bs-focused) !important;
+    }
+  }
+}
+
+// select-dropdown-regular
+
+.select-dropdown-regular {
+  text-align: start;
+  .ngx-dropdown-list-container {
+    .search-container {
+      label {
+        transform: translateY(1.25rem) !important;
+      }
+      input {
+        &:focus ~ label {
+          transform: translateY(0.25rem) scale(0.85) !important;
+        }
+      }
+    }
+  }
+}
+
+// ngx select dropdown labele
+.ngx-select-dropdown-label {
+  color: rgba(var(--bs-body-color-rgb), 0.65);
+  font-size: 1.15rem;
+  z-index: 5;
+  width: auto;
+  max-width: calc(100% - 25%);
+  overflow: hidden;
+  text-align: start;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+
+  position: absolute;
+  top: 0.875rem;
+  left: 1.35rem;
+}
+
+// If value is already selected then can't be unselected.. Only use this for single value select
+.ngx-dropdown-disabled-selected-value {
+  .selected-items {
+    pointer-events: none !important;
+  }
+}
+
+// Select/Unselect All
+.ngx-dropdown-container {
+  .select-options {
+    padding-top: 0 !important;
+    label {
+      width: 100% !important;
+      padding: 1rem 0.75rem !important;
+      cursor: pointer;
+      display: flex;
+      border-bottom: 1px solid var(--bs-gray-400);
+      &::before {
+        content: 'Select All';
+        white-space: nowrap;
+        font-size: 1.2rem;
+        padding-left: 0rem !important;
+        color: var(--bs-dark);
+      }
+      input {
+        display: none;
+      }
+      span {
+        display: none;
+      }
+      &:hover {
+        background-color: var(--bs-focused) !important;
+      }
+      &:has(input:checked) {
+        background-color: var(--bs-primary);
+        word-break: break-word;
+        margin-bottom: 0 !important;
+        padding-right: calc(1.5em + 1.25rem) !important;
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23FFFFFF' d='M2.3 6.73.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+        background-repeat: no-repeat;
+        background-position: right calc(0.375em + 0.3595rem) center;
+        background-size: 1rem 1rem;
+
+        &::before {
+          content: 'Deselect All';
+          color: var(--bs-white);
+        }
+
+        &:hover {
+          background-color: var(--bs-primary) !important;
+          opacity: 0.925;
+          transition: opacity 250ms ease;
+        }
+      }
+    }
+  }
+}
+
+// Select Dropdown Item Line Clamp
+.select-dropdown-item-line-clamp {
+  .ngx-dropdown-list-container {
+    .selected-item,
+    .available-item {
+      span {
+        --line-clamp-val: 2;
+        display: -webkit-box;
+        -webkit-line-clamp: var(--line-clamp-val);
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+  }
+}
+
+// cdk-overlay-container
+.cdk-overlay-container {
+  z-index: 1030;
+  .cdk-overlay-pane {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+  .ngx-contextmenu {
+    box-shadow: none !important;
+  }
+}
+
+// Select Dropdown Large Menu
+.select-dropdown-lg-menu {
+  .ngx-dropdown-list-container {
+    max-height: 290px !important;
+  }
+}

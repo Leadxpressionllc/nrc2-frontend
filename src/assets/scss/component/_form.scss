@@ -1,0 +1,341 @@
+%input-icon {
+  background-repeat: no-repeat !important;
+  padding-inline-start: calc(2em + 0.75rem) !important;
+  background-position: center left calc(0.75em + 0.1875rem) !important;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.275rem) !important;
+  &:disabled,
+  &.disabled {
+    background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20448%20512%22%20fill%3D%22%23a4a4a4%22%3E%3Cpath%20d%3D%22M144%20144v48H304V144c0-44.2-35.8-80-80-80s-80%2035.8-80%2080zM80%20192V144C80%2064.5%20144.5%200%20224%200s144%2064.5%20144%20144v48h16c35.3%200%2064%2028.7%2064%2064V448c0%2035.3-28.7%2064-64%2064H64c-35.3%200-64-28.7-64-64V256c0-35.3%2028.7-64%2064-64H80z%22%2F%3E%3C%2Fsvg%3E') !important;
+  }
+}
+
+// Input Icons
+.input-ic-username {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2219%22%20height%3D%2225%22%20viewBox%3D%220%200%2019%2025%22%20fill%3D%22none%22%3E%0A%20%20%3Cpath%20d%3D%22M11.9119%2011.2723C13.735%2010.2913%2014.9883%208.39763%2014.9883%206.20737C14.9883%203.01324%2012.4132%200.43512%209.22284%200.43512C6.03244%200.43512%203.45733%203.01324%203.45733%206.20737C3.45733%208.39763%204.7107%2010.3141%206.53379%2011.2723C2.88762%2012.4359%200.244141%2015.8582%200.244141%2019.8737V24.4139H18.2471V19.8737C18.2471%2015.8582%2015.5809%2012.4359%2011.9575%2011.2723H11.9119Z%22%20fill%3D%22%23192D36%22%2F%3E%0A%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-password {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2220%22%20height%3D%2226%22%20viewBox%3D%220%200%2020%2026%22%20fill%3D%22none%22%3E%0A%20%20%3Cpath%20d%3D%22M17.5155%208.906H16.0342V7.03515C16.0342%203.61287%2013.254%200.829407%209.83571%200.829407C6.41742%200.829407%203.63722%203.61287%203.63722%207.03515V8.906H2.15596C0.993742%208.906%200.0366211%209.86424%200.0366211%2011.0278V23.0971C0.0366211%2024.2835%200.993742%2025.2189%202.15596%2025.2189H17.5155C18.7005%2025.2189%2019.6576%2024.2606%2019.6576%2023.0971V11.0278C19.6576%209.86424%2018.7005%208.906%2017.5155%208.906ZM6.44021%207.03515C6.44021%205.1643%207.96704%203.63568%209.83571%203.63568C11.7044%203.63568%2013.2312%205.1643%2013.2312%207.03515V8.906H6.44021V7.03515ZM10.9751%2019.6292V22.7092C10.9751%2022.8461%2010.8612%2022.9374%2010.7245%2022.9374H9.2432C9.2432%2022.9374%209.01532%2022.8461%209.01532%2022.7092V19.6292C8.01262%2019.2413%207.28339%2018.2602%207.28339%2017.0967C7.28339%2015.6137%208.49118%2014.3817%209.99523%2014.3817C11.4993%2014.3817%2012.7071%2015.5909%2012.7071%2017.0967C12.7071%2018.2602%2011.9778%2019.2185%2010.9751%2019.6292Z%22%20fill%3D%22currentColor%22%2F%3E%0A%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-email {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2222%22%20viewBox%3D%220%200%2024%2022%22%20fill%3D%22none%22%3E%0A%20%20%3Cpath%20d%3D%22M23.954%204.54199L15.536%2012.96C14.5974%2013.8962%2013.3257%2014.422%2012%2014.422C10.6743%2014.422%209.40263%2013.8962%208.464%2012.96L0.046%204.54199C0.032%204.69999%200%204.84299%200%204.99999V17C0.00158786%2018.3256%200.528882%2019.5964%201.46622%2020.5338C2.40356%2021.4711%203.67441%2021.9984%205%2022H19C20.3256%2021.9984%2021.5964%2021.4711%2022.5338%2020.5338C23.4711%2019.5964%2023.9984%2018.3256%2024%2017V4.99999C24%204.84299%2023.968%204.69999%2023.954%204.54199Z%22%20fill%3D%22%23192D36%22%2F%3E%0A%20%20%3Cpath%20d%3D%22M14.1221%2011.546L23.2561%202.411C22.8136%201.67732%2022.1895%201.07004%2021.444%200.64773C20.6986%200.225423%2019.8568%200.00234067%2019.0001%200H5.00005C4.14327%200.00234067%203.30155%200.225423%202.55608%200.64773C1.8106%201.07004%201.18653%201.67732%200.744049%202.411L9.87805%2011.546C10.4416%2012.1073%2011.2046%2012.4225%2012%2012.4225C12.7955%2012.4225%2013.5585%2012.1073%2014.1221%2011.546Z%22%20fill%3D%22currentColor%22%2F%3E%0A%3C%2Fsvg%3E') !important;
+  background-size: calc(0.65em + 0.375rem) calc(0.65em + 0.275rem) !important;
+}
+
+.input-ic-search {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2015%2015%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3.00977%208.05664C3.70247%208.74935%204.54362%209.0957%205.5332%209.0957C6.52279%209.0957%207.36393%208.74935%208.05664%208.05664C8.74935%207.36393%209.0957%206.52279%209.0957%205.5332C9.0957%204.54362%208.74935%203.70247%208.05664%203.00977C7.36393%202.31706%206.52279%201.9707%205.5332%201.9707C4.54362%201.9707%203.70247%202.31706%203.00977%203.00977C2.31706%203.70247%201.9707%204.54362%201.9707%205.5332C1.9707%206.52279%202.31706%207.36393%203.00977%208.05664ZM10.2832%209.0957L14.2168%2013.0293L13.0293%2014.2168L9.0957%2010.2832V9.65234L8.87305%209.42969C7.93294%2010.2461%206.81966%2010.6543%205.5332%2010.6543C4.09831%2010.6543%202.8737%2010.1595%201.85938%209.16992C0.869792%208.18034%200.375%206.9681%200.375%205.5332C0.375%204.09831%200.869792%202.88607%201.85938%201.89648C2.8737%200.882161%204.09831%200.375%205.5332%200.375C6.9681%200.375%208.18034%200.882161%209.16992%201.89648C10.1595%202.88607%2010.6543%204.09831%2010.6543%205.5332C10.6543%206.05273%2010.5306%206.64648%2010.2832%207.31445C10.0358%207.95768%209.7513%208.47721%209.42969%208.87305L9.65234%209.0957H10.2832Z%22%20fill%3D%22%239CB0BD%22%2F%3E%0A%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-confirmed {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M6.48828%2011.7617L13.2383%205.01172L12.1836%203.92188L6.48828%209.61719L3.81641%206.94531L2.76172%208L6.48828%2011.7617ZM2.69141%202.72656C4.16797%201.25%205.9375%200.511719%208%200.511719C10.0625%200.511719%2011.8203%201.25%2013.2734%202.72656C14.75%204.17969%2015.4883%205.9375%2015.4883%208C15.4883%2010.0625%2014.75%2011.832%2013.2734%2013.3086C11.8203%2014.7617%2010.0625%2015.4883%208%2015.4883C5.9375%2015.4883%204.16797%2014.7617%202.69141%2013.3086C1.23828%2011.832%200.511719%2010.0625%200.511719%208C0.511719%205.9375%201.23828%204.17969%202.69141%202.72656Z%22%20fill%3D%22%2348B74B%22%2F%3E%0A%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-date {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cg%20clip-path%3D%22url(%23clip0_731_5077)%22%3E%0A%3Cpath%20d%3D%22M15.8203%2016.6797V7.5H4.17969V16.6797H15.8203ZM15.8203%203.32031C16.263%203.32031%2016.6536%203.48958%2016.9922%203.82812C17.3307%204.16667%2017.5%204.55729%2017.5%205V16.6797C17.5%2017.1224%2017.3307%2017.513%2016.9922%2017.8516C16.6536%2018.1641%2016.263%2018.3203%2015.8203%2018.3203H4.17969C3.71094%2018.3203%203.30729%2018.1641%202.96875%2017.8516C2.65625%2017.5391%202.5%2017.1484%202.5%2016.6797V5C2.5%204.55729%202.65625%204.16667%202.96875%203.82812C3.30729%203.48958%203.71094%203.32031%204.17969%203.32031H5V1.67969H6.67969V3.32031H13.3203V1.67969H15V3.32031H15.8203ZM14.1797%209.17969V10.8203H12.5V9.17969H14.1797ZM10.8203%209.17969V10.8203H9.17969V9.17969H10.8203ZM7.5%209.17969V10.8203H5.82031V9.17969H7.5Z%22%20fill%3D%22%23484848%22%2F%3E%0A%3C%2Fg%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip0_731_5077%22%3E%0A%3Crect%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22white%22%2F%3E%0A%3C%2FclipPath%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E%0A') !important;
+}
+
+.input-ic-time {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cg%20clip-path%3D%22url(%23clip0_105_4142)%22%3E%0A%3Cpath%20d%3D%22M10.4779%205.16797V9.54297L14.2279%2011.7695L13.6029%2012.8242L9.22791%2010.168V5.16797H10.4779ZM5.32166%2014.0742C6.64978%2015.3763%208.2253%2016.0273%2010.0482%2016.0273C11.8711%2016.0273%2013.4336%2015.3763%2014.7357%2014.0742C16.0638%2012.7461%2016.7279%2011.1706%2016.7279%209.34766C16.7279%207.52474%2016.0638%205.96224%2014.7357%204.66016C13.4336%203.33203%2011.8711%202.66797%2010.0482%202.66797C8.2253%202.66797%206.64978%203.33203%205.32166%204.66016C4.01957%205.96224%203.36853%207.52474%203.36853%209.34766C3.36853%2011.1706%204.01957%2012.7461%205.32166%2014.0742ZM4.14978%203.48828C5.79041%201.84766%207.75655%201.02734%2010.0482%201.02734C12.3399%201.02734%2014.293%201.84766%2015.9076%203.48828C17.5482%205.10286%2018.3685%207.05599%2018.3685%209.34766C18.3685%2011.6393%2017.5482%2013.6055%2015.9076%2015.2461C14.293%2016.8607%2012.3399%2017.668%2010.0482%2017.668C7.75655%2017.668%205.79041%2016.8607%204.14978%2015.2461C2.5352%2013.6055%201.72791%2011.6393%201.72791%209.34766C1.72791%207.05599%202.5352%205.10286%204.14978%203.48828Z%22%20fill%3D%22%23484848%22%2F%3E%0A%3C%2Fg%3E%0A%3Cdefs%3E%0A%3CclipPath%20id%3D%22clip0_105_4142%22%3E%0A%3Crect%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22white%22%2F%3E%0A%3C%2FclipPath%3E%0A%3C%2Fdefs%3E%0A%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-enter {
+  @extend %input-icon;
+  background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2220%22%20height%3D%2220%22%20viewBox%3D%220%200%2020%2020%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cg%20clip-path%3D%22url(%23clip0_731_4099)%22%3E%20%3Cpath%20d%3D%22M15.8203%205.82031H17.5V10.8203H4.84375L7.85156%2013.8281L6.67969%2015L1.67969%2010L6.67969%205L7.85156%206.17188L4.84375%209.17969H15.8203V5.82031Z%22%20fill%3D%22%23484848%22%2F%3E%20%3C%2Fg%3E%20%3Cdefs%3E%20%3CclipPath%20id%3D%22clip0_731_4099%22%3E%20%3Crect%20width%3D%2220%22%20height%3D%2220%22%20fill%3D%22white%22%2F%3E%20%3C%2FclipPath%3E%20%3C%2Fdefs%3E%20%3C%2Fsvg%3E') !important;
+}
+
+.input-ic-right {
+  padding-inline-start: 1rem !important;
+  padding-inline-end: calc(2em + 0.75rem) !important;
+  background-position: center right calc(0.75em + 0.1875rem) !important;
+}
+
+// Floating Inside Label
+.form-floating {
+  .form-control,
+  .form-select {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 1.175rem 1rem 0.275rem;
+    height: 3rem;
+    min-height: 3rem;
+
+    + label {
+      font-weight: 500;
+      padding: 0.65rem 0.75rem 0.65rem;
+      &::after {
+        background-color: var(--bs-gray-600) !important;
+        height: 1em !important;
+      }
+    }
+  }
+
+  .form-control {
+    &:focus ~ label,
+    &:not(:placeholder-shown) ~ label {
+      transform: scale(0.75) translateY(-0.325rem) translateX(0.5rem);
+    }
+  }
+
+  .form-select ~ label {
+    transform: scale(0.75) translateY(-0.325rem) translateX(0.5rem);
+  }
+
+  label {
+    width: auto;
+    max-width: 100%;
+    font-size: 1.25rem;
+    color: var(--bs-gray-600);
+    z-index: 5;
+  }
+
+  [class*='input-ic-'] {
+    & ~ label {
+      padding-inline-start: calc(2.25em + 1rem);
+
+      &::after {
+        background-color: transparent !important;
+        left: 3.25rem !important;
+      }
+    }
+  }
+  [class*='input-ic-right'] {
+    & ~ label {
+      padding-inline-start: 0.875rem !important;
+    }
+  }
+
+  textarea {
+    &.form-control {
+      padding-block-start: 2.5rem !important;
+      &:focus ~ label,
+      &:not(:placeholder-shown) ~ label {
+        transform: scale(0.95) translateY(-0.75rem) translateX(0.05rem);
+        width: 100%;
+        font-size: 1.2rem;
+
+        &::after {
+          inset: 0.75rem 0.5rem !important;
+          height: 2.375em !important;
+        }
+      }
+    }
+  }
+}
+
+// Validation
+.form-control,
+.form-select {
+  background-color: var(--bs-white) !important;
+
+  &:not(:placeholder-shown) {
+    background-color: var(--bs-normal);
+    & + .input-group-text {
+      background-color: var(--bs-normal);
+    }
+    ~ label {
+      &::after {
+        background-color: var(--bs-normal) !important;
+      }
+    }
+  }
+
+  & + .input-group-text {
+    background-color: var(--bs-normal);
+  }
+
+  &.is-valid {
+    border-color: var(--bs-success);
+    background-color: var(--bs-filled);
+    padding-inline-end: 1rem;
+
+    & + .input-group-text {
+      border-color: var(--bs-success) !important;
+      background-color: var(--bs-filled) !important;
+    }
+
+    & ~ label {
+      &::after {
+        background-color: var(--bs-filled) !important;
+      }
+    }
+  }
+
+  &:focus {
+    background-color: var(--bs-focused);
+    & + .input-group-text {
+      background-color: var(--bs-focused) !important;
+    }
+    ~ label {
+      &::after {
+        background-color: var(--bs-focused) !important;
+      }
+    }
+  }
+
+  &.is-invalid {
+    border-color: var(--bs-danger);
+    background-color: var(--bs-invalid);
+
+    & + .input-group-text {
+      border-color: var(--bs-danger) !important;
+      background-color: var(--bs-invalid) !important;
+    }
+
+    & ~ label {
+      color: var(--bs-danger) !important;
+      &::after {
+        background-color: var(--bs-invalid) !important;
+      }
+    }
+  }
+
+  &.disabled,
+  &:disabled {
+    pointer-events: none;
+    background-color: var(--bs-gray-500) !important;
+
+    & + .input-group-text {
+      background-color: var(--bs-gray-500) !important;
+    }
+
+    & ~ label {
+      &::after {
+        background-color: var(--bs-gray-500) !important;
+      }
+    }
+  }
+}
+
+.form-control {
+  &.is-valid {
+    background-image: none;
+  }
+  &.is-invalid {
+    background-image: none;
+  }
+}
+
+.form-select {
+  &.is-valid {
+    --bs-form-select-bg-icon: none !important;
+  }
+  &.is-invalid {
+    --bs-form-select-bg-icon: none !important;
+  }
+}
+
+.form-control-feedback {
+  color: var(--bs-danger);
+  padding-inline-start: 1.334rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+// Checkbox and Radios
+.form-check-input {
+  border-color: var(--bs-gray-500);
+  &:focus {
+    border-color: var(--bs-primary);
+  }
+}
+
+// Edge Password View native removed
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}
+
+// Placeholder text
+.form-control::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: var(--bs-gray-600);
+  opacity: 1; /* Firefox */
+}
+
+.form-control:-ms-input-placeholder {
+  /* Internet Explorer 10-11 */
+  color: var(--bs-gray-600);
+}
+
+.form-control::-ms-input-placeholder {
+  /* Microsoft Edge */
+  color: var(--bs-gray-600);
+}
+
+// Toggle Switch
+.toggle-switch {
+  position: relative;
+  input[type='checkbox'] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 10;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+    &:checked {
+      ~ {
+        .toggle-path {
+          &:before {
+            box-shadow: inset 3.25rem 0 0 rgba(var(--bs-primary-rgb), 0.65);
+            background-color: var(--bs-white);
+          }
+          &:after {
+            left: 1.5rem;
+            background-color: var(--bs-primary);
+            box-shadow: 0 0 0px 0.5rem rgba(var(--bs-primary-rgb), 0.2);
+          }
+        }
+      }
+    }
+  }
+  .toggle-path {
+    position: relative;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    &:before {
+      content: '';
+      width: 3.25rem;
+      height: 1.167rem;
+      background: var(--bs-gray-500);
+      box-shadow: inset 0 0 0 0px rgba(var(--bs-primary-rgb), 0.5);
+      position: relative;
+      display: inline-block;
+      border-radius: 4rem;
+      box-sizing: border-box;
+      transition: 0.2s ease-in;
+    }
+    &:after {
+      content: '';
+      position: absolute;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      left: 0;
+      top: -0.35rem;
+      z-index: 2;
+      background: var(--bs-white);
+      box-sizing: border-box;
+      filter: drop-shadow(0px 2px 1px rgba(0, 0, 0, 0.2)) drop-shadow(0px 1px 1px rgba(0, 0, 0, 0.14))
+        drop-shadow(0px 1px 3px rgba(0, 0, 0, 0.12));
+      transition: 0.2s ease-in;
+    }
+  }
+}
+
+// Hide Time defatult time icon
+input[type='time']::-webkit-calendar-picker-indicator {
+  background: none;
+}

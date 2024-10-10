@@ -1,0 +1,20 @@
+// accordion
+.custom-accordion {
+  .panel {
+    margin-bottom: 1rem;
+
+    .card-header {
+      background-color: var(--bs-gray-100);
+    }
+
+    .toggle-icon {
+      transform: rotate(0deg);
+      transition: transform 500ms ease;
+    }
+    &.panel-open {
+      .toggle-icon {
+        transform: rotate(180deg);
+      }
+    }
+  }
+}
