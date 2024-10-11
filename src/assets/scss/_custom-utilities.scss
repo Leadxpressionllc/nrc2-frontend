@@ -1,6 +1,6 @@
 //
 //
-// Add New in Utilities API
+// Add Custom in Utilities API
 $utilities: map-merge(
   $utilities,
   (
@@ -56,5 +56,10 @@ $utilities: map-merge(
           responsive: true,
         )
       ),
+    'position': (
+      property: position,
+      responsive: true,
+      values: static relative absolute fixed sticky,
+    ),
   )
 );

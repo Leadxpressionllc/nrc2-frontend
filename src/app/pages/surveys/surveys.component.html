@@ -1,1 +1,118 @@
-<p>surveys works!</p>
+<header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
+  <nav class="navbar navbar-expand-lg bg-glass rounded-3 shadow-lg" style="--bg-alpha: 86%">
+    <div class="container-md position-relative">
+      <div class="d-flex column-gap-2 align-items-center py-1">
+        <a class="navbar-brand me-auto" href="#">
+          <img class="img-fluid" src="../../../../assets/images/nrc-logo.svg" alt="NRC" width="150" height="60" />
+        </a>
+        <p class="d-inline-flex align-items-center bg-gray-700 text-white px-2 py-1 rounded mb-0">
+          <span class="material-symbols-outlined">lock_person</span> <span class="ms-1"> Your information is kept 100% confidential.</span>
+        </p>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<!-- %%%%% PAGE TITLE SECTION %%%%%% -->
+<section class="top-section-pt-sm bg-primary text-white">
+  <div class="container text-center pt-0 p-4">
+    <div class="col-xl-8 col mx-auto">
+      <h1 class="h3 ls-sm">Check If You Qualify For Financial Aid</h1>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% SURVEYS SECTION %%%%%% -->
+<section class="survey-content-section py-3 bg-light">
+  <div class="container h-md-100">
+    <div class="col-xl-8 col-md-10 h-md-100 mx-auto">
+      <form class="d-flex flex-column bg-white rounded shadow h-md-100" action="">
+        <!-- Head -->
+        <div class="p-lg-4 p-4 bg-glass rounded-top shadow-sm position-md-static position-sticky z-9" style="top: 72px">
+          <ul class="step-wizard nav list-unstyled mb-0" role="tablist">
+            @for (step of steps; track step; let i = $index) {
+              <li class="nav-item" role="presentation">
+                <a
+                  [ngClass]="{
+                    active: currentStep === i + 1,
+                    completed: step.completed,
+                    'text-danger': currentStep === 3 && step.name === 'Delete',
+                  }"
+                  class="nav-link"
+                  role="tab"
+                  [attr.aria-controls]="step.name.toLowerCase() + '-tab'"
+                  [attr.aria-selected]="currentStep === i + 1"
+                >
+                  <span class="badge" [ngClass]="{ 'bg-danger border-danger': currentStep === 3 && step.name === 'Delete' }"></span>
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+        <!-- Body -->
+        <div class="p-lg-4 p-3 h-md-100 overflow-md-auto">
+          @if (currentStep === 1) {
+            <!-- ### Question for Select Option -->
+            <div class="mb-4">
+              <h6 class="h5 mb-3">What is your current employment status?</h6>
+              <div class="col-xl-7">
+                <select class="form-select" id="gender" aria-label="select example">
+                  <option>Employed</option>
+                  <option>Veteran</option>
+                  <option>Retired</option>
+                  <option>Student</option>
+                  <option>Disabled</option>
+                  <option>Unemployed</option>
+                  <option>Business Owner</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- ### Question for Multiple Options -->
+            <div class="mb-4">
+              <h6 class="h5 mb-3">Which of the following resources would be beneficial for you?</h6>
+              <div class="d-flex flex-wrap gap-3">
+                <!-- checkbox option -->
+                <div class="form-check form-check-btn">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
+                  <label class="form-check-label" for="flexCheckDefault"> Default checkbox </label>
+                </div>
+                <!-- checkbox option -->
+                <div class="form-check form-check-btn">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
+                  <label class="form-check-label" for="flexCheckChecked"> Checked checkbox </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- ### Question for Single Options -->
+            <div class="mb-4">
+              <h6 class="h5 mb-3">If any, what is the main source of your debt?</h6>
+              <div class="d-flex flex-wrap gap-3">
+                <!-- checkbox option -->
+                <div class="form-check form-check-btn">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" />
+                  <label class="form-check-label" for="flexRadioDefault1"> Default radio </label>
+                </div>
+                <!-- checkbox option -->
+                <div class="form-check form-check-btn">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                  <label class="form-check-label" for="flexRadioDefault2"> Default checked radio </label>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+        <!-- Foot -->
+        <div class="d-flex justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
+          <button class="btn btn-secondary px-md-5 px-4 fs-md btn-icon" (click)="onNextStep()" type="button">
+            Next <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% FOOTER SECTION %%%%%% -->
+<nrc-footer [showSurveysDisclaimer]="true"></nrc-footer>
