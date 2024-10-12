@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '@core/guards/auth.guard';
+import { authGuard } from '@core/guards';
 
 export const routes: Routes = [
   {
@@ -10,17 +10,20 @@ export const routes: Routes = [
   {
     path: 'home',
     loadChildren: async () => (await import('@pages/home')).routes,
-    canActivate: [authGuard({ blockAfterAuthentication: true, publicRoute: true })],
+    canActivate: [authGuard],
+    data: {
+      authParams: { blockAfterAuthentication: true, publicRoute: true },
+    },
   },
   {
     path: 'surveys',
     loadChildren: async () => (await import('@pages/surveys')).routes,
-    canActivate: [authGuard()],
+    canActivate: [authGuard],
   },
   {
     path: 'offers',
     loadChildren: async () => (await import('@pages/offers')).routes,
-    canActivate: [authGuard()],
+    canActivate: [authGuard],
   },
   {
     path: 'email-offer',
@@ -29,7 +32,7 @@ export const routes: Routes = [
   {
     path: 'offer-redirect',
     loadChildren: async () => (await import('@pages/offer-redirect')).routes,
-    canActivate: [authGuard()],
+    canActivate: [authGuard],
   },
   {
     path: 'redirect',

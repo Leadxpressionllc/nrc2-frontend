@@ -13,22 +13,22 @@ const defaultAuthGuardOptions = (): AuthGuardOptions => ({
   publicRoute: false,
 });
 
-export const authGuard = (options: AuthGuardOptions = defaultAuthGuardOptions()): CanActivateFn => {
-  return (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
-    const router = inject(Router);
-    const authService = inject(AuthService);
+export const authGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => {
+  const router = inject(Router);
+  const authService = inject(AuthService);
 
-    if (authService.isAuthenticated()) {
-      if (options.blockAfterAuthentication) {
-        const landingPage = authService.getLandingPage();
-        router.navigate([landingPage]);
-        return false;
-      }
-    } else if (state.url && !options.publicRoute) {
-      router.navigate(['/home']);
+  const options: AuthGuardOptions = route.data['authParams'] ? route.data['authParams'] : defaultAuthGuardOptions();
+
+  if (authService.isAuthenticated()) {
+    if (options.blockAfterAuthentication) {
+      const landingPage = authService.getLandingPage();
+      router.navigate([landingPage]);
       return false;
     }
+  } else if (state.url && !options.publicRoute) {
+    router.navigate(['/home']);
+    return false;
+  }
 
-    return true;
-  };
+  return true;
 };

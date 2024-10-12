@@ -8,7 +8,15 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "build:staging": "ng build --configuration=staging",
+    "s3UploadStaging": "aws s3 cp dist/nrc-frontend s3://nrc-frontend/stage --recursive",
+    "clearCloudFrontCacheStaging": "aws cloudfront create-invalidation --distribution-id E1XVMAMHCYQH0I --paths \"/*\"",
+    "deploy:staging": "npm run build:staging && npm run s3UploadStaging && npm run clearCloudFrontCacheStaging",
+    "build:prod": "ng build --configuration=production",
+    "s3UploadProd": "aws s3 cp dist/nrc-frontend s3://nrc-frontend/prod --recursive",
+    "clearCloudFrontCacheProd": "aws cloudfront create-invalidation --distribution-id E3BQPAYEWDC5M6 --paths \"/*\"",
+    "deploy:prod": "npm run build:prod && npm run s3UploadProd && npm run clearCloudFrontCacheProd"
   },
   "husky": {
     "hooks": {
@@ -32,6 +40,8 @@
     "@auth0/angular-jwt": "^5.2.0",
     "@ngx-translate/core": "^15.0.0",
     "@ngx-translate/http-loader": "^8.0.0",
+    "angular-svg-icon": "^18.0.2",
+    "angular-svg-icon-preloader": "^8.0.0",
     "bootstrap": "^5.3.3",
     "moment": "^2.30.1",
     "moment-timezone": "^0.5.46",

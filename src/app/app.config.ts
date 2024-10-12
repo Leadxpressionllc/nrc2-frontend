@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthInterceptor, InterceptedHttp, LoaderAndToasterInterceptor } from '@core/interceptors';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AngularSvgIconModule } from 'angular-svg-icon';
+import { AngularSvgIconPreloaderModule } from 'angular-svg-icon-preloader';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -44,6 +46,13 @@ export const appConfig: ApplicationConfig = {
         tapToDismiss: false,
         preventDuplicates: true,
         titleClass: 'toast-title',
+      })
+    ),
+
+    importProvidersFrom(AngularSvgIconModule.forRoot()),
+    importProvidersFrom(
+      AngularSvgIconPreloaderModule.forRoot({
+        configUrl: `./assets/icons/icons.json`,
       })
     ),
   ],

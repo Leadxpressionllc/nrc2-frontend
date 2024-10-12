@@ -9,14 +9,51 @@
       content="National Resource Connect: At National Resource Connect our mission is to help you get ahead with your finances. Whether you need funding for college, home repairs or to transform an idea into a profitable business we are here to provide you the best grants available for you."
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="impact-site-verification" value="-1365141913" />
     <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block"
     />
+
+    <script>
+      var xhr = new XMLHttpRequest();
+      xhr.open('GET', 'https://fonts.googleapis.com/css2?family=Afacad:ital,wght@0,400..700;1,400..700', true);
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+          let css = xhr.responseText;
+          css = css.replace(/}/g, 'font-display: swap; }');
+
+          const head = document.getElementsByTagName('head')[0];
+          const style = document.createElement('style');
+          style.appendChild(document.createTextNode(css));
+          head.appendChild(style);
+        }
+      };
+
+      xhr.send();
+    </script>
+
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != 'dataLayer' ? '&l=' + l : '';
+        j.async = true;
+        j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, 'script', 'dataLayer', 'GTM-NZB8B52C');
+    </script>
+    <!-- End Google Tag Manager -->
   </head>
 
   <body>
