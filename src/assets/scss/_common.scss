@@ -11,12 +11,34 @@
   background-attachment: fixed;
 }
 
+// Only for hover able devices
+@media (hover: hover) {
+  .hover-shadow-lg {
+    transition: box-shadow 250ms ease-out;
+    &:hover {
+      box-shadow: var(--bs-box-shadow-lg) !important;
+    }
+  }
+}
+
+.survey-content-section {
+  @media all and (min-width: 768px) {
+    height: calc(100vh - 170px);
+  }
+  @media all and (max-width: 767px) {
+    min-height: calc(100vh - 250px);
+  }
+}
+
 .top-section-pt {
   padding-block-start: 8rem !important;
 
   @media all and (max-width: 575px) {
     padding-block-start: 9rem !important;
   }
+}
+.top-section-pt-sm {
+  padding-block-start: 6.5rem !important;
 }
 
 .text-shadow-white {

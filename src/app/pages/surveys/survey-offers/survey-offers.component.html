@@ -1,1 +1,46 @@
-<p>survey-offers works!</p>
+<!-- %%%%% HEADER %%%%% -->
+<header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
+  <nrc-header [showPrivacyInfoPill]="true"></nrc-header>
+</header>
+
+<!-- %%%%% PAGE TITLE SECTION %%%%%% -->
+<section class="top-section-pt-sm bg-primary text-white">
+  <div class="container text-center pt-0 p-4">
+    <div class="col-xl-8 col mx-auto">
+      <h1 class="h3 ls-sm">Title fo this ad page</h1>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% SURVEYS SECTION %%%%%% -->
+<section class="survey-content-section py-3 bg-light">
+  <div class="container pt-md-5">
+    <div class="col-xl-8 col-lg-10 mx-auto">
+      <div class="d-flex flex-column bg-white rounded shadow">
+        <!-- Body -->
+        <div class="p-4">
+          <div class="row g-4 align-items-center">
+            <div class="col-md-4 text-md-start text-center">
+              <img class="img-fluid rounded" src="../../../../assets/images/survey-offer-image.png" />
+            </div>
+            <div class="col-md-8">
+              <h4 class="h4">What is your current employment status?</h4>
+              <p class="fs-lg">
+                American Residential Warranty is a service provider that offers home warranty plans to cover the repair or replacement of
+                major home systems and appliances.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Foot -->
+        <div class="d-flex gap-3 justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
+          <button class="btn btn-secondary btn-lg px-5 btn-icon" type="button">Yes</button>
+          <button class="btn btn-dark btn-lg px-5 btn-icon" type="button">No</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- %%%%% FOOTER %%%%%% -->
+<nrc-footer [showSurveysDisclaimer]="true"></nrc-footer>

@@ -88,9 +88,9 @@ figcaption {
   /* Support for IE. */
   font-feature-settings: 'liga';
 
-  .show-outlined {
+  &.show-outlined {
     font-variation-settings:
       'FILL' 0,
-      'wght' 100;
+      'wght' 600;
   }
 }

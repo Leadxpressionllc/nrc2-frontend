@@ -1,15 +1,14 @@
-:root {
-  scroll-behavior: smooth;
-  scrollbar-width: thin;
-}
-
 html {
-  color-scheme: light dark;
   hanging-punctuation: first last;
 
   @media all and (max-width: 768px) {
     font-size: 0.875rem;
   }
+}
+
+* {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
 }
 
 a {
