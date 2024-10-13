@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { FooterComponent } from '@shared/components';
+import { FooterComponent, HeaderComponent } from '@shared/components';
 
 @Component({
   selector: 'nrc-offers',
   standalone: true,
-  imports: [FooterComponent],
+  imports: [HeaderComponent, FooterComponent],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.scss',
 })

@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FooterComponent } from '@shared/components';
+import { FooterComponent, HeaderComponent } from '@shared/components';
 
 @Component({
   selector: 'nrc-surveys',
   standalone: true,
-  imports: [CommonModule, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent],
   templateUrl: './surveys.component.html',
   styleUrl: './surveys.component.scss',
 })
