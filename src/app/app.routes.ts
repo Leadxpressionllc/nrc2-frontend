@@ -51,6 +51,14 @@ export const routes: Routes = [
     path: 'unsubscribe',
     loadChildren: async () => (await import('@pages/unsubscribe')).routes,
   },
+  {
+    path: 'marketing-associates',
+    loadChildren: async () => (await import('@pages/marketing-associates')).routes,
+  },
+  {
+    path: 'terms-policy',
+    loadChildren: async () => (await import('@pages/terms-policy')).routes,
+  },
 
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
