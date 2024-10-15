@@ -38,7 +38,6 @@ export const routes: Routes = [
     path: 'redirect',
     loadChildren: async () => (await import('@pages/redirect')).routes,
   },
-
   {
     path: 'jobs',
     loadChildren: async () => (await import('@pages/jobs')).routes,
@@ -54,10 +53,6 @@ export const routes: Routes = [
   {
     path: 'marketing-associates',
     loadChildren: async () => (await import('@pages/marketing-associates')).routes,
-  },
-  {
-    path: 'terms-policy',
-    loadChildren: async () => (await import('@pages/terms-policy')).routes,
   },
 
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
