@@ -4,14 +4,14 @@ import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } 
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
 import { AuthInfo, SignupFlow, SignupRequest, SignupSourceInfo } from '@core/models';
-import { AuthService, CommonService, MixPanelService, PopupService } from '@core/services';
+import { AuthService, MixPanelService, PopupService } from '@core/services';
 import { AppService, ValidatorService } from '@core/utility-services';
 import { FormControlComponent } from '@shared/components';
+import { LoaderDirective } from '@shared/directives';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { map, take } from 'rxjs';
 import { PasswordConfirmationPopupComponent } from './password-confirmation-popup/password-confirmation-popup.component';
-import { LoaderDirective } from '@shared/directives';
 
 @Component({
   selector: 'nrc-signup-form',
@@ -37,13 +37,12 @@ export class SignupFormComponent implements OnInit {
   error: string = '';
   surveyId!: string;
 
-  flow: SignupFlow = constants.defaultSignupFlow;
+  signupFlow: SignupFlow = constants.defaultSignupFlow;
   signupForm!: FormGroup;
 
   queryParams: any;
   sourceInfo!: SignupSourceInfo;
 
-  flowId!: string;
   showPhoneField: boolean = false;
   showAddressField: boolean = false;
   showDobField: boolean = false;
@@ -56,7 +55,6 @@ export class SignupFormComponent implements OnInit {
     private fb: FormBuilder,
     private popupService: PopupService,
     private authService: AuthService,
-    private commonService: CommonService,
     private mixPanelService: MixPanelService
   ) {}
 
@@ -64,16 +62,12 @@ export class SignupFormComponent implements OnInit {
     this._setupMinMaxDatesForDOB();
     this._loadQueryParams();
 
-    this._initSignupFrom();
-
-    this.activatedRoute.queryParams.subscribe((params) => {
-      this.flowId = params['flowId'];
-      if (this.flowId) {
-        // this._loadUserFlow(this.flowId);
-      } else {
-        // this.flow = constants.defaultFlow;
-        // this._initSignupFrom();
+    this.activatedRoute.data.subscribe((data) => {
+      if (data['signupFlow']) {
+        this.signupFlow = data['signupFlow'];
       }
+
+      this._initSignupFrom();
     });
   }
 
@@ -91,7 +85,7 @@ export class SignupFormComponent implements OnInit {
   }
 
   private _loadDynamicFields(): void {
-    if (!this.flow) {
+    if (!this.signupFlow) {
       return;
     }
 
@@ -103,7 +97,7 @@ export class SignupFormComponent implements OnInit {
 
     const self: any = this;
 
-    this.flow.formFields.forEach((field) => {
+    this.signupFlow.formFields.forEach((field) => {
       const config = fieldConfigs[field.name];
       if (config) {
         // Capitalize the first letter of the field name for dynamic property access

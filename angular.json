@@ -57,7 +57,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.scss"],
+            "styles": ["node_modules/ngx-spinner/animations/ball-scale-multiple.css", "src/styles.scss"],
             "scripts": [],
             "allowedCommonJsDependencies": ["underscore", "moment", "moment-timezone", "mixpanel-browser"]
           },

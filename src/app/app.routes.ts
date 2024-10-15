@@ -1,5 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@core/guards';
+import { signupFlowResolveFn } from '@core/resolvers';
 
 export const routes: Routes = [
   {
@@ -11,6 +12,9 @@ export const routes: Routes = [
     path: 'home',
     loadChildren: async () => (await import('@pages/home')).routes,
     canActivate: [authGuard],
+    resolve: {
+      signupFlow: signupFlowResolveFn,
+    },
     data: {
       authParams: { blockAfterAuthentication: true, publicRoute: true },
     },

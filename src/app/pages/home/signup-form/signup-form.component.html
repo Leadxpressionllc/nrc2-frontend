@@ -51,7 +51,7 @@
       </div>
     }
 
-    <div class="col-12" [ngClass]="{ 'col-sm-5': flow.formFields.length > 3 }">
+    <div class="col-12" [ngClass]="{ 'col-sm-5': signupFlow.formFields.length > 3 }">
       <nrc-form-control name="Zip Code">
         <div class="form-floating">
           <input type="text" class="form-control" formControlName="zipCode" placeholder="Zip Code" mask="00000" autocomplete="off" />
@@ -84,7 +84,7 @@
     }
 
     @if (showPhoneField) {
-      <div class="col-12" [ngClass]="{ 'col-md-8': flow.formFields.length <= 4 }">
+      <div class="col-12" [ngClass]="{ 'col-md-8': signupFlow.formFields.length <= 4 }">
         <nrc-form-control name="Phone Number">
           <div class="form-floating">
             <input
