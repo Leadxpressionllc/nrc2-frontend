@@ -59,7 +59,7 @@
             ],
             "styles": ["src/styles.scss"],
             "scripts": [],
-            "allowedCommonJsDependencies": ["underscore", "moment", "moment-timezone"]
+            "allowedCommonJsDependencies": ["underscore", "moment", "moment-timezone", "mixpanel-browser"]
           },
           "configurations": {
             "production": {
