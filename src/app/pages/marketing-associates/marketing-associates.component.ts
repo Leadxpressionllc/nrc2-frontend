@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { FooterComponent, HeaderComponent } from '@shared/components';
 
 @Component({
-  selector: 'nrc-terms-and-conditions',
+  selector: 'nrc-marketing-associates',
   standalone: true,
   imports: [HeaderComponent, FooterComponent],
-  templateUrl: './terms-and-conditions.component.html',
-  styleUrl: './terms-and-conditions.component.scss',
+  templateUrl: './marketing-associates.component.html',
+  styleUrl: './marketing-associates.component.scss',
 })
-export class TermsAndConditionsComponent {}
+export class MarketingAssociatesComponent {}

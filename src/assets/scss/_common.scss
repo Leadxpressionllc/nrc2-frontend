@@ -9,6 +9,9 @@
   background-image: url('../images/topography-pattren.svg');
   background-repeat: repeat;
   background-attachment: fixed;
+  &-dark {
+    background-image: url('../images/topography-pattren-dark.svg');
+  }
 }
 
 // Only for hover able devices
