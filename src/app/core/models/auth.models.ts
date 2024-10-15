@@ -23,6 +23,7 @@ export interface LoginRequest {
 export interface SignupRequest {
   firstName: string;
   lastName: string;
+  fullName: string;
   email: string;
   dob: string;
   gender: string;
@@ -31,6 +32,7 @@ export interface SignupRequest {
   zipCode: string;
 
   jornayaId: string;
+  passwordForSkipEmailValidation?: string;
   sourceInfo?: SignupSourceInfo;
 }
 

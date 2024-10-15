@@ -6,22 +6,39 @@ import { AbstractControl, FormControl, FormGroup, ValidatorFn, Validators } from
 })
 export class ValidatorService {
   public static emailValidator(control: FormControl): { [key: string]: any } | null {
-    /**
-     * This Email regex is for validating the local-part within the email address
-     * uppercase and lowercase Latin letters A to Z and a to z
-     * digits 0 to 9
-     * Allow dot (.), underscore (_) and hyphen (-)
-     * dot (.) is not the first or last character
-     * dot (.) does not appear consecutively
-     * Max 64 characters
-     */
-    const emailRegexp =
-      /^(?=.{1,64}@)[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*(\+[a-z0-9-]+)?@[^-][A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$/i;
+    const emailRegexp = /^["_A-Za-z0-9-\+]+(\.["_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$/i;
 
     if (control.value && !emailRegexp.test(control.value)) {
       return { invalidEmail: true };
     }
     return null;
+  }
+
+  public static zipCodeValidator(control: FormControl): { [key: string]: any } | null {
+    let zipCode = control.value;
+    if (zipCode) {
+      const zipCodeRegex = /^\d{5}$/;
+      zipCode = zipCode.replace(/\D/g, '');
+
+      if (!zipCodeRegex.test(zipCode)) {
+        return { zipCodePattern: true };
+      }
+    }
+    return null;
+  }
+
+  public static phoneValidator(): any {
+    return function validatePhoneNumber(control: FormControl): { [key: string]: any } | null {
+      const phoneNumber = control.value;
+      if (phoneNumber) {
+        const PHONE_REGEXP = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/;
+
+        if (!PHONE_REGEXP.test(phoneNumber)) {
+          return { phoneNumberInvalid: true };
+        }
+      }
+      return null;
+    };
   }
 
   public static passwordValidator(control: FormControl): { [key: string]: any } | null {
@@ -160,13 +177,19 @@ export class ValidatorService {
     };
   }
 
-  public static nameValidator(control: FormControl): { [key: string]: any } | null {
-    const nameRegex = /^[a-zA-Z.'-\s]+$/;
+  public static nameValidator(): { [key: string]: any } | null {
+    return (control: FormControl): any => {
+      const nameRegex = /^[a-zA-Z.'-\s]+$/;
 
-    if (control.value && !nameRegex.test(control.value)) {
-      return { invalidName: true };
-    }
-    return null;
+      if (control.value && !nameRegex.test(control.value)) {
+        return { invalidName: true };
+      }
+      return null;
+    };
+  }
+
+  public static getNameValidators(): any[] {
+    return [Validators.required, Validators.minLength(3), Validators.maxLength(50), ValidatorService.nameValidator()];
   }
 
   public static noWhitespaceValidator(control: FormControl) {

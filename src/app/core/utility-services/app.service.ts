@@ -80,6 +80,11 @@ export class AppService {
     return date.getFullYear() + '-' + month + '-' + day;
   }
 
+  public static formatDate(date: Date): string {
+    const dateObj = this.getDateObject(date);
+    return this.getDateStringFromDate(dateObj);
+  }
+
   public static cloneObject(objectToCopy: any): any {
     return JSON.parse(JSON.stringify(objectToCopy));
   }

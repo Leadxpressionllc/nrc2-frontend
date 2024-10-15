@@ -3,6 +3,7 @@
     "invalidEmail": "Invalid email address.",
     "required": "{{name}} is required.",
     "requiredMultiSelect": "{{name}} are required.",
+    "invalidName": "Only alphabets, space and -.' are allowed",
     "matchWith": "Password and Confirm Password do not match.",
     "pastDate": "{{name}} cannot be in the past.",
     "futureDate": "{{name}} cannot be in the future.",
@@ -20,7 +21,9 @@
     "InvalidMask": "{{name}} is not valid",
     "invalidPattern": "{{message}}",
     "min": "{{name}} should be greater than {{min}}",
-    "max": "{{name}} should not be greater than {{max}}"
+    "max": "{{name}} should not be greater than {{max}}",
+    "zipCodePattern": "Zip Code is invalid",
+    "mask": "{{name}} is invalid"
   },
 
   "errorMessages": {

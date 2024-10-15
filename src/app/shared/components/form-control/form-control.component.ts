@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { AfterContentInit, Component, ContentChild, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
+import { AfterContentInit, Component, ContentChild, ElementRef, Input, OnDestroy, OnInit, Renderer2 } from '@angular/core';
 import { FormControl, FormControlDirective, FormControlName, NgControl } from '@angular/forms';
 import { AppService } from '@core/utility-services';
 import { TranslateMessagePipe } from '@shared/pipes';
+import { NgxMaskDirective } from 'ngx-mask';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -23,7 +24,10 @@ export class FormControlComponent implements OnInit, AfterContentInit, OnDestroy
 
   private subscription!: Subscription;
 
-  constructor(private renderer: Renderer2) {}
+  constructor(
+    private renderer: Renderer2,
+    private el: ElementRef
+  ) {}
 
   ngOnInit(): void {}
 
@@ -31,8 +35,15 @@ export class FormControlComponent implements OnInit, AfterContentInit, OnDestroy
     const ngControl: NgControl = this.formControl ? this.formControl : this.formControlName;
     this.valueControl = ngControl.control as FormControl;
     const valueAccessor = ngControl.valueAccessor as any;
-    const elementRef = valueAccessor?._elementRef ? valueAccessor._elementRef : valueAccessor._elRef;
-    const nativeElement = elementRef.nativeElement;
+
+    let nativeElement;
+
+    if (valueAccessor instanceof NgxMaskDirective) {
+      nativeElement = this.el.nativeElement.getElementsByTagName('input')[0];
+    } else {
+      const elementRef = valueAccessor?._elementRef ? valueAccessor._elementRef : valueAccessor._elRef;
+      nativeElement = elementRef.nativeElement;
+    }
 
     if (nativeElement.type !== 'file' && nativeElement.type !== 'select-one') {
       this.renderer.addClass(nativeElement, 'form-control');

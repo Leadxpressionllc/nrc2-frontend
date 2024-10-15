@@ -69,4 +69,18 @@ export const constants = {
       unknown: 'UNKNOWN',
     },
   },
+
+  defaultSignupFlow: {
+    heading: "Find The Relief <br /> Specifically Designed <br class='show-mob' /> <br class='hide-mob'> To Meet Your Needs",
+    paragraph:
+      'We aim to be your go-to resource for exploring different assistance options. With our detailed financial aid blog and optional assistance survey, uncover new ways to tackle everyday challenges.',
+    backgroundImageUrl: 'https://nationalresourceconnect.com/bnr-bg.ad3de42c5eb7d456.jpg',
+    formFields: [
+      { label: 'Full Name', name: 'fullName' },
+      { label: 'Email', name: 'email' },
+      { label: 'Zip Code', name: 'zipCode' },
+      { label: 'Date of Birth', name: 'dob' },
+      { label: 'Phone (Optional)', name: 'phone' },
+    ],
+  },
 };
