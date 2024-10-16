@@ -12,6 +12,8 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { map, take } from 'rxjs';
 import { PasswordConfirmationPopupComponent } from './password-confirmation-popup/password-confirmation-popup.component';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { DataPoliciesPopupComponent } from './data-policies-popup/data-policies-popup.component';
 
 @Component({
   selector: 'nrc-signup-form',
@@ -20,10 +22,12 @@ import { PasswordConfirmationPopupComponent } from './password-confirmation-popu
     CommonModule,
     ReactiveFormsModule,
     BsDatepickerModule,
+    BsDropdownModule,
     NgxMaskDirective,
     LoaderDirective,
     FormControlComponent,
     PasswordConfirmationPopupComponent,
+    DataPoliciesPopupComponent,
   ],
   providers: [provideNgxMask()],
   templateUrl: './signup-form.component.html',
@@ -279,5 +283,9 @@ export class SignupFormComponent implements OnInit {
     });
 
     this.mixPanelService.track('check_if_you_qualify_click', { survey_id: this.surveyId });
+  }
+
+  openDataPoliciesPopupComponent(): void {
+    this.popupService.openWithComponent(DataPoliciesPopupComponent, {});
   }
 }

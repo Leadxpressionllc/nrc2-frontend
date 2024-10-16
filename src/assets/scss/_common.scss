@@ -173,10 +173,14 @@
   }
 }
 
-// TODO: @Zulqarnain, please review the styles for modal
+// styles for modal
 .modal {
-  background: rgba(var(--bs-black-rgb), 0.5);
-  backdrop-filter: grayscale(85%) opacity(0.5);
+  background: rgba(var(--bs-light-rgb), 0.75);
+  backdrop-filter: blur(0.15rem) grayscale(85%) opacity(0.5);
+
+  .modal-content {
+    @extend .shadow-lg;
+  }
 
   .modal-header {
     position: sticky;
@@ -185,6 +189,7 @@
     justify-content: space-between;
     padding: 0.25rem 0.75rem;
 
+    @extend .bg-glass;
     [aria-label='Close'] {
       opacity: 0.75;
       &:hover {
@@ -192,14 +197,14 @@
       }
     }
   }
-  // .modal-body {
-  //   max-height: calc(100vh - 200px);
-  //   overflow-y: auto;
-  // }
+
   .modal-footer {
+    --bg-alpha: 0.5;
     position: sticky;
     bottom: 0;
     z-index: 9;
     padding: 0.25rem 0.75rem;
+    @extend .bg-glass;
+    @extend .shadow;
   }
 }

@@ -1,1 +1,28 @@
-<p>data-policies-popup works!</p>
+<div class="modal-header">
+  <h4 class="modal-title h4 text-primary">Please Read The Data Policies</h4>
+  <button type="button" class="btn btn-white p-0" aria-label="Close" (click)="onClose(false)">
+    <span class="material-symbols-outlined fs-4">close</span>
+  </button>
+</div>
+
+<div class="modal-body">
+  <ul class="mt-2 fs-md d-flex flex-column row-gap-3">
+    <li><strong>Data Collection:</strong> We'll gather contact details along with optional survey responses.</li>
+
+    <li>
+      <strong>What You Receive:</strong> A complimentary guide. If you choose to participate in the survey, you'll also receive promotional
+      offers from us and our associates.
+    </li>
+
+    <li><strong>Usage, Disclosure, Sale:</strong> By completing the survey, your responses may be shared with our marketing associates.</li>
+
+    <li>
+      <strong>Data Sharing:</strong> We'll share your information with our
+      <a href="/marketing-associates" target="_blank">Marketing Associates</a>.
+    </li>
+  </ul>
+</div>
+
+<div class="modal-footer border-0 py-2">
+  <button type="button" class="btn btn-secondary px-5" (click)="onClose(false)">OK</button>
+</div>
