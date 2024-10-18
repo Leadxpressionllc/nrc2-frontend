@@ -3,6 +3,11 @@ export const constants = {
   landingPageAfterLogin: '/surveys',
 
   apiUrl: {
+    common: {
+      signupFlow: '/flow',
+      marketingAssociates: '/marketing-associates',
+    },
+
     auth: {
       login: '/login',
       signup: '/signup',
@@ -30,10 +35,6 @@ export const constants = {
 
     jobs: {
       base: '/jobs',
-    },
-
-    signupFlow: {
-      base: '/flow',
     },
   },
 

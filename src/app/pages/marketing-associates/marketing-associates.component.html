@@ -16,15 +16,12 @@
 <section class="min-vh-50">
   <div class="container-lg min-vh-50 d-md-flex flex-column justify-content-center py-4">
     <div
-      class="d-flex justify-content-center flex-wrap align-items-center gap-3 bg-light rounded border p-xl-5 p-4 col-xl-6 col-md-8 mx-auto bg-pattern-topography bg-pattern-topography-dark"
+      nrcLoader="marketingAssociateLoader"
+      class="d-flex justify-content-center flex-wrap align-items-center position-relative gap-3 bg-light rounded border p-xl-5 p-4 col-xl-6 col-md-8 mx-auto bg-pattern-topography bg-pattern-topography-dark"
     >
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">JRPR Digital</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">Lower Bills USA</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">JD Atlantic</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">DSN Information</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">Relief Efforts</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">I Moved Up</strong>
-      <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">Protege Digital</strong>
+      @for (marketingAssociate of marketingAssociates; track marketingAssociate.id) {
+        <strong class="bg-white px-4 py-2 fs-md rounded-pill shadow-sm fw-medium">{{ marketingAssociate.name }}</strong>
+      }
     </div>
   </div>
 </section>

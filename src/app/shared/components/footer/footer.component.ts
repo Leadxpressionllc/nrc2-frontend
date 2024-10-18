@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 
 @Component({
@@ -8,7 +8,13 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
-export class FooterComponent {
+export class FooterComponent implements OnInit {
   @Input() showFooterInfo: boolean = false;
   @Input() showSurveysDisclaimer: boolean = false;
+
+  currentYear!: number;
+
+  ngOnInit(): void {
+    this.currentYear = new Date().getFullYear();
+  }
 }

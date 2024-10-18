@@ -8,6 +8,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { AngularSvgIconPreloaderModule } from 'angular-svg-icon-preloader';
+import { AdsenseModule } from 'ng2-adsense';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
@@ -48,6 +49,8 @@ export const appConfig: ApplicationConfig = {
         titleClass: 'toast-title',
       })
     ),
+
+    importProvidersFrom(AdsenseModule.forRoot()),
 
     importProvidersFrom(AngularSvgIconModule.forRoot()),
     importProvidersFrom(
