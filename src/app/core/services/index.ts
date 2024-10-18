@@ -7,5 +7,6 @@ export * from './local-storage.service';
 export * from './mix-panel.service';
 export * from './offer.service';
 export * from './popup.service';
+export * from './survey.service';
 export * from './title.service';
 export * from './user.service';

@@ -1,0 +1,14 @@
+@for (question of page.questions; track question.id; let i = $index) {
+  @if (question.visible) {
+    <div class="question-Box">
+      <div [innerHTML]="question.text"></div>
+
+      <ng-container nrcDynamicQuestionRenderer [form]="form" [question]="question" (valueChange)="showInterlinkedQuestions($event)">
+      </ng-container>
+    </div>
+  }
+
+  <!-- <div class="pixel-consent-panel" *ngIf="pixelConsentText !== ''">
+    <p [innerHTML]="pixelConsentText"></p>
+  </div> -->
+}

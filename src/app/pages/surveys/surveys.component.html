@@ -16,7 +16,22 @@
 <section class="survey-content-section py-3 bg-light">
   <div class="container h-md-100">
     <div class="col-xl-8 col-md-10 h-md-100 mx-auto">
-      <form class="d-flex flex-column bg-white rounded shadow h-md-100" action="">
+      <form id="trustedForm">
+        <input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_0" #trustedFormCertUrl />
+      </form>
+
+      @if (dynamicSurvey) {
+        <nrc-dynamic-survey-renderer
+          [dynamicSurvey]="dynamicSurvey"
+          [surveyResponses]="surveyResponses"
+          [isSurveyCompleted]="isSurveyCompleted"
+          (nextPage)="onPageSubmit($event)"
+          (completeSurvey)="onSubmit($event)"
+        >
+        </nrc-dynamic-survey-renderer>
+      }
+
+      <form class="d-flex flex-column bg-white rounded shadow h-md-100">
         <!-- Head -->
         <div class="p-lg-4 p-4 bg-glass rounded-top shadow-sm position-md-static position-sticky z-9" style="top: 72px">
           <ul class="step-wizard nav list-unstyled mb-0" role="tablist">
@@ -39,6 +54,7 @@
             }
           </ul>
         </div>
+
         <!-- Body -->
         <div class="p-lg-4 p-3 h-md-100 overflow-md-auto">
           @if (currentStep === 1) {
@@ -93,9 +109,10 @@
             </div>
           }
         </div>
+
         <!-- Foot -->
         <div class="d-flex justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
-          <button class="btn btn-secondary px-md-5 px-4 fs-md btn-icon" (click)="onNextStep()" type="button">
+          <button class="btn btn-secondary px-md-5 px-4 fs-md btn-icon" type="button">
             Next <span class="material-symbols-outlined">arrow_forward</span>
           </button>
         </div>

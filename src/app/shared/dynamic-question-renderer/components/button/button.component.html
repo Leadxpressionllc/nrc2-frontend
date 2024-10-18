@@ -1,0 +1,11 @@
+<div class="button-panel mt-3" [formGroup]="form">
+  <div class="row justify-content-center">
+    @for (option of question.questionOptions; track $index) {
+      <div class="col-md-4 col-sm-6 mb-3">
+        <button type="submit" (click)="onValueSelect(option.id)" class="btn btn-theme btn-primary border btn-lg btn-block">
+          {{ option.text }}
+        </button>
+      </div>
+    }
+  </div>
+</div>

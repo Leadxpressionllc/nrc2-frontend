@@ -1,0 +1,27 @@
+<form [formGroup]="form" (submit)="moveToNextPage($event)">
+  @if (surveyPageLoaded) {
+    <nrc-dynamic-page-renderer
+      [form]="form"
+      [page]="dynamicSurvey.surveyPages[currentPage]"
+      [surveyResponses]="surveyResponses"
+      [prevPage]="dynamicSurvey.surveyPages[currentPage - 1]"
+      (moveToNextPage)="moveToNextPage($event)"
+      (consentText)="setConsentText($event)"
+    >
+    </nrc-dynamic-page-renderer>
+  }
+
+  @if (showButton()) {
+    <div class="row justify-content-center">
+      <button type="submit" class="btn continue-btn w-100">
+        {{ currentPage === totalPages ? 'Finish' : 'Next' }}
+      </button>
+    </div>
+  }
+
+  @if (pixelConsentText !== '') {
+    <div class="pixel-consent-panel">
+      <p [innerHTML]="pixelConsentText"></p>
+    </div>
+  }
+</form>

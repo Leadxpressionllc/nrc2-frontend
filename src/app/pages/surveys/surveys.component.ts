@@ -1,15 +1,40 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { constants } from '@app/constant';
+import { Survey, User } from '@core/models';
+import { AuthService, MixPanelService, OfferService, SurveyService } from '@core/services';
+import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
+import {
+  DynamicSurvey,
+  DynamicSurveyRendererComponent,
+  DynamicSurveyRendererMapperService,
+  DynamicSurveyResponse,
+} from '@shared/dynamic-survey-renderer';
 
 @Component({
   selector: 'nrc-surveys',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent],
   templateUrl: './surveys.component.html',
   styleUrl: './surveys.component.scss',
 })
-export class SurveysComponent {
+export class SurveysComponent implements OnInit {
+  @ViewChild('trustedFormCertUrl') trustedFormCertUrl!: ElementRef;
+
+  survey!: Survey;
+
+  dynamicSurvey!: DynamicSurvey;
+  surveyResponses: DynamicSurveyResponse[] = [];
+
+  currentPage: number = 0;
+
+  isSurveyCompleted: boolean = false;
+  isInitialized: boolean = false;
+
+  loggedInUser!: User;
+
   steps = [
     { name: '1', completed: false },
     { name: '2', completed: false },
@@ -21,10 +46,209 @@ export class SurveysComponent {
   ];
   currentStep = 1;
 
-  onNextStep() {
-    if (this.currentStep < this.steps.length) {
-      this.steps[this.currentStep - 1].completed = true;
-      this.currentStep++;
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private renderer: Renderer2,
+    private authService: AuthService,
+    private surveyService: SurveyService,
+    private offerService: OfferService,
+    private mixPanelService: MixPanelService
+  ) {}
+
+  ngOnInit(): void {
+    this._loadTrustedForm();
+
+    this.loggedInUser = <User>this.authService.getAuthInfo()?.user;
+
+    this.route.paramMap.subscribe((paramsMap) => {
+      if (paramsMap.has('id')) {
+        if (paramsMap.get('id') === 'bw') {
+          window.location.replace(
+            AppService.getWebsiteBaseUrl() + '/bw?zip=' + this.loggedInUser.zipCode + '&email=' + this.loggedInUser.email
+          );
+        } else {
+          this._loadSurvey(<string>paramsMap.get('id'));
+        }
+      } else {
+        this._getLiveSurveyId();
+      }
+    });
+  }
+
+  private _getLiveSurveyId(): void {
+    this.surveyService.getLiveSurveyId().subscribe((response: any) => {
+      this.router.navigate([`/surveys/${response.surveyId}`]);
+    });
+  }
+
+  private _loadSurvey(surveyId: string): void {
+    this.surveyService.getSurveyById(surveyId).subscribe({
+      next: (response) => {
+        this.survey = response;
+        const dynamicSurvey = DynamicSurveyRendererMapperService.mapSurveyToDynamicSurvey(this.survey);
+
+        if (dynamicSurvey.isSurveyCompleted) {
+          this._navigationToAfterSurveyCompletionPage();
+        } else {
+          this.dynamicSurvey = dynamicSurvey;
+          this.surveyResponses = this.survey.surveyAnswers;
+          this.currentPage = this.dynamicSurvey.incompletePageNumber;
+          this._updateQueryParams();
+          this._triggerMixpanelEvents();
+        }
+      },
+      error: (error) => {
+        console.error('Error while loading survey:', error);
+      },
+    });
+  }
+
+  onPageSubmit(surveyPageResponses: DynamicSurveyResponse[]): void {
+    if (AppService.isUndefinedOrNull(surveyPageResponses)) {
+      return;
     }
+
+    this.surveyResponses.concat(surveyPageResponses);
+    const payload = {
+      trustedFormUrl: this.trustedFormCertUrl.nativeElement.value,
+      answers: surveyPageResponses,
+    };
+
+    this.surveyService.saveSurveyResponses(this.dynamicSurvey.id, payload).subscribe((data) => {
+      if (this.isSurveyCompleted) {
+        this._navigationToAfterSurveyCompletionPage();
+      } else {
+        this._updateQueryParams();
+      }
+    });
+
+    if (this.survey.surveyType === constants.surveyTypes.triggerOffersOnPageSubmit) {
+      this.offerService.logUserReturnedFromLinkoutOffer(this.dynamicSurvey.id).subscribe();
+      this._openLinkOutOffers(surveyPageResponses);
+    }
+
+    this.currentPage++;
+  }
+
+  onSubmit(surveyResponses: DynamicSurveyResponse[]): void {
+    const eventData = {
+      survey_id: this.dynamicSurvey.id,
+      all_responses: surveyResponses,
+      total_steps_completed: this.dynamicSurvey.surveyPages.length,
+    };
+
+    this.mixPanelService.track('survey_complete', eventData);
+    this._sendUserDataToMixPanel();
+
+    this.isSurveyCompleted = true;
+  }
+
+  private _updateQueryParams(): void {
+    const queryParams: Params = {
+      pageId: this.survey.surveyPages[this.currentPage].id,
+      pageNo: this.currentPage + 1,
+    };
+
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams,
+      queryParamsHandling: 'merge', // remove to replace all query params by provided
+      replaceUrl: true, // replacing the current state in history
+    });
+  }
+
+  private _navigationToAfterSurveyCompletionPage(): void {
+    if (this.survey.surveyType === constants.surveyTypes.triggerOffersOnPageSubmit) {
+      this.router.navigate(['/offers']);
+    } else {
+      this.router.navigate(['surveys/' + this.survey.id + '/offers']);
+    }
+  }
+
+  private _openLinkOutOffers(surveyPageResponses: DynamicSurveyResponse[]): void {
+    this.survey.surveyPages[this.currentPage].surveyQuestions.forEach((surveyQuestion) => {
+      if (!AppService.isUndefinedOrNull(surveyQuestion.surveyQuestionOfferPools)) {
+        const surveyResponse = surveyPageResponses.find((spr) => spr.surveyQuestionId === surveyQuestion.id);
+
+        surveyQuestion.surveyQuestionOfferPools.forEach((sqop) => {
+          const offerPoolOffers = sqop.offerPool.offerPoolOffers;
+
+          if (surveyResponse && surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
+            const index = Math.floor(Math.random() * offerPoolOffers.length);
+
+            const url = this.router.serializeUrl(
+              this.router.createUrlTree(['/offer-redirect', this.survey.id, sqop.offerPool.id, offerPoolOffers[index].offer.id], {
+                queryParams: {
+                  surveyPageId: this.survey.surveyPages[this.currentPage].id,
+                  surveyPageOrder: this.survey.surveyPages[this.currentPage].sortOrder,
+                  surveyQuestionId: surveyQuestion.id,
+                },
+              })
+            );
+
+            window.open(url, '_blank');
+          }
+        });
+      }
+    });
+  }
+
+  loadExternalJavascript(src: string): HTMLScriptElement {
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = src;
+    this.renderer.appendChild(document.body, script);
+    return script;
+  }
+
+  private _loadTrustedForm(): void {
+    const field = 'xxTrustedFormCertUrl';
+    const provideReferrer: any = false;
+    const invertFieldSensitivity: any = false;
+    const scriptUrl =
+      'http' +
+      ('https:' === document.location.protocol ? 's' : '') +
+      '://api.trustedform.com/trustedform.js?provide_referrer=' +
+      escape(provideReferrer) +
+      '&field=' +
+      escape(field) +
+      '&l=' +
+      new Date().getTime() +
+      Math.random() +
+      '&invert_field_sensitivity=' +
+      invertFieldSensitivity;
+
+    this.loadExternalJavascript(scriptUrl).onload = () => {
+      console.log('Trusted Form Script loaded.');
+    };
+  }
+
+  private _triggerMixpanelEvents(): void {
+    const eventData = {
+      survey_id: this.dynamicSurvey.id,
+      survey_name: this.dynamicSurvey.name,
+      number_of_total_steps: this.dynamicSurvey.surveyPages.length,
+      number_of_questions_next_step: this.dynamicSurvey.surveyPages[this.currentPage].questions.length,
+      list_of_questions_next_step: this.dynamicSurvey.surveyPages[this.currentPage].questions,
+    };
+
+    this.mixPanelService.track('survey_start', eventData);
+  }
+
+  private _sendUserDataToMixPanel(): void {
+    this.mixPanelService.identify(this.loggedInUser.id);
+
+    this.mixPanelService.register({
+      name: this.loggedInUser.firstName,
+      email: this.loggedInUser.email,
+      zip_code: this.loggedInUser.zipCode,
+    });
+
+    this.mixPanelService.peopleSet({
+      $name: this.loggedInUser.firstName,
+      $email: this.loggedInUser.email,
+      $zip_code: this.loggedInUser.zipCode,
+    });
   }
 }

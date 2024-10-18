@@ -6,25 +6,25 @@ export const constants = {
       login: '/login',
       signup: '/signup',
       autoLogin: '/auto-login',
-      unsubscribeByEmail: 'unsubscribe-by-email',
+      unsubscribeByEmail: '/unsubscribe-by-email',
     },
 
     users: {
       base: '/users',
-      trackWelcomeEmail: 'users/track-welcome-email',
+      trackWelcomeEmail: '/users/track-welcome-email',
     },
 
     surveys: {
       base: '/surveys',
-      liveSurvey: 'surveys/live',
-      liveSurveyId: 'surveys/live/id',
+      liveSurvey: '/surveys/live',
+      liveSurveyId: '/surveys/live/id',
     },
 
     offers: {
       base: '/offers',
-      bySurveyId: 'offers/by-survey',
-      specialOffers: 'offers/special-offers',
-      logUserReturnedFromLinkoutOffer: 'offers/log-user-returned',
+      bySurveyId: '/offers/by-survey',
+      specialOffers: '/offers/special-offers',
+      logUserReturnedFromLinkoutOffer: '/offers/log-user-returned',
     },
 
     jobs: {
@@ -82,5 +82,56 @@ export const constants = {
       { label: 'Date of Birth', name: 'dob' },
       { label: 'Phone (Optional)', name: 'phone' },
     ],
+  },
+
+  dynamicQuestionRenderer: {
+    questionHtmlElement: {
+      INPUT: 'INPUT',
+      DATE: 'DATE',
+      BUTTON: 'BUTTON',
+      SELECT: 'SELECT',
+      CHECKBOX_GROUP: 'CHECKBOX_GROUP',
+      RADIO_BUTTON_GROUP: 'RADIO_BUTTON_GROUP',
+    },
+  },
+
+  userPlaceholders: [
+    '[FIRST_NAME]',
+    '[LAST_NAME]',
+    '[EMAIL]',
+    '[AGE]',
+    '[BIRTH_DATE]',
+    '[BIRTH_DAY]',
+    '[BIRTH_MONTH]',
+    '[BIRTH_YEAR]',
+    '[PHONE_NUMBER]',
+    '[PHONE_AREA_CODE]',
+    '[PHONE_PREFIX]',
+    '[PHONE_SUFFIX]',
+    '[GENDER]',
+    '[GENDER_FULL]',
+    '[STREET_ADDRESS]',
+    '[CITY]',
+    '[STATE]',
+    '[COUNTRY]',
+    '[COUNTRY_CODE]',
+    '[ZIP_CODE]',
+  ],
+
+  routesMapper: {
+    surveys: 'surveys',
+    welcomeSurveys: 'surveys',
+  },
+
+  surveyTypes: {
+    triggerOffersOnSurveySubmit: 'TRIGGER_OFFERS_ON_SURVEY_SUBMIT',
+    triggerOffersOnPageSubmit: 'TRIGGER_OFFERS_ON_PAGE_SUBMIT',
+  },
+
+  userOfferAction: {
+    impression: 'IMPRESSION',
+    yesClick: 'YES_CLICK',
+    noClick: 'NO_CLICK',
+    submit: 'SUBMIT',
   },
 };

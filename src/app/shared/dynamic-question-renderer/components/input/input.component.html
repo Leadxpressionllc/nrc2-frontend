@@ -1,0 +1,30 @@
+<div class="form-group" [formGroup]="form">
+  @if (question.id !== 'phone') {
+    <input type="text" class="form-control" [formControlName]="question.id" (change)="onTextValueChange($event)" />
+  }
+
+  @if (question.isUserDataQuestion && question.id === 'phone') {
+    <input
+      type="text"
+      class="form-control"
+      [formControlName]="question.id"
+      (change)="onTextValueChange($event)"
+      [validation]="true"
+      [dropSpecialCharacters]="false"
+      [specialCharacters]="[' ', '(', ')', '-']"
+      mask="(000) 000-0000"
+    />
+  }
+
+  @if (form.controls[question.id].dirty && form.controls[question.id].errors) {
+    <div class="form-control-feedback">
+      @if (form.controls[question.id].hasError('REQUIRED')) {
+        <div>Please enter a value</div>
+      }
+
+      @if (question.id === 'phone' && !form.controls['phone'].hasError('REQUIRED') && form.controls['phone'].hasError('mask')) {
+        <div>Please enter valid phone number</div>
+      }
+    </div>
+  }
+</div>
