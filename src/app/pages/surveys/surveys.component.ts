@@ -12,6 +12,7 @@ import {
   DynamicSurveyRendererMapperService,
   DynamicSurveyResponse,
 } from '@shared/dynamic-survey-renderer';
+import { map, tap } from 'rxjs';
 
 @Component({
   selector: 'nrc-surveys',
@@ -58,19 +59,23 @@ export class SurveysComponent implements OnInit {
 
   ngOnInit(): void {
     this._loadTrustedForm();
-
     this.loggedInUser = <User>this.authService.getAuthInfo()?.user;
 
     this.route.paramMap.subscribe((paramsMap) => {
-      if (paramsMap.has('id')) {
-        if (paramsMap.get('id') === 'bw') {
-          window.location.replace(
-            AppService.getWebsiteBaseUrl() + '/bw?zip=' + this.loggedInUser.zipCode + '&email=' + this.loggedInUser.email
-          );
+      const id = paramsMap.get('id');
+
+      if (id) {
+        if (id === 'bw') {
+          // Redirect to a specific URL for 'bw' id
+          const baseUrl = AppService.getWebsiteBaseUrl();
+          const redirectUrl = `${baseUrl}/bw?zip=${this.loggedInUser.zipCode}&email=${this.loggedInUser.email}`;
+          window.location.replace(redirectUrl);
         } else {
-          this._loadSurvey(<string>paramsMap.get('id'));
+          // Load survey for the given id
+          this._loadSurvey(id);
         }
       } else {
+        // If no id is provided, get the live survey id
         this._getLiveSurveyId();
       }
     });
@@ -83,25 +88,32 @@ export class SurveysComponent implements OnInit {
   }
 
   private _loadSurvey(surveyId: string): void {
-    this.surveyService.getSurveyById(surveyId).subscribe({
-      next: (response) => {
-        this.survey = response;
-        const dynamicSurvey = DynamicSurveyRendererMapperService.mapSurveyToDynamicSurvey(this.survey);
-
-        if (dynamicSurvey.isSurveyCompleted) {
-          this._navigationToAfterSurveyCompletionPage();
-        } else {
-          this.dynamicSurvey = dynamicSurvey;
-          this.surveyResponses = this.survey.surveyAnswers;
-          this.currentPage = this.dynamicSurvey.incompletePageNumber;
-          this._updateQueryParams();
-          this._triggerMixpanelEvents();
-        }
-      },
-      error: (error) => {
-        console.error('Error while loading survey:', error);
-      },
-    });
+    this.surveyService
+      .getSurveyById(surveyId)
+      .pipe(
+        // Use map operator to transform the response
+        map((response: Survey) => {
+          this.survey = response;
+          return DynamicSurveyRendererMapperService.mapSurveyToDynamicSurvey(this.survey);
+        }),
+        // Use tap operator for side effects without changing the stream
+        tap((dynamicSurvey: DynamicSurvey) => {
+          if (dynamicSurvey.isSurveyCompleted) {
+            this._navigationToAfterSurveyCompletionPage();
+          } else {
+            this.dynamicSurvey = dynamicSurvey;
+            this.surveyResponses = this.survey.surveyAnswers;
+            this.currentPage = this.dynamicSurvey.incompletePageNumber;
+            this._updateQueryParams();
+            this._triggerMixpanelEvents();
+          }
+        })
+      )
+      .subscribe({
+        error: (error) => {
+          console.error('Error while loading survey:', error);
+        },
+      });
   }
 
   onPageSubmit(surveyPageResponses: DynamicSurveyResponse[]): void {
@@ -109,18 +121,23 @@ export class SurveysComponent implements OnInit {
       return;
     }
 
-    this.surveyResponses.concat(surveyPageResponses);
+    this.surveyResponses.push(...surveyPageResponses);
+
     const payload = {
       trustedFormUrl: this.trustedFormCertUrl.nativeElement.value,
       answers: surveyPageResponses,
     };
 
-    this.surveyService.saveSurveyResponses(this.dynamicSurvey.id, payload).subscribe((data) => {
-      if (this.isSurveyCompleted) {
-        this._navigationToAfterSurveyCompletionPage();
-      } else {
-        this._updateQueryParams();
-      }
+    // Save survey responses and handle navigation
+    this.surveyService.saveSurveyResponses(this.dynamicSurvey.id, payload).subscribe({
+      next: () => {
+        if (this.isSurveyCompleted) {
+          this._navigationToAfterSurveyCompletionPage();
+        } else {
+          this._updateQueryParams();
+        }
+      },
+      error: (error) => console.error('Error saving survey responses:', error),
     });
 
     if (this.survey.surveyType === constants.surveyTypes.triggerOffersOnPageSubmit) {
