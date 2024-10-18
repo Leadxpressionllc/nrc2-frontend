@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { constants } from '@app/constant';
 import * as _ from 'underscore';
 
 @Injectable({
@@ -212,5 +213,13 @@ export class AppService {
     const seconds = String(currentDate.getUTCSeconds()).padStart(2, '0');
 
     return `${year}${month}${day}${hours}${minutes}${seconds}`;
+  }
+
+  public static getRouteByPageName(pageName: string): string {
+    const routesMapper: any = constants.routesMapper;
+    if (!this.isUndefinedOrNull(routesMapper[pageName])) {
+      return routesMapper[pageName];
+    }
+    return pageName;
   }
 }

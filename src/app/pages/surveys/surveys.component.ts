@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
-import { Survey, User } from '@core/models';
+import { OfferPoolOffer, Survey, SurveyQuestion, SurveyQuestionOfferPool, User } from '@core/models';
 import { AuthService, MixPanelService, OfferService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
@@ -184,31 +184,49 @@ export class SurveysComponent implements OnInit {
   }
 
   private _openLinkOutOffers(surveyPageResponses: DynamicSurveyResponse[]): void {
-    this.survey.surveyPages[this.currentPage].surveyQuestions.forEach((surveyQuestion) => {
-      if (!AppService.isUndefinedOrNull(surveyQuestion.surveyQuestionOfferPools)) {
-        const surveyResponse = surveyPageResponses.find((spr) => spr.surveyQuestionId === surveyQuestion.id);
+    // Get the current page's survey questions
+    const currentPageQuestions = this.survey.surveyPages[this.currentPage].surveyQuestions;
 
-        surveyQuestion.surveyQuestionOfferPools.forEach((sqop) => {
-          const offerPoolOffers = sqop.offerPool.offerPoolOffers;
-
-          if (surveyResponse && surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
-            const index = Math.floor(Math.random() * offerPoolOffers.length);
-
-            const url = this.router.serializeUrl(
-              this.router.createUrlTree(['/offer-redirect', this.survey.id, sqop.offerPool.id, offerPoolOffers[index].offer.id], {
-                queryParams: {
-                  surveyPageId: this.survey.surveyPages[this.currentPage].id,
-                  surveyPageOrder: this.survey.surveyPages[this.currentPage].sortOrder,
-                  surveyQuestionId: surveyQuestion.id,
-                },
-              })
-            );
-
-            window.open(url, '_blank');
-          }
-        });
+    currentPageQuestions.forEach((surveyQuestion) => {
+      // Check if the question has offer pools
+      if (AppService.isUndefinedOrNull(surveyQuestion.surveyQuestionOfferPools)) {
+        return;
       }
+
+      // Find the corresponding survey response for this question
+      const surveyResponse = surveyPageResponses.find((spr) => spr.surveyQuestionId === surveyQuestion.id);
+      if (!surveyResponse) {
+        return;
+      }
+
+      surveyQuestion.surveyQuestionOfferPools.forEach((sqop) => {
+        const offerPoolOffers = sqop.offerPool.offerPoolOffers;
+        // Select a random offer from the pool
+        const randomOffer = offerPoolOffers[Math.floor(Math.random() * offerPoolOffers.length)];
+
+        // Check if the surveyResponse includes this offer pool's option and if there are offers available
+        if (surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
+          this._redirectUserToOffer(randomOffer.offer.id, sqop.offerPool.id, surveyQuestion.id);
+        }
+      });
     });
+  }
+
+  private _redirectUserToOffer(offerId: string, offerPoolId: string, surveyQuestionId: string) {
+    const currentSurveyPage = this.survey.surveyPages[this.currentPage];
+
+    // Create the URL for the offer redirect
+    const offerRedirectUrl = this.router.serializeUrl(
+      this.router.createUrlTree(['/offer-redirect', this.survey.id, offerPoolId, offerId], {
+        queryParams: {
+          surveyPageId: currentSurveyPage.id,
+          surveyPageOrder: currentSurveyPage.sortOrder,
+          surveyQuestionId: surveyQuestionId,
+        },
+      })
+    );
+
+    window.open(offerRedirectUrl, '_blank');
   }
 
   loadExternalJavascript(src: string): HTMLScriptElement {
@@ -220,23 +238,23 @@ export class SurveysComponent implements OnInit {
   }
 
   private _loadTrustedForm(): void {
-    const field = 'xxTrustedFormCertUrl';
-    const provideReferrer: any = false;
-    const invertFieldSensitivity: any = false;
-    const scriptUrl =
-      'http' +
-      ('https:' === document.location.protocol ? 's' : '') +
-      '://api.trustedform.com/trustedform.js?provide_referrer=' +
-      escape(provideReferrer) +
-      '&field=' +
-      escape(field) +
-      '&l=' +
-      new Date().getTime() +
-      Math.random() +
-      '&invert_field_sensitivity=' +
-      invertFieldSensitivity;
+    // Define constants for the TrustedForm configuration
+    const FIELD = 'xxTrustedFormCertUrl';
+    const PROVIDE_REFERRER = false;
+    const INVERT_FIELD_SENSITIVITY = false;
 
-    this.loadExternalJavascript(scriptUrl).onload = () => {
+    // Determine the protocol (http or https) dynamically
+    const protocol = document.location.protocol === 'https:' ? 'https' : 'http';
+
+    // Construct the TrustedForm script URL
+    const scriptUrl = new URL('https://api.trustedform.com/trustedform.js');
+    scriptUrl.searchParams.append('provide_referrer', PROVIDE_REFERRER.toString());
+    scriptUrl.searchParams.append('field', FIELD);
+    scriptUrl.searchParams.append('l', `${Date.now()}${Math.random()}`);
+    scriptUrl.searchParams.append('invert_field_sensitivity', INVERT_FIELD_SENSITIVITY.toString());
+
+    // Load the external JavaScript and log when it's loaded
+    this.loadExternalJavascript(scriptUrl.toString()).onload = () => {
       console.log('Trusted Form Script loaded.');
     };
   }
@@ -254,18 +272,20 @@ export class SurveysComponent implements OnInit {
   }
 
   private _sendUserDataToMixPanel(): void {
-    this.mixPanelService.identify(this.loggedInUser.id);
+    const { id, firstName, email, zipCode } = this.loggedInUser;
+
+    this.mixPanelService.identify(id);
 
     this.mixPanelService.register({
-      name: this.loggedInUser.firstName,
-      email: this.loggedInUser.email,
-      zip_code: this.loggedInUser.zipCode,
+      name: firstName,
+      email: email,
+      zip_code: zipCode,
     });
 
     this.mixPanelService.peopleSet({
-      $name: this.loggedInUser.firstName,
-      $email: this.loggedInUser.email,
-      $zip_code: this.loggedInUser.zipCode,
+      $name: firstName,
+      $email: email,
+      $zip_code: zipCode,
     });
   }
 }

@@ -9,7 +9,7 @@ export interface User {
   dob: string;
   address: string;
   city: string;
-  state: boolean;
+  state: string;
   country: string;
   zipCode: string;
   sourceId: string;

@@ -29,11 +29,8 @@ export interface Offer {
 
 export interface OfferCallBack {
   id: string;
-  status: string;
-  userPayout: number;
-
-  offer?: Offer;
-  user?: User;
+  offer: Offer;
+  user: User;
 }
 
 export interface OfferLog {

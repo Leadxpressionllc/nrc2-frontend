@@ -1,5 +1,6 @@
 export const constants = {
   localStorageSessionKey: 'nrc-auth',
+  landingPageAfterLogin: '/surveys',
 
   apiUrl: {
     auth: {
