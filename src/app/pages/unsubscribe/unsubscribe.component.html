@@ -1,6 +1,9 @@
 <section class="bg-light min-vh-100">
   <div class="container-lg min-vh-100 d-md-flex flex-column justify-content-center py-4">
-    <div class="d-flex flex-column align-items-center gap-1 bg-white rounded shadow-sm p-xl-5 p-4 col-xl-6 col-md-8 mx-auto">
+    <div
+      nrcLoader="unsubscribeUserLoader"
+      class="d-flex flex-column align-items-center gap-1 bg-white rounded shadow-sm p-xl-5 p-4 col-xl-6 col-md-8 mx-auto position-relative"
+    >
       <nav class="mb-3">
         <a href="/" class="navbar-brand me-auto">
           <img src="../../../../assets/images/nrc-logo.svg" alt="NRC" width="200" height="80" class="img-fluid" />
@@ -12,12 +15,18 @@
 
       <h1 class="h2 mb-0">Unsubscribe</h1>
       <p class="fs-5 text-gray-600">We're sorry to see you go</p>
-      <div class="form-floating col-sm-9 col-12 mx-auto mb-4">
-        <input type="email" class="form-control" placeholder="Email Address" autocomplete="off" />
-        <label for="email">Email Address</label>
-      </div>
-      <button class="btn btn-secondary btn-lg px-md-5 px-5" type="button">Unsubscribe</button>
-      <a href="/" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+
+      <form [formGroup]="unsubscribeForm" (submit)="onSubmit()">
+        <nrc-form-control name="Email">
+          <div class="form-floating col-sm-9 col-12 mx-auto mb-4">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email Address" autocomplete="off" />
+            <label for="email">Email Address</label>
+          </div>
+        </nrc-form-control>
+
+        <button class="btn btn-secondary btn-lg px-md-5 px-5" type="button">Unsubscribe</button>
+        <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+      </form>
 
       <div class="text-center">
         <p>
