@@ -17,7 +17,7 @@ export interface Offer {
   linkMask: boolean;
   yesButtonText: string;
   noButtonText: string;
-  pixels: Pixel;
+  pixels: Pixel[];
 
   offerPoolId: string;
   surveyPageId: string;

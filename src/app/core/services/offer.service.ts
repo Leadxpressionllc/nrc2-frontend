@@ -71,7 +71,7 @@ export class OfferService {
   }
 
   logOfferResponse(offerId: string, offerLog: OfferLog): Observable<Response> {
-    const url = `${constants.apiUrl.offers.base}${offerId}/log-response`;
+    const url = `${constants.apiUrl.offers.base}/${offerId}/log-response`;
 
     return this.http.post<Response>(url, offerLog, {
       context: addLoader('logResponseLoader'),

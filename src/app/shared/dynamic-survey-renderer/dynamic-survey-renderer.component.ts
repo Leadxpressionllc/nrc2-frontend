@@ -36,17 +36,6 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
   surveyProgress = 0;
   pixelConsentText = '';
 
-  steps = [
-    { name: '1', completed: false },
-    { name: '2', completed: false },
-    { name: '4', completed: false },
-    { name: '5', completed: false },
-    { name: '6', completed: false },
-    { name: '7', completed: false },
-    { name: '8', completed: false },
-  ];
-  currentStep = 1;
-
   constructor(
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,

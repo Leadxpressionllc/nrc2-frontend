@@ -2,19 +2,19 @@
   <!-- Head -->
   <div class="p-lg-4 p-4 bg-glass rounded-top shadow-sm position-md-static position-sticky z-9" style="top: 72px">
     <ul class="step-wizard nav list-unstyled mb-0" role="tablist">
-      @for (step of steps; track step; let i = $index) {
+      @for (page of dynamicSurvey.surveyPages; track page.id; let i = $index) {
         <li class="nav-item" role="presentation">
           <a
             [ngClass]="{
-              active: currentStep === i + 1,
-              completed: step.completed,
+              completed: i < currentPage,
+              active: currentPage === i,
             }"
             class="nav-link"
             role="tab"
-            [attr.aria-controls]="step.name.toLowerCase() + '-tab'"
-            [attr.aria-selected]="currentStep === i + 1"
+            [attr.aria-controls]="'Page - ' + (i + 1)"
+            [attr.aria-selected]="currentPage === i"
           >
-            <span class="badge" [ngClass]="{ 'bg-danger border-danger': currentStep === 3 && step.name === 'Delete' }"></span>
+            <span class="badge"></span>
           </a>
         </li>
       }
@@ -41,7 +41,7 @@
   @if (showButton()) {
     <div class="d-flex justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
       @if (currentPage === totalPages) {
-        <button class="btn btn-secondary px-5 fs-md" type="submit">Unlock My Befits</button>
+        <button class="btn btn-secondary px-5 fs-md" type="submit">Finish</button>
       } @else {
         <button class="btn btn-secondary px-md-5 px-4 fs-md btn-icon" type="submit">
           Next <span class="material-symbols-outlined">arrow_forward</span>

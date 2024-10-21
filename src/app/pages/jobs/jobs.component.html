@@ -30,6 +30,7 @@
                   class="form-control input-ic-search input-ic-right"
                   placeholder="State / Postal Code"
                   autocomplete="off"
+                  [(ngModel)]="query"
                 />
                 <label for="email">What are you looking for?</label>
               </div>
@@ -41,29 +42,51 @@
                   class="form-control input-ic-location input-ic-right"
                   placeholder="What are you looking for?"
                   autocomplete="off"
+                  [(ngModel)]="location"
                 />
                 <label for="email">State / Postal Code</label>
               </div>
             </div>
             <div class="col-md-12 col-sm-6">
-              <button class="btn btn-secondary btn-lg w-100">Find Jobs</button>
+              <button class="btn btn-secondary btn-lg w-100" [disabled]="location === ''" (click)="findNewJobs()">Find Jobs</button>
             </div>
 
             <div class="col-12 border-gray-500 border-bottom mt-3"></div>
 
-            <div class="col-md-12 col-sm-6 d-flex gap-3 align-items-center">
-              <strong class="flex-grow-0 text-gray-600 col-lg-3">Total Find:</strong>
-              <h6 class="h5 mb-0 flex-fill">564 Jobs</h6>
-            </div>
+            @if (jobs.length > 0) {
+              <div class="col-md-12 col-sm-6 d-flex gap-3 align-items-center">
+                <strong class="flex-grow-0 text-gray-600 col-lg-3">Jobs Found:</strong>
+                <h6 class="h5 mb-0 flex-fill">{{ jobResponse.total }} Jobs</h6>
+              </div>
+            }
+
             <div class="col-md-12 col-sm-6 d-flex flex-wrap gap-3 align-items-center">
               <strong class="flex-grow-0 text-gray-600 col-lg-3">Sort By:</strong>
               <div class="btn-group d-flex flex-fill" role="group" aria-label="Sort Jobs By">
-                <input type="radio" class="btn-check" name="sort" id="sortRelevance" autocomplete="off" />
-                <label class="btn btn-outline-primary border-primary h-auto py-2 rounded-start-pill col-6" for="sortRelevance"
+                <input
+                  (change)="findNewJobs()"
+                  type="radio"
+                  class="btn-check"
+                  name="sort"
+                  id="sortRelevance"
+                  autocomplete="off"
+                  value="r"
+                  [(ngModel)]="sortBy"
+                />
+                <label class="btn btn-outline-primary border-primary h-auto py-2 btn-icon rounded-start-pill col-6" for="sortRelevance"
                   ><span class="material-symbols-outlined">list</span> Relevance</label
                 >
 
-                <input type="radio" class="btn-check" name="sort" id="sortDate" autocomplete="off" checked />
+                <input
+                  (change)="findNewJobs()"
+                  type="radio"
+                  class="btn-check"
+                  name="sort"
+                  id="sortDate"
+                  autocomplete="off"
+                  value="d"
+                  [(ngModel)]="sortBy"
+                />
                 <label class="btn btn-outline-primary border-primary h-auto py-2 btn-icon rounded-end-pill col-6" for="sortDate"
                   ><span class="material-symbols-outlined">calendar_month</span> Date</label
                 >
@@ -72,87 +95,35 @@
           </div>
         </div>
       </div>
-      <div class="col d-flex flex-column gap-3">
-        <!-- ### Job Card -->
-        <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
-          <div class="row g-3">
-            <div class="col-lg-2 col-sm-3 text-sm-start text-center">
-              <img class="img-fluid rounded border" width="140" src="../../../../assets/images/survey-offer-image.png" />
-            </div>
-            <div class="col-sm">
-              <h4 class="h5 pt-1 mb-2 text-wrap">Ing. de Proyecto de sistemas Audioisuales</h4>
-              <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> Encore Global</li>
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> Encore Global</li>
-                <li class="col-xl d-flex gap-2 lh-sm"><span class="material-symbols-outlined">calendar_month</span> Posted 3 month ago</li>
-              </ul>
-              <p class="line-clamp-2 mb-0">
-                American Residential Warranty is a service provider that offers home warranty plans to cover the repair or replacement of
-                major home systems and appliances.
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- ### Job Card -->
-        <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
-          <div class="row g-3">
-            <div class="col-lg-2 col-sm-3 text-sm-start text-center">
-              <img class="img-fluid rounded border" width="140" src="../../../../assets/images/survey-offer-image.png" />
-            </div>
-            <div class="col-sm">
-              <h4 class="h5 pt-1 mb-2 text-wrap">Ing. de Proyecto de sistemas Audioisuales</h4>
-              <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> Encore Global</li>
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> Encore Global</li>
-                <li class="col-xl d-flex gap-2 lh-sm"><span class="material-symbols-outlined">calendar_month</span> Posted 3 month ago</li>
-              </ul>
-              <p class="line-clamp-2 mb-0">
-                American Residential Warranty is a service provider that offers home warranty plans to cover the repair or replacement of
-                major home systems and appliances.
-              </p>
+
+      <div class="col d-flex flex-column gap-3 position-relative" nrcLoader="jobsLoader">
+        @for (job of jobs; track job.id; let i = $index) {
+          <!-- ### Job Card -->
+          <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
+            <div class="row g-3">
+              <div class="col-lg-2 col-sm-3 text-sm-start text-center">
+                <img class="img-fluid rounded border" width="140" src="{{ job.logo_url }}" />
+              </div>
+              <div class="col-sm">
+                <h4 class="h5 pt-1 mb-2 text-wrap">{{ job.title }}</h4>
+                <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
+                  <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> {{ job.company }}</li>
+                  <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> {{ job.city[0] }}</li>
+                  <li class="col-xl d-flex gap-2 lh-sm">
+                    <span class="material-symbols-outlined">calendar_month</span> Posted <span [nrcTimeAgo]="job.date"></span>
+                  </li>
+                </ul>
+                <p class="line-clamp-2 mb-0" [innerHTML]="job.description"></p>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- ### Job Card -->
-        <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
-          <div class="row g-3">
-            <div class="col-lg-2 col-sm-3 text-sm-start text-center">
-              <img class="img-fluid rounded border" width="140" src="../../../../assets/images/survey-offer-image.png" />
-            </div>
-            <div class="col-sm">
-              <h4 class="h5 pt-1 mb-2 text-wrap">Ing. de Proyecto de sistemas Audioisuales</h4>
-              <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> Encore Global</li>
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> Encore Global</li>
-                <li class="col-xl d-flex gap-2 lh-sm"><span class="material-symbols-outlined">calendar_month</span> Posted 3 month ago</li>
-              </ul>
-              <p class="line-clamp-2 mb-0">
-                American Residential Warranty is a service provider that offers home warranty plans to cover the repair or replacement of
-                major home systems and appliances.
-              </p>
-            </div>
+        }
+
+        @if (jobs.length > 0 && jobResponse.start < jobResponse.total) {
+          <div class="col-md-12 text-center">
+            <button class="btn btn-secondary btn-lg px-5" (click)="loadMoreJobs()">Load More Jobs</button>
           </div>
-        </div>
-        <!-- ### Job Card -->
-        <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
-          <div class="row g-3">
-            <div class="col-lg-2 col-sm-3 text-sm-start text-center">
-              <img class="img-fluid rounded border" width="140" src="../../../../assets/images/survey-offer-image.png" />
-            </div>
-            <div class="col-sm">
-              <h4 class="h5 pt-1 mb-2 text-wrap">Ing. de Proyecto de sistemas Audioisuales</h4>
-              <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> Encore Global</li>
-                <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> Encore Global</li>
-                <li class="col-xl d-flex gap-2 lh-sm"><span class="material-symbols-outlined">calendar_month</span> Posted 3 month ago</li>
-              </ul>
-              <p class="line-clamp-2 mb-0">
-                American Residential Warranty is a service provider that offers home warranty plans to cover the repair or replacement of
-                major home systems and appliances.
-              </p>
-            </div>
-          </div>
-        </div>
+        }
       </div>
     </div>
   </div>
