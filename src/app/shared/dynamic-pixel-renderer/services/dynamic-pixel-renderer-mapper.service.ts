@@ -4,7 +4,7 @@ import { DynamicQuestion, DynamicQuestionOption } from '@shared/dynamic-question
 import { AppService } from '@core/utility-services';
 import { constants } from '@app/constant';
 
-export class PixelQuestionRendererMapperService {
+export class DynamicPixelRendererMapperService {
   public static mapPixelToDynamicPixel(pixel: Pixel, user: User): DynamicPixel {
     const dynamicPixel: DynamicPixel = {
       id: pixel.id,
@@ -125,6 +125,7 @@ export class PixelQuestionRendererMapperService {
 
   public static loadPixelAnswers(pixel: Pixel, pixelQuestionAnswers: PixelQuestionAnswer[]): PixelAnswer[] {
     const pixelAnswers: PixelAnswer[] = [];
+
     pixelQuestionAnswers.forEach((pixelQuestionResponse) => {
       const pixelQuestion = pixel.pixelQuestions.find((pq) => pq.question.id === pixelQuestionResponse.questionId);
       if (!pixelQuestion) {

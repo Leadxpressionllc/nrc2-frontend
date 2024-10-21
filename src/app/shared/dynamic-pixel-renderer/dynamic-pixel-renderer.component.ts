@@ -5,7 +5,7 @@ import { DynamicQuestionRendererDirective } from '@shared/dynamic-question-rende
 import { DynamicQuestion, DynamicQuestionOption } from '@shared/dynamic-question-renderer/models';
 import { DynamicQuestionRendererService } from '@shared/dynamic-question-renderer/services';
 import { DynamicPixel } from './model/dynamic-pixel-renderer.model';
-import { PixelQuestionRendererService } from './services/pixel-question-renderer.service';
+import { DynamicPixelRendererService } from './services/dynamic-pixel-renderer.service';
 
 @Component({
   selector: 'nrc-dynamic-pixel-renderer',
@@ -82,7 +82,7 @@ export class DynamicPixelRendererComponent implements OnInit {
     for (const key in selectedValues) {
       const selectedQuestion = <DynamicQuestion>this.dynamicPixel.questions.find((question: DynamicQuestion) => question.id === key);
 
-      const pixelQuestionAnswer = PixelQuestionRendererService.getPixelQuestionAnswerFromSelectedValue(
+      const pixelQuestionAnswer = DynamicPixelRendererService.getPixelQuestionAnswerFromSelectedValue(
         selectedQuestion,
         selectedValues[key]
       );

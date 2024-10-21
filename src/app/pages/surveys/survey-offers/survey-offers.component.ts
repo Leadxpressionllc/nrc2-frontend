@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
-import { Offer, OfferCallBack, OfferLog, Pixel, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
+import { Offer, OfferCallBack, OfferLog, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
 import { MixPanelService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';

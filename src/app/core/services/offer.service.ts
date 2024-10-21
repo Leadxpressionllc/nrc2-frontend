@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { addLoader } from '@core/loader-context';
 import { Offer, OfferCallBack, OfferLog, PixelQuestionSubmission } from '@core/models';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
