@@ -1,0 +1,28 @@
+<div class="pixel-question-panel">
+  <p class="mt-4">Complete the form below</p>
+
+  <form [formGroup]="form">
+    <div class="card">
+      <div class="card-body">
+        @for (question of dynamicPixel.questions; track question.id; let i = $index) {
+          <div class="mb-4 pb-1">
+            <h6 class="h5" [innerHTML]="question.text"></h6>
+
+            <ng-container nrcDynamicQuestionRenderer [question]="question" [form]="form"> </ng-container>
+          </div>
+        }
+      </div>
+    </div>
+  </form>
+
+  <div class="d-flex gap-3 justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
+    <button type="button" class="btn btn-dark btn-lg px-5 btn-icon" (click)="onCancelButtonClick()">Cancel</button>
+    <button type="button" class="btn btn-secondary btn-lg px-5 btn-icon" (click)="onSubmitButtonClick()">Submit</button>
+  </div>
+
+  @if (dynamicPixel.consentText) {
+    <div class="pixel-consent-panel">
+      <p [innerHTML]="dynamicPixel.consentText"></p>
+    </div>
+  }
+</div>

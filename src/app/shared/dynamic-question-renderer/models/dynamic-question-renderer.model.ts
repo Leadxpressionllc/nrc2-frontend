@@ -10,7 +10,7 @@ export interface DynamicQuestion {
   number?: number;
   questionOptions?: DynamicQuestionOption[];
   interlinkedQuestions?: DynamicInterlinkedQuestion[];
-  pixels?: DynamicPixel[];
+  pixels?: DynamicQuestionPixel[];
   isUserDataQuestion?: boolean;
 }
 
@@ -19,7 +19,6 @@ export interface DynamicQuestionOption {
   text: string;
   value: string;
   sortOrder: number;
-  pixels?: DynamicPixel[];
 }
 
 export interface DynamicInterlinkedQuestion {
@@ -30,7 +29,7 @@ export interface DynamicInterlinkedQuestion {
   textValue?: string;
 }
 
-export interface DynamicPixel {
+export interface DynamicQuestionPixel {
   id: string;
   name: string;
   consentText: string;

@@ -10,6 +10,10 @@ export interface Pixel {
   quota: string;
   payout: number;
   consentText: string;
+  heading: string;
+  description: string;
+  yesButtonText: string;
+  noButtonText: string;
   pixelQuestions: PixelQuestion[];
 }
 
@@ -21,7 +25,7 @@ export interface PixelQuestion {
 
 export interface PixelAnswer {
   answerLabel: string;
-  answerValue: string;
+  answerValue: string | null;
   answerType: string;
 }
 

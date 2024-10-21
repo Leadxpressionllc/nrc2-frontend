@@ -1,0 +1,113 @@
+import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { PixelQuestionAnswer } from '@core/models';
+import { DynamicQuestionRendererDirective } from '@shared/dynamic-question-renderer/directives';
+import { DynamicQuestion, DynamicQuestionOption } from '@shared/dynamic-question-renderer/models';
+import { DynamicQuestionRendererService } from '@shared/dynamic-question-renderer/services';
+import { DynamicPixel } from './model/dynamic-pixel-renderer.model';
+import { PixelQuestionRendererService } from './services/pixel-question-renderer.service';
+
+@Component({
+  selector: 'nrc-dynamic-pixel-renderer',
+  standalone: true,
+  imports: [ReactiveFormsModule, DynamicQuestionRendererDirective],
+  templateUrl: './dynamic-pixel-renderer.component.html',
+  styleUrls: ['./dynamic-pixel-renderer.component.scss'],
+})
+export class DynamicPixelRendererComponent implements OnInit {
+  @Input() dynamicPixel!: DynamicPixel;
+
+  @Output() onSubmit = new EventEmitter<any>();
+  @Output() onCancel = new EventEmitter<any>();
+
+  @ViewChild(DynamicQuestionRendererDirective) dynamicQuestionRenderer!: DynamicQuestionRendererDirective;
+
+  pixelQuestionAnswers: PixelQuestionAnswer[] = [];
+  form!: FormGroup;
+  isFormReady: boolean = false;
+
+  constructor(
+    private fb: FormBuilder,
+    private cdr: ChangeDetectorRef
+  ) {}
+
+  ngOnInit(): void {
+    this.form = this.fb.group({});
+    this.createFormControls();
+    this.isFormReady = true;
+  }
+
+  ngAfterViewChecked(): void {
+    // to prevent Expression has changed after it was checked Error
+    this.cdr.detectChanges();
+  }
+
+  createFormControls(): void {
+    this.dynamicPixel.questions.forEach((question) => {
+      this._addFormControl(question);
+    });
+  }
+
+  private _addFormControl(question: DynamicQuestion): void {
+    // Check if the question type requires multiple form controls (e.g., checkboxes)
+    if (DynamicQuestionRendererService.isMultiFormControlsQuestion(question.type) && question.questionOptions) {
+      const controls = question.questionOptions.map((questionOption: DynamicQuestionOption) => {
+        return new FormControl(false);
+      });
+
+      // Add a new FormArray to the form, containing all option controls and question validations
+      this.form.addControl(question.id, new FormArray(controls, DynamicQuestionRendererService.bindValidations(question)));
+    }
+    // Check if the question type requires a single form control (e.g., text input, radio buttons)
+    else if (DynamicQuestionRendererService.isSingleFormControlQuestion(question.type)) {
+      this.form.addControl(question.id, this.fb.control('', DynamicQuestionRendererService.bindValidations(question)));
+    }
+  }
+
+  onSubmitButtonClick(): void {
+    this.markAsDirty(this.form);
+    if (!this.form.valid) {
+      return;
+    }
+
+    this._extractPixelQuestionAnswers(this.form.value);
+    this.onSubmit.emit(this.pixelQuestionAnswers);
+  }
+
+  onCancelButtonClick(): void {
+    this.onCancel.emit();
+  }
+
+  private _extractPixelQuestionAnswers(selectedValues: any): void {
+    for (const key in selectedValues) {
+      const selectedQuestion = <DynamicQuestion>this.dynamicPixel.questions.find((question: DynamicQuestion) => question.id === key);
+
+      const pixelQuestionAnswer = PixelQuestionRendererService.getPixelQuestionAnswerFromSelectedValue(
+        selectedQuestion,
+        selectedValues[key]
+      );
+
+      if (pixelQuestionAnswer) {
+        this.pixelQuestionAnswers.push(pixelQuestionAnswer);
+      }
+    }
+  }
+
+  markAsDirty(group: FormGroup): void {
+    group.markAsDirty();
+
+    for (const i in group.controls) {
+      if (group.controls[i] instanceof FormControl || group.controls[i] instanceof FormArray) {
+        group.controls[i].markAsDirty();
+        group.controls[i].setErrors(group.controls[i].errors);
+      }
+    }
+
+    setTimeout(() => {
+      const element: any = document.getElementsByClassName('form-control ng-dirty ng-invalid');
+      if (element && element.length > 0) {
+        element[0].focus();
+      }
+    }, 100);
+  }
+}
