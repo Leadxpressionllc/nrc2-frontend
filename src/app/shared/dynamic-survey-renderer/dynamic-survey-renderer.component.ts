@@ -5,11 +5,12 @@ import { DynamicPageRendererComponent } from './dynamic-page-renderer/dynamic-pa
 import { DynamicSurvey, DynamicSurveyResponse } from './model/dynamic-survey-renderer.model';
 import { DynamicSurveyRendererService } from './services/dynamic-survey-renderer.service';
 import { MixPanelService } from '@core/services';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'nrc-dynamic-survey-renderer',
   standalone: true,
-  imports: [ReactiveFormsModule, DynamicPageRendererComponent],
+  imports: [CommonModule, ReactiveFormsModule, DynamicPageRendererComponent],
   templateUrl: './dynamic-survey-renderer.component.html',
   styleUrls: ['./dynamic-survey-renderer.component.scss'],
 })
@@ -34,6 +35,17 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
   perPageProgress = 0;
   surveyProgress = 0;
   pixelConsentText = '';
+
+  steps = [
+    { name: '1', completed: false },
+    { name: '2', completed: false },
+    { name: '4', completed: false },
+    { name: '5', completed: false },
+    { name: '6', completed: false },
+    { name: '7', completed: false },
+    { name: '8', completed: false },
+  ];
+  currentStep = 1;
 
   constructor(
     private fb: FormBuilder,

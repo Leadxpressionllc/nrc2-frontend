@@ -1,8 +1,10 @@
 @for (question of page.questions; track question.id; let i = $index) {
   @if (question.visible) {
-    <div class="question-Box">
-      <div [innerHTML]="question.text"></div>
+    <div class="mb-4 pb-1">
+      <!-- ### Question -->
+      <h6 class="h5" [innerHTML]="question.text"></h6>
 
+      <!-- ### Options -->
       <ng-container nrcDynamicQuestionRenderer [form]="form" [question]="question" (valueChange)="showInterlinkedQuestions($event)">
       </ng-container>
     </div>

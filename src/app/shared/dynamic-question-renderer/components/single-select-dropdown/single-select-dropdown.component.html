@@ -1,15 +1,14 @@
 @if (form.controls[question.id].dirty && form.controls[question.id].errors) {
-  <div class="form-control-feedback text-start">
+  <p class="form-control-feedback text-start mb-0 p-0">
     @if (form.controls[question.id].hasError('REQUIRED')) {
-      <div>Please select a value</div>
+      Please select a value
     }
-  </div>
+  </p>
 }
 
-<div class="form-group" [formGroup]="form">
+<div class="col-lg-7 mt-3" [formGroup]="form">
   <select class="form-select form-control" [formControlName]="question.id" (change)="onValueSelect($event)">
     <option value="">Please select</option>
-
     @for (option of question.questionOptions; track $index) {
       <option [value]="option.id">{{ option.text }}</option>
     }

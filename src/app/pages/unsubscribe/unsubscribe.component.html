@@ -1,14 +1,16 @@
 <section class="bg-light min-vh-100">
-  <div class="container-lg min-vh-100 d-md-flex flex-column justify-content-center py-4">
+  <div class="container-lg min-vh-100 d-md-flex flex-column justify-content-center py-3">
     <div
       nrcLoader="unsubscribeUserLoader"
-      class="d-flex flex-column align-items-center gap-1 bg-white rounded shadow-sm p-xl-5 p-4 col-xl-6 col-md-8 mx-auto position-relative"
+      class="d-flex flex-column align-items-center gap-1 bg-white rounded shadow-sm p-xl-5 p-4 col-xxl-5 col-lg-6 col-md-8 mx-auto position-relative"
     >
       <nav class="mb-3">
         <a href="/" class="navbar-brand me-auto">
           <img src="../../../../assets/images/nrc-logo.svg" alt="NRC" width="200" height="80" class="img-fluid" />
         </a>
       </nav>
+
+      <!-- ### Unsubscribe form -->
       <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
         <span class="material-symbols-outlined show-outlined">unsubscribe</span>
       </div>
@@ -16,16 +18,18 @@
       <h1 class="h2 mb-0">Unsubscribe</h1>
       <p class="fs-5 text-gray-600">We're sorry to see you go</p>
 
-      <form [formGroup]="unsubscribeForm" (submit)="onSubmit()">
+      <form class="col-sm-9 col-12 mx-auto" [formGroup]="unsubscribeForm" (submit)="onSubmit()">
         <nrc-form-control name="Email">
-          <div class="form-floating col-sm-9 col-12 mx-auto mb-4">
+          <div class="form-floating">
             <input type="email" class="form-control" formControlName="email" placeholder="Email Address" autocomplete="off" />
             <label for="email">Email Address</label>
           </div>
         </nrc-form-control>
 
-        <button class="btn btn-secondary btn-lg px-md-5 px-5" type="button">Unsubscribe</button>
-        <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+        <div class="text-center mt-4">
+          <button class="btn btn-secondary btn-lg px-md-5 px-5" type="button">Unsubscribe</button> <br />
+          <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+        </div>
       </form>
 
       <div class="text-center">
@@ -35,6 +39,15 @@
         </p>
         <small class="text-gray-600">Thank you for your past engagement with us.</small>
       </div>
+
+      <!-- ### Unsubscribe Success -->
+      <!-- <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
+        <span class="material-symbols-outlined show-outlined">check</span>
+      </div>
+
+      <h1 class="h2 mb-2">Unsubscribed Successfully.</h1>
+      <p class="fs-md text-gray-600 col-lg-7 col-sm-10 mx-auto text-center">Thank you for your past engagement
+        with us. You have been removed from our mailing list. </p> -->
     </div>
   </div>
 </section>
