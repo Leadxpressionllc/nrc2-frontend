@@ -4,12 +4,13 @@ import { Job, JobResponse, User } from '@core/models';
 import { AuthService, JobService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
-import { LoaderDirective, TimeAgoDirective } from '@shared/directives';
+import { LoaderDirective } from '@shared/directives';
+import { TimeAgoPipe } from '@shared/pipes';
 
 @Component({
   selector: 'nrc-jobs',
   standalone: true,
-  imports: [FormsModule, LoaderDirective, TimeAgoDirective, HeaderComponent, FooterComponent],
+  imports: [FormsModule, LoaderDirective, TimeAgoPipe, HeaderComponent, FooterComponent],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss',
 })

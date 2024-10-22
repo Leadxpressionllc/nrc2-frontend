@@ -79,8 +79,16 @@ export class DynamicPixelRendererComponent implements OnInit {
   }
 
   private _extractPixelQuestionAnswers(selectedValues: any): void {
+    // Create a map for faster question lookup
+    // Key: question ID, Value: question object
+    const questionMap = new Map(this.dynamicPixel.questions.map((q) => [q.id, q]));
+
     for (const key in selectedValues) {
-      const selectedQuestion = <DynamicQuestion>this.dynamicPixel.questions.find((question: DynamicQuestion) => question.id === key);
+      const selectedQuestion = questionMap.get(key);
+
+      if (!selectedQuestion) {
+        continue;
+      }
 
       const pixelQuestionAnswer = DynamicPixelRendererService.getPixelQuestionAnswerFromSelectedValue(
         selectedQuestion,

@@ -1,6 +1,9 @@
 <form [formGroup]="form" (submit)="moveToNextPage($event)" class="d-flex flex-column bg-white rounded shadow h-md-100">
   <!-- Head -->
-  <div class="p-lg-4 p-4 bg-glass rounded-top shadow-sm position-md-static position-sticky z-9" style="top: 72px">
+  <div
+    class="d-flex justify-content-center p-lg-4 p-4 bg-glass rounded-top shadow-sm position-md-static position-sticky z-9"
+    style="top: 72px"
+  >
     <ul class="step-wizard nav list-unstyled mb-0" role="tablist">
       @for (page of dynamicSurvey.surveyPages; track page.id; let i = $index) {
         <li class="nav-item" role="presentation">
@@ -22,8 +25,7 @@
   </div>
 
   <!-- Body -->
-
-  <div class="h-md-100 p-3 overflow-md-auto">
+  <div class="h-md-100 p-4 overflow-md-auto">
     @if (surveyPageLoaded) {
       <nrc-dynamic-page-renderer
         [form]="form"

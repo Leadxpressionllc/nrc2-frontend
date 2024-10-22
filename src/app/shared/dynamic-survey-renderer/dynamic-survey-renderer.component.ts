@@ -51,6 +51,11 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
     this.surveyPageLoaded = true;
   }
 
+  ngAfterViewChecked(): void {
+    // to prevent Expression has changed after it was checked Error
+    this.cdr.detectChanges();
+  }
+
   moveToNextPage(event?: Event): void {
     if (event) {
       event.preventDefault();
@@ -175,11 +180,6 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
 
   setConsentText(consentText: string): void {
     this.pixelConsentText = consentText;
-  }
-
-  ngAfterViewChecked(): void {
-    // to prevent Expression has changed after it was checked Error
-    this.cdr.detectChanges();
   }
 
   private _sendSurveyPageResponseDataToMixPanel(): void {

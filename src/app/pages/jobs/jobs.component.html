@@ -3,15 +3,6 @@
   <nrc-header></nrc-header>
 </header>
 
-<!-- %%%%% PAGE TITLE SECTION %%%%%% -->
-<!-- <section class="top-section-pt-sm bg-primary text-white">
-  <div class="container text-center pt-0 p-4">
-    <div class="col-xl-8 col mx-auto">
-
-    </div>
-  </div>
-</section> -->
-
 <!-- %%%%% SURVEYS SECTION %%%%%% -->
 <section class="top-section-pt-sm py-xl-4 py-3 bg-light min-vh-75">
   <div class="container-xl min-vh-75">
@@ -19,7 +10,7 @@
       <div class="col-xl-4 col-md-5">
         <div class="bg-glass rounded border shadow-sm p-4 position-md-sticky" style="top: 6.5rem">
           <h1 class="h4 ls-sm mb-4">
-            <strong class="d-block mb-2 text-primary">Hi Dear,</strong>
+            <strong class="d-block mb-2 text-primary">Hi {{ user.firstName }},</strong>
             Explore New Job Opportunities Near You!
           </h1>
           <div class="row g-3">
@@ -44,7 +35,7 @@
                   autocomplete="off"
                   [(ngModel)]="location"
                 />
-                <label for="email">State / Postal Code</label>
+                <label for="email">Location (Zip Code)</label>
               </div>
             </div>
             <div class="col-md-12 col-sm-6">
@@ -102,15 +93,17 @@
           <div class="bg-white rounded border hover-shadow-lg p-md-3 pe-md-4 p-4">
             <div class="row g-3">
               <div class="col-lg-2 col-sm-3 text-sm-start text-center">
-                <img class="img-fluid rounded border" width="140" src="{{ job.logo_url }}" />
+                <a href="{{ job.url }}" target="_blank"><img class="img-fluid rounded border" width="140" src="{{ job.logo_url }}" /></a>
               </div>
               <div class="col-sm">
-                <h4 class="h5 pt-1 mb-2 text-wrap">{{ job.title }}</h4>
+                <h4 class="h5 pt-1 mb-2 text-wrap">
+                  <a href="{{ job.url }}" target="_blank" class="text-dark">{{ job.title }}</a>
+                </h4>
                 <ul class="row g-3 justify-content-between list-unstyled text-primary fw-bold mb-2 pt-1">
                   <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">corporate_fare</span> {{ job.company }}</li>
                   <li class="col d-flex gap-2 lh-sm"><span class="material-symbols-outlined">pin_drop</span> {{ job.city[0] }}</li>
                   <li class="col-xl d-flex gap-2 lh-sm">
-                    <span class="material-symbols-outlined">calendar_month</span> Posted <span [nrcTimeAgo]="job.date"></span>
+                    <span class="material-symbols-outlined">calendar_month</span> Posted <span>{{ job.date | timeAgo }}</span>
                   </li>
                 </ul>
                 <p class="line-clamp-2 mb-0" [innerHTML]="job.description"></p>
