@@ -30,13 +30,18 @@ export const routes: Routes = [
     canActivate: [authGuard],
   },
   {
-    path: 'email-offer',
-    loadChildren: async () => (await import('@pages/email-offer')).routes,
-  },
-  {
     path: 'offer-redirect',
     loadChildren: async () => (await import('@pages/offer-redirect')).routes,
     canActivate: [authGuard],
+  },
+  {
+    path: 'bw',
+    loadChildren: async () => (await import('@pages/boardwalk-offers')).routes,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'email-offer',
+    loadChildren: async () => (await import('@pages/email-offer')).routes,
   },
   {
     path: 'redirect',
