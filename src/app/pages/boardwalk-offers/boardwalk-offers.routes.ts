@@ -6,4 +6,9 @@ export const routes: Routes = [
     data: { title: 'Offers for you...' },
     loadComponent: async () => (await import('./boardwalk-offers.component')).BoardwalkOffersComponent,
   },
+  {
+    path: ':pid',
+    data: { title: 'Offers for you...' },
+    loadComponent: async () => (await import('./boardwalk-offers.component')).BoardwalkOffersComponent,
+  },
 ];

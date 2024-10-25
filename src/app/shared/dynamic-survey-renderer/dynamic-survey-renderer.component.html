@@ -37,6 +37,12 @@
       >
       </nrc-dynamic-page-renderer>
     }
+
+    @if (pixelConsentText !== '') {
+      <div class="pixel-consent-panel">
+        <p [innerHTML]="pixelConsentText"></p>
+      </div>
+    }
   </div>
 
   <!-- Foot -->
@@ -52,9 +58,3 @@
     </div>
   }
 </form>
-
-@if (pixelConsentText !== '') {
-  <div class="pixel-consent-panel">
-    <p [innerHTML]="pixelConsentText"></p>
-  </div>
-}

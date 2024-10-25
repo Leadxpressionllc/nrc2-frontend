@@ -24,7 +24,8 @@ export class BoardwalkOffersComponent implements OnInit {
   ngOnInit(): void {
     if (!this.pathId) {
       // Default BroadWalk PathId
-      this.pathId = 'b6f274d9-f244-49ed-8176-f29c52361436';
+      // this.pathId = 'b6f274d9-f244-49ed-8176-f29c52361436';
+      this.pathId = 'e562f92d-4a25-40fa-8138-e0bcc1f41e44';
     }
 
     this.route.queryParams.subscribe((params) => {
