@@ -29,8 +29,8 @@
                 <img class="img-fluid rounded" [src]="surveyOffers[currentIndex].imageUrl" />
               </div>
 
-              <div class="col-md-8">
-                <h4 class="h4">{{ surveyOffers[currentIndex].title }}</h4>
+              <div class="col-md-8 text-md-start text-center">
+                <h4 class="h3">{{ surveyOffers[currentIndex].title }}</h4>
                 <p class="fs-lg">
                   {{ surveyOffers[currentIndex].description }}
                 </p>
@@ -39,7 +39,7 @@
           </div>
 
           <!-- Foot -->
-          <div class="d-flex gap-3 justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
+          <div class="d-flex gap-3 justify-content-md-end justify-content-center bg-gray-100 border-top p-3 rounded-bottom">
             <button (click)="onPressYes(surveyOffers[currentIndex])" class="btn btn-secondary btn-lg px-5 btn-icon" type="button">
               {{ surveyOffers[currentIndex].yesButtonText || 'Yes' }}
             </button>
