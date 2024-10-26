@@ -1,8 +1,5 @@
 .broadwalk-content-section {
   @media all and (min-width: 768px) {
-    height: calc(100vh - 300px);
-  }
-  @media all and (max-width: 767px) {
-    min-height: calc(100vh - 480px);
+    min-height: calc(100vh - 306px);
   }
 }

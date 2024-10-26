@@ -222,10 +222,89 @@
   }
 }
 
-.toast-top-right {
+.toast-top-right,
+.toast-top-center {
   top: 66px !important;
 }
 
 ngx-spinner {
   display: contents;
+}
+
+// Broad Walk Offers
+#boardwalk {
+  @extend .shadow, .rounded-3;
+  padding: 1rem;
+
+  .bw-offer-template:last-of-type {
+    font-family: $font-family-sans-serif !important;
+    margin: 0;
+    padding: 0;
+  }
+
+  .bw-heading {
+    font-size: 1.5em !important;
+  }
+
+  .bw-button-primary {
+    background-color: var(--bs-secondary);
+    font-weight: 500;
+    margin: 0 !important;
+
+    &:hover {
+      transform: none;
+    }
+  }
+  .bw-button-secondary {
+    background-color: var(--bs-dark);
+    color: var(--bs-white);
+    font-weight: 500;
+    margin: 0 !important;
+    &:hover {
+      transform: none;
+    }
+  }
+
+  .bw-text {
+    color: var(--bs-dark) !important;
+  }
+
+  @media all and (min-width: 992px) {
+    .bw-offer-template {
+      grid-template-columns: 0.75fr 1fr;
+
+      .bw-image {
+        grid-row: 1 / 4;
+        grid-column: 1 / 2;
+      }
+      .bw-text {
+        grid-row: 2 / 3 !important;
+        grid-column: 2 / 4 !important;
+        align-self: start !important;
+      }
+      .bw-button-primary {
+        grid-row: 3 / 4 !important;
+        grid-column: 2 / 3 !important;
+        align-self: end !important;
+        width: auto;
+        max-width: auto;
+        justify-self: end !important;
+      }
+      .bw-button-secondary {
+        grid-row: 3 / 4 !important;
+        grid-column: 3 / 4 !important;
+        justify-self: end !important;
+        align-self: end !important;
+      }
+    }
+  }
+
+  @media all and (max-width: 991px) {
+    .bw-offer-template {
+      text-align: center !important;
+      .bw-text {
+        text-align: center !important;
+      }
+    }
+  }
 }
