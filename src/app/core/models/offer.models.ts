@@ -17,13 +17,13 @@ export interface Offer {
   linkMask: boolean;
   yesButtonText: string;
   noButtonText: string;
-  pixels: Pixel[];
 
   offerPoolId: string;
   surveyPageId: string;
   surveyPageOrder: number;
   surveyQuestionId: string;
 
+  pixel: Pixel;
   showCoregOffer?: boolean;
 }
 
@@ -34,8 +34,9 @@ export interface OfferCallBack {
 }
 
 export interface OfferLog {
-  offerId: string;
-  offerPoolId: string;
+  offerId?: string;
+  offerPoolId?: string;
+  pixelId?: string;
   surveyId: string;
   surveyPageId: string;
   surveyPageOrder: number;

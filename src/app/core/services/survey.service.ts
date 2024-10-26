@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { addLoader } from '@core/loader-context';
-import { Survey } from '@core/models';
+import { Pixel, Survey } from '@core/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -33,6 +33,12 @@ export class SurveyService {
     const url = constants.apiUrl.surveys.base + '/' + surveyId;
     return this.http.post(url, data, {
       context: addLoader('surveyLoader'),
+    });
+  }
+
+  getSurveyPixels(surveyId: string): Observable<Pixel[]> {
+    return this.http.get<Pixel[]>(`${constants.apiUrl.surveys.base}/${surveyId}/pixels`, {
+      context: addLoader('surveyPixelLoader'),
     });
   }
 }
