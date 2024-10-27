@@ -17,9 +17,6 @@ import { DynamicPixelRendererService } from './services/dynamic-pixel-renderer.s
 export class DynamicPixelRendererComponent implements OnInit {
   @Input() dynamicPixel!: DynamicPixel;
 
-  @Output() onSubmit = new EventEmitter<any>();
-  @Output() onCancel = new EventEmitter<any>();
-
   @ViewChild(DynamicQuestionRendererDirective) dynamicQuestionRenderer!: DynamicQuestionRendererDirective;
 
   pixelQuestionAnswers: PixelQuestionAnswer[] = [];
@@ -64,18 +61,15 @@ export class DynamicPixelRendererComponent implements OnInit {
     }
   }
 
-  onSubmitButtonClick(): void {
+  getDynamicPixelAnswers(): PixelQuestionAnswer[] {
     this.markAsDirty(this.form);
     if (!this.form.valid) {
-      return;
+      return [];
     }
 
     this._extractPixelQuestionAnswers(this.form.value);
-    this.onSubmit.emit(this.pixelQuestionAnswers);
-  }
-
-  onCancelButtonClick(): void {
-    this.onCancel.emit();
+    return this.pixelQuestionAnswers;
+    // this.onSubmit.emit(this.pixelQuestionAnswers);
   }
 
   private _extractPixelQuestionAnswers(selectedValues: any): void {

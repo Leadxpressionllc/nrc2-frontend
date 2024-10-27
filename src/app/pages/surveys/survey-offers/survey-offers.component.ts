@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
 import { Offer, OfferCallBack, OfferLog, Pixel, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
@@ -7,19 +7,21 @@ import { MixPanelService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
-import { DynamicPixel } from '@shared/dynamic-pixel-renderer/model/dynamic-pixel-renderer.model';
+import { DynamicPixel, DynamicPixelRendererComponent, DynamicPixelRendererMapperService } from '@shared/dynamic-pixel-renderer';
 import { AbstractOfferHelper } from '@shared/extendables';
 import { forkJoin, take } from 'rxjs';
 
 @Component({
   selector: 'nrc-survey-offers',
   standalone: true,
-  imports: [CommonModule, LoaderDirective, HeaderComponent, FooterComponent],
+  imports: [CommonModule, LoaderDirective, HeaderComponent, FooterComponent, DynamicPixelRendererComponent],
   templateUrl: './survey-offers.component.html',
   styleUrl: './survey-offers.component.scss',
 })
 export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit {
   @Input('id') surveyId!: string;
+
+  @ViewChild(DynamicPixelRendererComponent) dynamicPixelRendererComponent!: DynamicPixelRendererComponent;
 
   offerLink!: string;
   currentIndex: number = -1;
@@ -86,7 +88,7 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams,
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
+        // queryParamsHandling: 'merge', // uncomment to merge all query params by provided
         replaceUrl: true, // replacing the current state in history
       });
     }
@@ -124,16 +126,17 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
   }
 
   private _loadPixelQuestions(offer: Offer): void {
-    // TODO: update this code after backend refactoring
-    // this.pixelQuestionData = PixelQuestionRendererMapperService.mapPixelAndOfferToPixelQuestionData(offer, offer.pixels[0], this.user);
+    this.dynamicPixel = DynamicPixelRendererMapperService.mapPixelToDynamicPixel(offer.pixel, this.user);
     this.surveyOffers[this.currentIndex].showCoregOffer = true;
   }
 
-  onSubmitPixelQuestionResponses(pixelQuestionAnswers: PixelQuestionAnswer[]): void {
+  onSubmitPixelQuestionResponses(): void {
+    let pixelQuestionAnswers: PixelQuestionAnswer[] = this.dynamicPixelRendererComponent.getDynamicPixelAnswers();
+
     const offer = this.surveyOffers[this.currentIndex];
     const pixel = offer.pixel;
-    // TODO: update this code after backend refactoring
-    const pixelAnswers: PixelAnswer[] = []; // PixelQuestionRendererMapperService.loadPixelAnswers(pixel, pixelQuestionAnswers);
+
+    const pixelAnswers: PixelAnswer[] = DynamicPixelRendererMapperService.loadPixelAnswers(pixel, pixelQuestionAnswers);
 
     const userDataAnswers = pixelQuestionAnswers.filter((pqa) => pqa.isUserDataQuestion);
     pixelQuestionAnswers = pixelQuestionAnswers.filter((pqa) => !pqa.isUserDataQuestion);
@@ -147,7 +150,7 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
 
     this._updateUser(userDataAnswers);
 
-    this.offerService.submitOfferPixelQuestionResponses(offer.id, pixel.id, pixelQuestionResponseData).subscribe(() => {
+    this.surveyService.submitSurveyPixelResponses(this.surveyId, pixel.id, pixelQuestionResponseData).subscribe(() => {
       this._proceedToNextOffer();
     });
   }

@@ -19,6 +19,10 @@
       <p class="fs-5 text-gray-600">We're sorry to see you go</p>
 
       <form class="col-sm-9 col-12 mx-auto" [formGroup]="unsubscribeForm" (submit)="onSubmit()">
+        @if (error !== '') {
+          <alert type="danger" [dismissible]="true">{{ error }}</alert>
+        }
+
         <nrc-form-control name="Email">
           <div class="form-floating">
             <input type="email" class="form-control" formControlName="email" placeholder="Email Address" autocomplete="off" />
@@ -27,7 +31,7 @@
         </nrc-form-control>
 
         <div class="text-center mt-4">
-          <button class="btn btn-secondary btn-lg px-md-5 px-5" type="button">Unsubscribe</button> <br />
+          <button class="btn btn-secondary btn-lg px-md-5 px-5" type="submit">Unsubscribe</button> <br />
           <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
         </div>
       </form>

@@ -5,11 +5,12 @@ import { AuthService } from '@core/services';
 import { AppService, ValidatorService } from '@core/utility-services';
 import { FormControlComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'nrc-unsubscribe',
   standalone: true,
-  imports: [ReactiveFormsModule, RouterModule, LoaderDirective, FormControlComponent],
+  imports: [ReactiveFormsModule, RouterModule, AlertModule, LoaderDirective, FormControlComponent],
   templateUrl: './unsubscribe.component.html',
   styleUrl: './unsubscribe.component.scss',
 })

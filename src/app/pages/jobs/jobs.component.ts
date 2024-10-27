@@ -1,7 +1,7 @@
 import { Component, Input, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Job, JobResponse, User } from '@core/models';
-import { AuthService, JobService } from '@core/services';
+import { AuthService, JobService, MixPanelService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
@@ -28,10 +28,11 @@ export class JobsComponent implements OnInit {
   googleAdsLoaded: boolean = false;
 
   constructor(
+    private ngZone: NgZone,
+    private renderer: Renderer2,
     private jobService: JobService,
     private authService: AuthService,
-    private ngZone: NgZone,
-    private renderer: Renderer2
+    private mixPanelService: MixPanelService
   ) {}
 
   ngOnInit(): void {

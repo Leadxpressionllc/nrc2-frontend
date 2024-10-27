@@ -1,4 +1,16 @@
-<div class="form-group" [formGroup]="form">
+@if (form.controls[question.id].dirty && form.controls[question.id].errors) {
+  <div class="form-control-feedback text-start mb-0 p-0">
+    @if (form.controls[question.id].hasError('REQUIRED')) {
+      <div>Please enter a value</div>
+    }
+
+    @if (question.id === 'phone' && !form.controls['phone'].hasError('REQUIRED') && form.controls['phone'].hasError('mask')) {
+      <div>Please enter valid phone number</div>
+    }
+  </div>
+}
+
+<div class="col-lg-7 mt-3" [formGroup]="form">
   @if (question.id !== 'phone') {
     <input type="text" class="form-control" [formControlName]="question.id" (change)="onTextValueChange($event)" />
   }
@@ -14,17 +26,5 @@
       [specialCharacters]="[' ', '(', ')', '-']"
       mask="(000) 000-0000"
     />
-  }
-
-  @if (form.controls[question.id].dirty && form.controls[question.id].errors) {
-    <div class="form-control-feedback">
-      @if (form.controls[question.id].hasError('REQUIRED')) {
-        <div>Please enter a value</div>
-      }
-
-      @if (question.id === 'phone' && !form.controls['phone'].hasError('REQUIRED') && form.controls['phone'].hasError('mask')) {
-        <div>Please enter valid phone number</div>
-      }
-    </div>
   }
 </div>

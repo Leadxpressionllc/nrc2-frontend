@@ -4,8 +4,9 @@
       <a class="navbar-brand me-auto" href="#">
         <img class="img-fluid" src="../../../../assets/images/nrc-logo.svg" alt="NRC" width="150" height="60" />
       </a>
+
       @if (showSignUpButton) {
-        <button class="btn btn-secondary px-sm-5" type="button">Apply Now</button>
+        <button class="btn btn-secondary px-sm-5" type="button" (click)="trackApplyButtonClicks()">Apply Now</button>
       }
 
       @if (showPrivacyInfoPill) {

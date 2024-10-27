@@ -13,7 +13,7 @@
 </section>
 
 <!-- %%%%% SURVEYS SECTION %%%%%% -->
-<section class="survey-content-section py-3 bg-light">
+<section class="survey-content-section py-3 bg-light position-relative">
   <div class="container pt-md-5" nrcLoader="offersLoader">
     @if (surveyOffers) {
       <div class="col-xl-8 col-lg-10 mx-auto">
@@ -37,14 +37,27 @@
                   {{ surveyOffers[currentIndex].description }}
                 </p>
               </div>
+
+              @if (surveyOffers[currentIndex].showCoregOffer) {
+                <nrc-dynamic-pixel-renderer [dynamicPixel]="dynamicPixel"></nrc-dynamic-pixel-renderer>
+              }
             </div>
           </div>
 
           <!-- Foot -->
           <div class="d-flex gap-3 justify-content-md-end justify-content-center bg-gray-100 border-top p-3 rounded-bottom">
-            <button (click)="onPressYes(surveyOffers[currentIndex])" class="btn btn-secondary btn-lg px-5 btn-icon" type="button">
-              {{ surveyOffers[currentIndex].yesButtonText || 'Yes' }}
-            </button>
+            @if (!surveyOffers[currentIndex].showCoregOffer) {
+              <button (click)="onPressYes(surveyOffers[currentIndex])" class="btn btn-secondary btn-lg px-5 btn-icon" type="button">
+                {{ surveyOffers[currentIndex].yesButtonText || 'Yes' }}
+              </button>
+            }
+
+            @if (surveyOffers[currentIndex].showCoregOffer) {
+              <button (click)="onSubmitPixelQuestionResponses()" class="btn btn-secondary btn-lg px-5 btn-icon" type="button">
+                Submit
+              </button>
+            }
+
             <button (click)="onPressNo()" class="btn btn-dark btn-lg px-5 btn-icon" type="button">
               {{ surveyOffers[currentIndex].noButtonText || 'No' }}
             </button>
