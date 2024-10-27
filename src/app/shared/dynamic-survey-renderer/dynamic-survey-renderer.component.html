@@ -47,11 +47,11 @@
 
   <!-- Foot -->
   @if (showButton()) {
-    <div class="d-flex justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
+    <div class="d-flex flex-wrap justify-content-end bg-gray-100 border-top p-3 rounded-bottom">
       @if (currentPage === totalPages) {
-        <button class="btn btn-secondary px-5 fs-md" type="submit">Finish</button>
+        <button class="btn btn-secondary btn-lg px-5" type="submit">Unlock My Benefits</button>
       } @else {
-        <button class="btn btn-secondary px-md-5 px-4 fs-md btn-icon" type="submit">
+        <button class="btn btn-secondary btn-lg px-5 btn-icon" type="submit">
           Next <span class="material-symbols-outlined">arrow_forward</span>
         </button>
       }

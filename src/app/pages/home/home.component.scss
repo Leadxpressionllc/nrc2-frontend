@@ -9,6 +9,11 @@
     background-size: cover !important;
     background-position-x: 100%;
   }
+  @media all and (max-width: 767px) {
+    .hero-heading {
+      font-size: 2rem;
+    }
+  }
 }
 
 .check-list {

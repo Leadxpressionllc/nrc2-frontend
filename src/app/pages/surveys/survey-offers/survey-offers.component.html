@@ -45,7 +45,7 @@
           </div>
 
           <!-- Foot -->
-          <div class="d-flex gap-3 justify-content-md-end justify-content-center bg-gray-100 border-top p-3 rounded-bottom">
+          <div class="d-flex flex-sm-row flex-column flex-wrap gap-3 justify-content-md-end justify-content-center bg-gray-100 border-top p-3 rounded-bottom">
             @if (!surveyOffers[currentIndex].showCoregOffer) {
               <button (click)="onPressYes(surveyOffers[currentIndex])" class="btn btn-secondary btn-lg px-5 btn-icon" type="button">
                 {{ surveyOffers[currentIndex].yesButtonText || 'Yes' }}
@@ -58,7 +58,7 @@
               </button>
             }
 
-            <button (click)="onPressNo()" class="btn btn-dark btn-lg px-5 btn-icon" type="button">
+            <button (click)="onPressNo()" class="btn btn-dark bg-gray-600 border-gray-600 btn-lg px-5 btn-icon" type="button">
               {{ surveyOffers[currentIndex].noButtonText || 'No' }}
             </button>
           </div>

@@ -40,6 +40,7 @@
 @import 'assets/scss/custom-utilities';
 @import 'bootstrap/scss/utilities/api';
 @import '../node_modules/ngx-bootstrap/datepicker/bs-datepicker';
+@import '../node_modules/ngx-toastr/toastr';
 
 // 8. Components override or custom components
 @import 'assets/scss/component/buttons';

@@ -92,6 +92,11 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
     if (!isLastPage) {
       setTimeout(() => (this.surveyPageLoaded = true), 1);
     }
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scroll to top
+    });
   }
 
   moveToPreviousPage(): void {
