@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { addLoader } from '@core/loader-context';
-import { Offer, OfferCallBack, OfferLog, PixelQuestionSubmission } from '@core/models';
+import { Offer, OfferCallBack, OfferLog } from '@core/models';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -55,18 +55,6 @@ export class OfferService {
     return this.http.get<OfferCallBack>(url, {
       params,
       context: addLoader('offerCallBackLoader'),
-    });
-  }
-
-  submitOfferPixelQuestionResponses(
-    offerId: string,
-    pixelId: string,
-    pixelQuestionSubmission: PixelQuestionSubmission
-  ): Observable<Response> {
-    const url = `${constants.apiUrl.offers.base}${offerId}/pixels/${pixelId}/submit-responses`;
-
-    return this.http.post<Response>(url, pixelQuestionSubmission, {
-      context: addLoader('offerLoader'),
     });
   }
 

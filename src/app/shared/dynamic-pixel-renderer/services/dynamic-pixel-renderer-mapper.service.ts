@@ -16,7 +16,7 @@ export class DynamicPixelRendererMapperService {
       questions: this._getQuestions(pixel.pixelQuestions),
     };
 
-    this._addUserDataQuestionsToDynamicPixel(pixel.url, dynamicPixel.questions, user);
+    this._addUserDataQuestionsToDynamicPixel(pixel, dynamicPixel.questions, user);
     return dynamicPixel;
   }
 
@@ -54,8 +54,10 @@ export class DynamicPixelRendererMapperService {
     return questionOptions;
   }
 
-  private static _addUserDataQuestionsToDynamicPixel(pixelUrl: string, questions: DynamicQuestion[], user: any): void {
+  private static _addUserDataQuestionsToDynamicPixel(pixel: Pixel, questions: DynamicQuestion[], user: any): void {
     const { DATE, INPUT, SELECT } = constants.dynamicQuestionRenderer.questionHtmlElement;
+    const pixelUrl = pixel.url;
+    const pixelPayload = !AppService.isUndefinedOrNull(pixel.requestPayload) ? pixel.requestPayload : '';
 
     // Define an array of user data fields and their corresponding pixel URL patterns
     const userDataFields = [
@@ -78,7 +80,10 @@ export class DynamicPixelRendererMapperService {
     // Iterate through user data fields
     userDataFields.forEach(({ field, patterns, question, type }) => {
       // Check if the user field is undefined or null and if any pattern matches in the pixelUrl
-      if (AppService.isUndefinedOrNull(user[field]) && patterns.some((pattern) => pixelUrl.includes(pattern))) {
+      if (
+        AppService.isUndefinedOrNull(user[field]) &&
+        patterns.some((pattern) => pixelUrl.includes(pattern) || pixelPayload.includes(pattern))
+      ) {
         // Create a new question object
         const newQuestion: DynamicQuestion = {
           id: field,

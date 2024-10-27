@@ -1,12 +1,13 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { NgxMaskDirective } from 'ngx-mask';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { DynamicQuestion } from '../../models';
 
 @Component({
   selector: 'nrc-input',
   standalone: true,
   imports: [ReactiveFormsModule, NgxMaskDirective],
+  providers: [provideNgxMask()],
   templateUrl: './input.component.html',
 })
 export class InputComponent implements OnInit {

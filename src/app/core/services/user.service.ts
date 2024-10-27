@@ -21,7 +21,7 @@ export class UserService {
 
   updateUser(user: User): Observable<User> {
     return this.httpClient
-      .put<User>(`${constants.apiUrl.users.base}/${user.id}`, user, {
+      .put<User>(`${constants.apiUrl.users.base}`, user, {
         context: addLoader('userLoader'),
       })
       .pipe(

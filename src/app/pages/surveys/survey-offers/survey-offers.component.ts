@@ -1,35 +1,41 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
-import { Offer, OfferCallBack, OfferLog, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
-import { MixPanelService } from '@core/services';
+import { Offer, OfferCallBack, OfferLog, Pixel, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
+import { MixPanelService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
+import { DynamicPixel, DynamicPixelRendererComponent, DynamicPixelRendererMapperService } from '@shared/dynamic-pixel-renderer';
 import { AbstractOfferHelper } from '@shared/extendables';
-import { take } from 'rxjs';
+import { forkJoin, take } from 'rxjs';
 
 @Component({
   selector: 'nrc-survey-offers',
   standalone: true,
-  imports: [LoaderDirective, HeaderComponent, FooterComponent],
+  imports: [CommonModule, LoaderDirective, HeaderComponent, FooterComponent, DynamicPixelRendererComponent],
   templateUrl: './survey-offers.component.html',
   styleUrl: './survey-offers.component.scss',
 })
 export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit {
   @Input('id') surveyId!: string;
 
+  @ViewChild(DynamicPixelRendererComponent) dynamicPixelRendererComponent!: DynamicPixelRendererComponent;
+
   offerLink!: string;
   currentIndex: number = -1;
 
   surveyOffers!: Offer[];
+  surveyPixels!: Pixel[];
   offerCallBack!: OfferCallBack;
 
-  // pixelQuestionData!: PixelQuestionData;
+  dynamicPixel!: DynamicPixel;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
+    private surveyService: SurveyService,
     private mixPanelService: MixPanelService
   ) {
     super();
@@ -44,8 +50,26 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
   }
 
   private _loadOffersBySurveyId(surveyId: string): void {
-    this.offerService.getOffersBySurveyId(surveyId).subscribe((offers: Offer[]) => {
-      this.surveyOffers = offers;
+    const apis = [this.surveyService.getSurveyPixels(surveyId), this.offerService.getOffersBySurveyId(surveyId)];
+
+    forkJoin(apis).subscribe((response) => {
+      this.surveyPixels = <Pixel[]>response[0];
+      this.surveyOffers = <Offer[]>response[1];
+
+      if (!AppService.isUndefinedOrNull(this.surveyPixels)) {
+        const pixelOffers: any = this.surveyPixels.map((pixel) => {
+          return {
+            ...pixel,
+            title: pixel.heading,
+            offerType: 'COREG',
+            showCoregOffer: false,
+            pixel: pixel,
+          };
+        });
+
+        this.surveyOffers = [...pixelOffers, ...this.surveyOffers];
+      }
+
       this._proceedToNextOffer();
     });
   }
@@ -58,14 +82,13 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
       const offer = this.surveyOffers[this.currentIndex];
       this._logOfferResponse(offer, constants.userOfferAction.impression);
 
-      const queryParams: Params = {
-        oId: offer.id,
-      };
+      const queryParams: Params = {};
+      queryParams[offer.offerType === 'LINKOUT' ? 'oId' : 'pId'] = offer.id;
 
       this.router.navigate([], {
         relativeTo: this.route,
         queryParams,
-        queryParamsHandling: 'merge', // remove to replace all query params by provided
+        // queryParamsHandling: 'merge', // uncomment to merge all query params by provided
         replaceUrl: true, // replacing the current state in history
       });
     }
@@ -103,16 +126,17 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
   }
 
   private _loadPixelQuestions(offer: Offer): void {
-    // TODO: update this code after backend refactoring
-    // this.pixelQuestionData = PixelQuestionRendererMapperService.mapPixelAndOfferToPixelQuestionData(offer, offer.pixels[0], this.user);
+    this.dynamicPixel = DynamicPixelRendererMapperService.mapPixelToDynamicPixel(offer.pixel, this.user);
     this.surveyOffers[this.currentIndex].showCoregOffer = true;
   }
 
-  onSubmitPixelQuestionResponses(pixelQuestionAnswers: PixelQuestionAnswer[]): void {
+  onSubmitPixelQuestionResponses(): void {
+    let pixelQuestionAnswers: PixelQuestionAnswer[] = this.dynamicPixelRendererComponent.getDynamicPixelAnswers();
+
     const offer = this.surveyOffers[this.currentIndex];
-    const pixel = offer.pixels[0];
-    // TODO: update this code after backend refactoring
-    const pixelAnswers: PixelAnswer[] = []; // PixelQuestionRendererMapperService.loadPixelAnswers(pixel, pixelQuestionAnswers);
+    const pixel = offer.pixel;
+
+    const pixelAnswers: PixelAnswer[] = DynamicPixelRendererMapperService.loadPixelAnswers(pixel, pixelQuestionAnswers);
 
     const userDataAnswers = pixelQuestionAnswers.filter((pqa) => pqa.isUserDataQuestion);
     pixelQuestionAnswers = pixelQuestionAnswers.filter((pqa) => !pqa.isUserDataQuestion);
@@ -126,7 +150,7 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
 
     this._updateUser(userDataAnswers);
 
-    this.offerService.submitOfferPixelQuestionResponses(offer.id, pixel.id, pixelQuestionResponseData).subscribe(() => {
+    this.surveyService.submitSurveyPixelResponses(this.surveyId, pixel.id, pixelQuestionResponseData).subscribe(() => {
       this._proceedToNextOffer();
     });
   }
@@ -134,13 +158,18 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
   private _logOfferResponse(offer: Offer, userOfferAction: string): void {
     const offerLog: OfferLog = {
       surveyId: this.surveyId,
-      offerId: offer.id,
-      offerPoolId: offer.offerPoolId,
       surveyPageId: offer.surveyPageId,
       surveyPageOrder: offer.surveyPageOrder,
       surveyQuestionId: offer.surveyQuestionId,
       userOfferAction,
     };
+
+    if (offer.offerType === 'COREG') {
+      offerLog.pixelId = offer.id;
+    } else {
+      (offerLog.offerId = offer.id), (offerLog.offerPoolId = offer.offerPoolId);
+    }
+
     this.offerService.logOfferResponse(offer.id, offerLog).subscribe();
   }
 

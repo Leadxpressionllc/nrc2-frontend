@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
-import { OfferPoolOffer, Survey, SurveyQuestion, SurveyQuestionOfferPool, User } from '@core/models';
+import { Survey, User } from '@core/models';
 import { AuthService, MixPanelService, OfferService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';

@@ -14,6 +14,7 @@ import { map, take } from 'rxjs';
 import { PasswordConfirmationPopupComponent } from './password-confirmation-popup/password-confirmation-popup.component';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { DataPoliciesPopupComponent } from './data-policies-popup/data-policies-popup.component';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'nrc-signup-form',
@@ -23,6 +24,7 @@ import { DataPoliciesPopupComponent } from './data-policies-popup/data-policies-
     ReactiveFormsModule,
     BsDatepickerModule,
     BsDropdownModule,
+    AlertModule,
     NgxMaskDirective,
     LoaderDirective,
     FormControlComponent,

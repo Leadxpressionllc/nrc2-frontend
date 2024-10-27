@@ -9,6 +9,10 @@
   </h2>
 
   <div class="row g-2 mb-2">
+    @if (error !== '') {
+      <alert class="col-12" type="danger" [dismissible]="true"> {{ error }} </alert>
+    }
+
     <div class="col-12">
       <nrc-form-control name="Name">
         <div class="form-floating">

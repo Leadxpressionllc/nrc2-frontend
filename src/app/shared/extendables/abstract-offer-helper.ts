@@ -17,7 +17,6 @@ export abstract class AbstractOfferHelper implements OnDestroy {
   constructor() {
     this.userService = inject(UserService);
     this.offerService = inject(OfferService);
-    this.offerService = inject(OfferService);
     this.authService = inject(AuthService);
 
     this.user = <User>this.authService.getAuthInfo()?.user;
