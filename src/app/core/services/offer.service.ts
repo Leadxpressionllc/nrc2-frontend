@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { addLoader } from '@core/loader-context';
 import { Offer, OfferCallBack, OfferLog } from '@core/models';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -72,5 +72,17 @@ export class OfferService {
     return this.http.get<Response>(url, {
       context: addLoader('logResponseLoader'),
     });
+  }
+
+  getRandomOfferIdByOfferPoolId(offerPoolId: string): Observable<string> {
+    return this.http
+      .get<{ offerId: string }>(`${constants.apiUrl.offers.randomOfferIdByOfferPoolId}/${offerPoolId}`, {
+        context: addLoader('offersLoader'),
+      })
+      .pipe(
+        map((data: { offerId: string }) => {
+          return data['offerId'];
+        })
+      );
   }
 }
