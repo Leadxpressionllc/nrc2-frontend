@@ -18,6 +18,9 @@
     justify-content: center;
     column-gap: 0.5rem;
     line-height: 1;
+    [class*='material-symbols-outlined'] {
+      margin-top: 0.1rem;
+    }
   }
 
   &.btn-flat {
