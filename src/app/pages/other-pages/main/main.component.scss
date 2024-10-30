@@ -1,0 +1,17 @@
+.bg-gradient-hero {
+  background: linear-gradient(152deg, #1ea009, #0076ae, #dc3545, #ffd464);
+  background-size: 800% 800%;
+  animation: randomGradient 30s ease infinite alternate-reverse;
+}
+
+@keyframes randomGradient {
+  0% {
+    background-position: 0% 10%;
+  }
+  50% {
+    background-position: 100% 91%;
+  }
+  100% {
+    background-position: 0% 10%;
+  }
+}

@@ -63,6 +63,10 @@ export const routes: Routes = [
     path: 'marketing-associates',
     loadChildren: async () => (await import('@pages/marketing-associates')).routes,
   },
+  {
+    path: 'other',
+    loadChildren: async () => (await import('@pages/other-pages')).routes,
+  },
 
   { path: '**', pathMatch: 'full', redirectTo: 'home' },
 ];
