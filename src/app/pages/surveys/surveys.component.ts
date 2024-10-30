@@ -190,16 +190,16 @@ export class SurveysComponent implements OnInit {
 
       for (const sqop of surveyQuestion.surveyQuestionOfferPools) {
         const offerPoolOffers = sqop.offerPool.offerPoolOffers;
-        // Select a random offer from the pool
-        // check for offer which matches scheduling and targeting
-        // logged-in user targeting with offer targeting with in offerPoolOffers
 
         try {
-          // Get the offer ID asynchronously using await
-          const offerId = await firstValueFrom(this.offerService.getRandomOfferIdByOfferPoolId(sqop.offerPool.id));
           // Check if the surveyResponse includes this offer pool's option and if there are offers available
-          if (offerId && surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
-            this._redirectUserToOffer(offerId, sqop.offerPool.id, surveyQuestion.id);
+          if (offerPoolOffers.length > 0 && surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId)) {
+            // Get the offer ID asynchronously using await
+            const offerId = await firstValueFrom(this.offerService.getOfferIdByOfferPoolId(sqop.offerPool.id));
+
+            if (offerId) {
+              this._redirectUserToOffer(offerId, sqop.offerPool.id, surveyQuestion.id);
+            }
           }
         } catch (error) {
           console.error('Error fetching targeted offer', error);

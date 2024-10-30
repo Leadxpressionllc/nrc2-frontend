@@ -74,9 +74,9 @@ export class OfferService {
     });
   }
 
-  getRandomOfferIdByOfferPoolId(offerPoolId: string): Observable<string> {
+  getOfferIdByOfferPoolId(offerPoolId: string): Observable<string> {
     return this.http
-      .get<{ offerId: string }>(`${constants.apiUrl.offers.randomOfferIdByOfferPoolId}/${offerPoolId}`, {
+      .get<{ offerId: string }>(`${constants.apiUrl.offers.offerIdByOfferPoolId}/${offerPoolId}`, {
         context: addLoader('offersLoader'),
       })
       .pipe(
