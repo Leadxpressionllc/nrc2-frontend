@@ -1,7 +1,92 @@
 :root {
-  &[data-theme='theme-trulyjobfriend'] {
+  // zippystackedleads.com
+  &[data-theme='theme-zippystackedleads'] {
     --bs-primary: #d5536d;
     --bs-primary-rgb: 213, 83, 109;
+
+    --bs-light: #f7dee3;
+    --bs-light-rgb: 247, 222, 227;
+  }
+
+  // trulyjobfriend.com
+  &[data-theme='theme-trulyjobfriend'] {
+    --bs-primary: #7a53d5;
+    --bs-primary-rgb: 122, 83, 213;
+
+    --bs-light: #e6def7;
+    --bs-light-rgb: 230, 222, 247;
+  }
+
+  // swiftmethodsapply.com
+  &[data-theme='theme-swiftmethodsapply'] {
+    --bs-primary: #2fb8c7;
+    --bs-primary-rgb: 47, 184, 199;
+
+    --bs-light: #def5f7;
+    --bs-light-rgb: 222, 245, 247;
+  }
+
+  // snappytasksdone.com
+  &[data-theme='theme-snappytasksdone'] {
+    --bs-primary: #d553b9;
+    --bs-primary-rgb: 213, 83, 185;
+
+    --bs-light: #f7def2;
+    --bs-light-rgb: 247, 222, 242;
+  }
+
+  // shortforgedsteel.com
+  &[data-theme='theme-shortforgedsteel'] {
+    --bs-primary: #df9225;
+    --bs-primary-rgb: 223, 146, 37;
+
+    --bs-light: #faeddb;
+    --bs-light-rgb: 250, 237, 219;
+  }
+
+  // leaninglogicly.com
+  &[data-theme='theme-leaninglogicly'] {
+    --bs-primary: #2c55d0;
+    --bs-primary-rgb: 44, 85, 208;
+
+    --bs-light: #dde4f8;
+    --bs-light-rgb: 221, 228, 248;
+  }
+
+  // rescuedreaching.com
+  &[data-theme='theme-rescuedreaching'] {
+    --bs-primary: #69a839;
+    --bs-primary-rgb: 105, 168, 57;
+
+    --bs-light: #e9f5e1;
+    --bs-light-rgb: 233, 245, 225;
+  }
+
+  // leaninglogicly.com
+  &[data-theme='theme-leaninglogicly'] {
+    --bs-primary: #13a7ec;
+    --bs-primary-rgb: 19, 167, 236;
+
+    --bs-light: #d9f1fc;
+    --bs-light-rgb: 217, 241, 252;
+  }
+
+  // mostcapablehire.com
+  &[data-theme='theme-mostcapablehire'] {
+    --bs-primary: #ccbd18;
+    --bs-primary-rgb: 204, 189, 24;
+
+    --bs-light: #fbf8db;
+    --bs-light-rgb: 251, 248, 219;
+  }
+
+  // kindestrecruit.com
+  &[data-theme='theme-kindestrecruit'] {
+    --bs-primary: #0bb970;
+    --bs-primary-rgb: 11, 185, 112;
+
+    --bs-light: #d8fdee;
+    --bs-light-rgb: 216, 253, 238;
   }
 }
 html {
