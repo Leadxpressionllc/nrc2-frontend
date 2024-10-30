@@ -31,6 +31,7 @@ export const constants = {
       bySurveyId: '/offers/by-survey',
       specialOffers: '/offers/special-offers',
       logUserReturnedFromLinkoutOffer: '/offers/log-user-returned',
+      randomOfferIdByOfferPoolId: '/offers/by-offer-pool',
     },
 
     jobs: {

@@ -12,7 +12,7 @@ import {
   DynamicSurveyRendererMapperService,
   DynamicSurveyResponse,
 } from '@shared/dynamic-survey-renderer';
-import { map, tap } from 'rxjs';
+import { firstValueFrom, map, tap } from 'rxjs';
 
 @Component({
   selector: 'nrc-surveys',
@@ -172,33 +172,40 @@ export class SurveysComponent implements OnInit {
     }
   }
 
-  private _openLinkOutOffers(surveyPageResponses: DynamicSurveyResponse[]): void {
+  private async _openLinkOutOffers(surveyPageResponses: DynamicSurveyResponse[]): Promise<void> {
     // Get the current page's survey questions
     const currentPageQuestions = this.survey.surveyPages[this.currentPage].surveyQuestions;
 
-    currentPageQuestions.forEach((surveyQuestion) => {
+    for (const surveyQuestion of currentPageQuestions) {
       // Check if the question has offer pools
       if (AppService.isUndefinedOrNull(surveyQuestion.surveyQuestionOfferPools)) {
-        return;
+        continue;
       }
 
       // Find the corresponding survey response for this question
       const surveyResponse = surveyPageResponses.find((spr) => spr.surveyQuestionId === surveyQuestion.id);
       if (!surveyResponse) {
-        return;
+        continue;
       }
 
-      surveyQuestion.surveyQuestionOfferPools.forEach((sqop) => {
+      for (const sqop of surveyQuestion.surveyQuestionOfferPools) {
         const offerPoolOffers = sqop.offerPool.offerPoolOffers;
         // Select a random offer from the pool
-        const randomOffer = offerPoolOffers[Math.floor(Math.random() * offerPoolOffers.length)];
+        // check for offer which matches scheduling and targeting
+        // logged-in user targeting with offer targeting with in offerPoolOffers
 
-        // Check if the surveyResponse includes this offer pool's option and if there are offers available
-        if (surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
-          this._redirectUserToOffer(randomOffer.offer.id, sqop.offerPool.id, surveyQuestion.id);
+        try {
+          // Get the offer ID asynchronously using await
+          const offerId = await firstValueFrom(this.offerService.getRandomOfferIdByOfferPoolId(sqop.offerPool.id));
+          // Check if the surveyResponse includes this offer pool's option and if there are offers available
+          if (offerId && surveyResponse.questionOptionsIds?.includes(sqop.questionOptionId) && offerPoolOffers.length > 0) {
+            this._redirectUserToOffer(offerId, sqop.offerPool.id, surveyQuestion.id);
+          }
+        } catch (error) {
+          console.error('Error fetching targeted offer', error);
         }
-      });
-    });
+      }
+    }
   }
 
   private _redirectUserToOffer(offerId: string, offerPoolId: string, surveyQuestionId: string) {
