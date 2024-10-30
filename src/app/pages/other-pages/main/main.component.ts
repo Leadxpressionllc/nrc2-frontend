@@ -1,19 +1,13 @@
 import { Component } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
-import { FormControlComponent } from '@shared/components';
-import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { SignupFormComponent } from '@pages/home/signup-form/signup-form.component';
+import { OtherHeaderComponent } from '../other-header/other-header.component';
+import { OtherFooterComponent } from '../other-footer/other-footer.component';
 
 @Component({
   selector: 'nrc-main',
   standalone: true,
-  imports: [BsDatepickerModule, ReactiveFormsModule, FormControlComponent],
+  imports: [SignupFormComponent, OtherHeaderComponent, OtherFooterComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })
-export class MainComponent {
-  currentYear!: number;
-
-  ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
-  }
-}
+export class MainComponent {}

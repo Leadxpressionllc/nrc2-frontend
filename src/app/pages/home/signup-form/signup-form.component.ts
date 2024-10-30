@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
@@ -36,6 +36,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   styleUrl: './signup-form.component.scss',
 })
 export class SignupFormComponent implements OnInit {
+  @Input() signUpButtonText: string = 'Check If You Qualify';
   @ViewChild('leadIdToken') leadIdToken!: ElementRef;
 
   isFormLoaded: boolean = false;

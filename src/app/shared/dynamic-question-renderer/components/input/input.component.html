@@ -18,7 +18,7 @@
   @if (question.isUserDataQuestion && question.id === 'phone') {
     <input
       type="text"
-      class="form-control"
+      class="form-control fw-normal"
       [formControlName]="question.id"
       (change)="onTextValueChange($event)"
       [validation]="true"

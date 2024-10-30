@@ -1,15 +1,6 @@
 <!-- %%%%% HEADER %%%%% -->
 <header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
-  <nav class="navbar navbar-expand-lg bg-glass rounded-3 shadow-lg" style="--bg-alpha: 86%">
-    <div class="container-md position-relative">
-      <div class="d-flex flex-wrap align-items-center justify-content-md-start justify-content-center py-1">
-        <a class="display-6 navbar-brand me-3 py-2" href="/other" style="font-family: fantasy, sans-serif"> trulyjobfriend </a>
-        <p class="mb-0 fs-lg fw-medium text-gray-700 d-md-block d-none">
-          <q><em>Changing lives, one extraordinary benefit at a time</em></q>
-        </p>
-      </div>
-    </div>
-  </nav>
+  <nrc-other-header brandName="zippystackedleads"></nrc-other-header>
 </header>
 
 <!-- %%%%% PAGE TITLE SECTION %%%%%% -->
@@ -20,80 +11,11 @@
       Empowering you with <u>financial opportunities</u> that foster growth and inspire meaningful change.
     </h1>
     <div class="col-xl-6 col-sm-7 mx-auto mt-md-0 mt-3">
-      <form
-        action=""
-        class="rounded-3 border border-dark border-2 bg-glass p-3 pt-sm-4 pb-0 position-relative shadow-lg"
-        style="--bg-alpha: 0.925"
-      >
+      <div class="rounded-3 border border-primary border-2 bg-glass p-3 pb-0 position-relative shadow-lg" style="--bg-alpha: 0.86">
         <h2 class="h3 text-center">Find the Support You Need</h2>
         <h6 class="text-primary text-center mb-3">Join Now for Access!</h6>
-        <div class="row g-2 mb-2">
-          <div class="col-xl-6">
-            <div class="form-floating">
-              <input type="text" class="form-control" placeholder="Your Full Name" autocomplete="off" />
-              <label for="fullName">Your Full Name</label>
-            </div>
-          </div>
-          <div class="col-xl-6">
-            <div class="form-floating">
-              <input type="email" class="form-control" placeholder="Email Address" autocomplete="off" />
-              <label for="email">Email Address</label>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-floating">
-              <input type="text" class="form-control" placeholder="Zip Code" autocomplete="off" />
-              <label for="text">Zip Code</label>
-            </div>
-          </div>
-          <div class="col-sm-6">
-            <div class="form-floating">
-              <input
-                type="text"
-                class="form-control input-ic-date input-ic-right"
-                placeholder="Date of Birth"
-                autocomplete="off"
-                bsDatepicker
-                [bsConfig]="{ adaptivePosition: true, showWeekNumbers: false }"
-              />
-              <label for="text">Date of Birth</label>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-floating">
-              <input type="text" class="form-control" placeholder="Phone Number (Optional)" autocomplete="off" />
-              <label for="text">Phone Number (Optional)</label>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="form-floating">
-              <input type="text" class="form-control" placeholder="Address (Optional)" autocomplete="off" />
-              <label for="address">Address (Optional)</label>
-            </div>
-          </div>
-        </div>
-
-        <button class="btn btn-primary px-md-5 px-4 btn-lg btn-icon w-100" type="submit">
-          Get Started <span class="material-symbols-outlined">arrow_forward</span>
-        </button>
-        <p class="mt-3 fs-sm">
-          <em
-            >By clicking "Get Started", I agree to the <a href="other/terms" target="_blank">Terms</a> and
-            <a href="other/privacy" target="_blank">Privacy Policy</a> of trulyjobfriend.com and consent to receive emails, calls, and/or
-            text messages from trulyjobfriend.com and its Resource Providers at any contact details I provide, including wireless numbers.
-            Charges may apply by my carrier. These communications may be automated, including pre-recorded messages. Consent is not
-            necessary to use trulyjobfriend.com services and does not affect registrations on Do Not Call lists. For SMS: Text STOP to
-            unsubscribe, HELP for assistance. Msg & data rates may apply. Up to 30 msgs/month.</em
-          >
-        </p>
-
-        <div class="text-center">
-          <p class="d-inline-flex align-items-center bg-gray-600 text-white px-2 py-1 rounded-top mb-0">
-            <span class="material-symbols-outlined">lock_person</span>
-            <span class="ms-1"> Your information is kept 100% confidential.</span>
-          </p>
-        </div>
-      </form>
+        <nrc-signup-form signUpButtonText="Get Started"></nrc-signup-form>
+      </div>
     </div>
   </div>
 </section>
@@ -175,7 +97,7 @@
 </section>
 
 <!-- %%%%% ABOUT US %%%%%% -->
-<section class="py-md-5 py-4 bg-gray-300">
+<section class="py-md-5 py-4 bg-light">
   <div class="container py-lg-5 p-4 text-center position-relative">
     <div class="rounded-4 bg-white p-lg-5 p-4">
       <h3 class="h1 fw-medium mb-3">About us</h3>
@@ -189,20 +111,4 @@
 </section>
 
 <!-- %%%%% FOOTER %%%%%% -->
-<footer>
-  <!-- ### Footer Bottom -->
-  <div class="bg-dark text-white">
-    <div class="container py-4">
-      <div class="d-flex flex-wrap justify-content-between gap-2">
-        <span>© {{ currentYear }} trulyjobfriend.com. All Rights Reserved.</span>
-
-        <ul class="list-inline d-inline-flex flex-wrap gap-3 mb-0">
-          <li class="list-inline-item">
-            <a class="text-white" href="/other/terms" target="_blank">Terms and Conditions</a>
-          </li>
-          <li class="list-inline-item"><a class="text-white" href="/other/privacy" target="_blank">Privacy Policy</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</footer>
+<nrc-other-footer brandDomain="www.branddomain.com"></nrc-other-footer>
