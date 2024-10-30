@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
       ToastrModule.forRoot({
         timeOut: 5000,
         extendedTimeOut: 5000,
-        positionClass: 'toast-top-center',
+        positionClass: 'toast-top-right',
         tapToDismiss: false,
         preventDuplicates: true,
         titleClass: 'toast-title',
