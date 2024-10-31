@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { constants } from '@app/constant';
 import { addLoader } from '@core/loader-context';
-import { MarketingAssociate, SignupFlow } from '@core/models';
-import { Observable } from 'rxjs';
+import { DomainInfo, MarketingAssociate, SignupFlow } from '@core/models';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +21,11 @@ export class CommonService {
     return this.httpClient.get<MarketingAssociate[]>(constants.apiUrl.common.marketingAssociates, {
       context: addLoader('marketingAssociateLoader'),
     });
+  }
+
+  getDomainInfoByDomain(domain: string): Observable<DomainInfo> {
+    return this.httpClient
+      .get<DomainInfo[]>('/assets/json/other-domains.json')
+      .pipe(map((domains: DomainInfo[]) => <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain)));
   }
 }

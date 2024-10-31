@@ -14,7 +14,7 @@ import { AppService } from '../utility-services/app.service';
  */
 @Injectable()
 export class InterceptedHttp implements HttpInterceptor {
-  private byPassUrls: string[] = ['/i18n/', '/icons/'];
+  private byPassUrls: string[] = ['/i18n/', '/icons/', '/json/'];
 
   constructor(
     private authService: AuthService,

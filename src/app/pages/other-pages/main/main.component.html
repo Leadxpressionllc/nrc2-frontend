@@ -1,6 +1,6 @@
 <!-- %%%%% HEADER %%%%% -->
 <header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
-  <nrc-other-header brandName="zippystackedleads"></nrc-other-header>
+  <nrc-other-header [brandName]="domainInfo.name"></nrc-other-header>
 </header>
 
 <!-- %%%%% PAGE TITLE SECTION %%%%%% -->
@@ -102,13 +102,13 @@
     <div class="rounded-4 bg-white p-lg-5 p-4">
       <h3 class="h1 fw-medium mb-3">About us</h3>
       <p class="col-xl-10 mx-auto text-center fs-lg mb-0">
-        The trulyjobfriend.com is a platform created to offer access to a wealth of content and resources covering various topics, including
-        personal finance, education, employment, insurance, taxes, government assistance, and potential money-saving opportunities. We are
-        dedicated to enhancing the lives of our members while fostering the growth of a supportive community.
+        The {{ domainInfo.domain }} is a platform created to offer access to a wealth of content and resources covering various topics,
+        including personal finance, education, employment, insurance, taxes, government assistance, and potential money-saving
+        opportunities. We are dedicated to enhancing the lives of our members while fostering the growth of a supportive community.
       </p>
     </div>
   </div>
 </section>
 
 <!-- %%%%% FOOTER %%%%%% -->
-<nrc-other-footer brandDomain="www.branddomain.com"></nrc-other-footer>
+<nrc-other-footer [brandDomain]="domainInfo.domain"></nrc-other-footer>

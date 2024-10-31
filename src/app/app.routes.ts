@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { authGuard } from '@core/guards';
-import { signupFlowResolveFn } from '@core/resolvers';
+import { domainInfoResolveFn, signupFlowResolveFn } from '@core/resolvers';
 
 export const routes: Routes = [
   {
@@ -66,6 +66,9 @@ export const routes: Routes = [
   {
     path: 'other',
     loadChildren: async () => (await import('@pages/other-pages')).routes,
+    resolve: {
+      domainInfo: domainInfoResolveFn,
+    },
   },
 
   { path: '**', pathMatch: 'full', redirectTo: 'home' },

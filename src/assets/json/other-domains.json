@@ -1,0 +1,56 @@
+[
+  {
+    "domain": "zippystackedleads.com",
+    "name": "ZippyStackedLeads",
+    "displayName": "Zippy Stacked Leads",
+    "theme": "theme-zippystackedleads"
+  },
+  {
+    "domain": "trulyjobfriend.com",
+    "name": "TrulyJobFriend",
+    "displayName": "Truly Job Friend",
+    "theme": "theme-trulyjobfriend"
+  },
+  {
+    "domain": "swiftmethodsapply.com",
+    "name": "SwiftMethodsApply",
+    "displayName": "Swift Methods Apply",
+    "theme": "theme-swiftmethodsapply"
+  },
+  {
+    "domain": "snappytasksdone.com",
+    "name": "SnappyTasksDone",
+    "displayName": "Snappy Tasks Done",
+    "theme": "theme-snappytasksdone"
+  },
+  {
+    "domain": "shortforgedsteel.com",
+    "name": "ShortForgedSteel",
+    "displayName": "Short Forged Steel",
+    "theme": "theme-shortforgedsteel"
+  },
+  {
+    "domain": "leaninglogicly.com",
+    "name": "LeaningLogicly",
+    "displayName": "Leaning Logicly",
+    "theme": "theme-leaninglogicly"
+  },
+  {
+    "domain": "rescuedreaching.com",
+    "name": "RescuedReaching",
+    "displayName": "Rescued Reaching",
+    "theme": "theme-rescuedreaching"
+  },
+  {
+    "domain": "mostcapablehire.com",
+    "name": "MostCapableHire",
+    "displayName": "Most Capable Hire",
+    "theme": "theme-mostcapablehire"
+  },
+  {
+    "domain": "kindestrecruit.com",
+    "name": "KindestRecruit",
+    "displayName": "Kindest Recruit",
+    "theme": "theme-kindestrecruit"
+  }
+]
