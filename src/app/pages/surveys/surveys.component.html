@@ -20,7 +20,7 @@
         <input type="hidden" name="xxTrustedFormCertUrl" id="xxTrustedFormCertUrl_0" #trustedFormCertUrl />
       </form>
 
-      <div class="bg-glass h-md-100">
+      <div class="bg-glass h-md-100 position-relative" nrcLoader="surveyLoader" nrcLoader="offerLoader">
         @if (dynamicSurvey) {
           <nrc-dynamic-survey-renderer
             [dynamicSurvey]="dynamicSurvey"

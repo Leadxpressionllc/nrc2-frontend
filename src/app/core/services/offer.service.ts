@@ -77,7 +77,7 @@ export class OfferService {
   getOfferIdByOfferPoolId(offerPoolId: string): Observable<string> {
     return this.http
       .get<{ offerId: string }>(`${constants.apiUrl.offers.offerIdByOfferPoolId}/${offerPoolId}`, {
-        context: addLoader('offersLoader'),
+        context: addLoader('offerLoader'),
       })
       .pipe(
         map((data: { offerId: string }) => {

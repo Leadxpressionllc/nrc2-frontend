@@ -6,6 +6,7 @@ import { Survey, User } from '@core/models';
 import { AuthService, MixPanelService, OfferService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
 import { FooterComponent, HeaderComponent } from '@shared/components';
+import { LoaderDirective } from '@shared/directives';
 import {
   DynamicSurvey,
   DynamicSurveyRendererComponent,
@@ -17,7 +18,7 @@ import { firstValueFrom, map, tap } from 'rxjs';
 @Component({
   selector: 'nrc-surveys',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent],
+  imports: [CommonModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent, LoaderDirective],
   templateUrl: './surveys.component.html',
   styleUrl: './surveys.component.scss',
 })
