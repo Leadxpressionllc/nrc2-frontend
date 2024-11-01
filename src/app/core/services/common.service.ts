@@ -31,7 +31,7 @@ export class CommonService {
 
     return this.httpClient.get<DomainInfo[]>('/assets/json/other-domains.json').pipe(
       map((domains: DomainInfo[]) => {
-        const domainInfo = <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain);
+        let domainInfo = <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain);
         document.documentElement.setAttribute('data-theme', domainInfo.theme);
         domainInfo.fullDomain = fullDomain;
         return domainInfo;

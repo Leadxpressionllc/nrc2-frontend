@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-other-header',
@@ -8,5 +9,5 @@ import { Component, Input } from '@angular/core';
   styleUrl: './other-header.component.scss',
 })
 export class OtherHeaderComponent {
-  @Input() brandName: string | undefined;
+  @Input() domainInfo!: DomainInfo;
 }

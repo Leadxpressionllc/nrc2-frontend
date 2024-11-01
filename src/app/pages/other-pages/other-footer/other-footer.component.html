@@ -3,13 +3,15 @@
   <div class="bg-dark text-white">
     <div class="container py-4">
       <div class="d-flex flex-wrap justify-content-between gap-2">
-        <span>© {{ currentYear }} {{ brandDomain }}. All Rights Reserved.</span>
+        <span>© {{ currentYear }} {{ domainInfo.name }}. All Rights Reserved.</span>
 
         <ul class="list-inline d-inline-flex flex-wrap gap-3 mb-0">
           <li class="list-inline-item">
-            <a class="text-white" href="/other/terms" target="_blank">Terms and Conditions</a>
+            <a class="text-white" href="{{ domainInfo.fullDomain }}/other/terms" target="_blank">Terms and Conditions</a>
           </li>
-          <li class="list-inline-item"><a class="text-white" href="/other/privacy" target="_blank">Privacy Policy</a></li>
+          <li class="list-inline-item">
+            <a class="text-white" href="{{ domainInfo.fullDomain }}/other/privacy" target="_blank">Privacy Policy</a>
+          </li>
         </ul>
       </div>
     </div>

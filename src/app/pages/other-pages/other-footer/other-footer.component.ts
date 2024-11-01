@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-other-footer',
@@ -8,7 +9,8 @@ import { Component, Input } from '@angular/core';
   styleUrl: './other-footer.component.scss',
 })
 export class OtherFooterComponent {
-  @Input() brandDomain: string | undefined;
+  @Input() domainInfo!: DomainInfo;
+
   currentYear!: number;
 
   ngOnInit(): void {
