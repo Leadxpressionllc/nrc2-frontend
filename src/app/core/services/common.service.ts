@@ -23,9 +23,19 @@ export class CommonService {
     });
   }
 
-  getDomainInfoByDomain(domain: string): Observable<DomainInfo> {
-    return this.httpClient
-      .get<DomainInfo[]>('/assets/json/other-domains.json')
-      .pipe(map((domains: DomainInfo[]) => <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain)));
+  getDomainInfo(fullDomain: string): Observable<DomainInfo> {
+    let domain = '';
+    if (fullDomain.includes('http') || fullDomain.includes('https')) {
+      domain = fullDomain.split('//')[1].split('/')[0];
+    }
+
+    return this.httpClient.get<DomainInfo[]>('/assets/json/other-domains.json').pipe(
+      map((domains: DomainInfo[]) => {
+        const domainInfo = <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain);
+        document.documentElement.setAttribute('data-theme', domainInfo.theme);
+        domainInfo.fullDomain = fullDomain;
+        return domainInfo;
+      })
+    );
   }
 }
