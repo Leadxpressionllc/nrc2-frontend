@@ -81,9 +81,12 @@ export const routes: Routes = [
   {
     path: 'other',
     loadChildren: async () => (await import('@pages/email-domain-pages')).routes,
-    canActivate: [emailDomainGuard],
+    canActivate: [emailDomainGuard, authGuard],
     resolve: {
       domainInfo: domainInfoResolveFn,
+    },
+    data: {
+      authParams: { blockAfterAuthentication: true, publicRoute: true },
     },
   },
 

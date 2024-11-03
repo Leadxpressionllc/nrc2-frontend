@@ -5,10 +5,11 @@ export const routes: Routes = [
   {
     path: '',
     component: Layout1Component,
+    data: { title: 'Discover Assistance' },
     children: [
       {
         path: '',
-        data: { title: 'Main' },
+        data: { title: 'Home' },
         loadComponent: async () => (await import('./main/main.component')).MainComponent,
       },
       {
