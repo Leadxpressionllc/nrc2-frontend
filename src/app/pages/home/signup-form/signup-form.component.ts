@@ -37,6 +37,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 })
 export class SignupFormComponent implements OnInit {
   @Input() signUpButtonText: string = 'Check If You Qualify';
+  @Input() showDataPolicy: boolean = true;
   @ViewChild('leadIdToken') leadIdToken!: ElementRef;
 
   isFormLoaded: boolean = false;

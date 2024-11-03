@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-terms',
@@ -7,10 +9,16 @@ import { Component } from '@angular/core';
   templateUrl: './terms.component.html',
   styleUrl: './terms.component.scss',
 })
-export class TermsComponent {
-  currentYear!: number;
+export class TermsComponent implements OnInit {
+  domainInfo!: DomainInfo;
+
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
+    this.activatedRoute.data.subscribe((data) => {
+      if (data['domainInfo']) {
+        this.domainInfo = data['domainInfo'];
+      }
+    });
   }
 }

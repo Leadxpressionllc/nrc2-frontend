@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-privacy',
@@ -7,10 +9,16 @@ import { Component } from '@angular/core';
   templateUrl: './privacy.component.html',
   styleUrl: './privacy.component.scss',
 })
-export class PrivacyComponent {
-  currentYear!: number;
+export class PrivacyComponent implements OnInit {
+  domainInfo!: DomainInfo;
+
+  constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.currentYear = new Date().getFullYear();
+    this.activatedRoute.data.subscribe((data) => {
+      if (data['domainInfo']) {
+        this.domainInfo = data['domainInfo'];
+      }
+    });
   }
 }

@@ -99,11 +99,13 @@
     <input id="leadid_token" name="universal_leadid" type="hidden" #leadIdToken />
   </div>
 
-  <p>
-    I understand the
-    <button class="btn btn-flat text-primary align-baseline" type="button" (click)="openDataPoliciesPopupComponent()">data policy</button>
-    that govern this site, how my data is used, disclosed, and shared & what I get as a user.
-  </p>
+  @if (showDataPolicy) {
+    <p>
+      I understand the
+      <button class="btn btn-flat text-primary align-baseline" type="button" (click)="openDataPoliciesPopupComponent()">data policy</button>
+      that govern this site, how my data is used, disclosed, and shared & what I get as a user.
+    </p>
+  }
 
   <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon w-100" type="submit">
     {{ signUpButtonText }} <span class="material-symbols-outlined">arrow_forward</span>
