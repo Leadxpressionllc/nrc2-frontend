@@ -2,13 +2,13 @@ import { Component, Input } from '@angular/core';
 import { DomainInfo } from '@core/models';
 
 @Component({
-  selector: 'nrc-other-footer',
+  selector: 'nrc-email-domain-footer',
   standalone: true,
   imports: [],
-  templateUrl: './other-footer.component.html',
-  styleUrl: './other-footer.component.scss',
+  templateUrl: './email-domain-footer.component.html',
+  styleUrl: './email-domain-footer.component.scss',
 })
-export class OtherFooterComponent {
+export class EmailDomainFooterComponent {
   @Input() domainInfo!: DomainInfo;
 
   currentYear!: number;

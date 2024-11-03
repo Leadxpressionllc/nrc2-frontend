@@ -1,0 +1,17 @@
+<!-- %%%%% HEADER %%%%% -->
+<header class="px-2 pt-2 position-fixed top-0 start-0 w-100">
+  @if (domainInfo) {
+    <nrc-email-domain-header [domainInfo]="domainInfo"></nrc-email-domain-header>
+  } @else {
+    <nrc-header [showPrivacyInfoPill]="true"></nrc-header>
+  }
+</header>
+
+<router-outlet></router-outlet>
+
+<!-- %%%%% FOOTER %%%%%% -->
+@if (domainInfo) {
+  <nrc-email-domain-footer [domainInfo]="domainInfo"></nrc-email-domain-footer>
+} @else {
+  <nrc-footer [showSurveysDisclaimer]="true"></nrc-footer>
+}

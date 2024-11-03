@@ -6,6 +6,7 @@ import { DynamicSurvey, DynamicSurveyResponse } from './model/dynamic-survey-ren
 import { DynamicSurveyRendererService } from './services/dynamic-survey-renderer.service';
 import { MixPanelService } from '@core/services';
 import { CommonModule } from '@angular/common';
+import { AppService } from '@core/utility-services';
 
 @Component({
   selector: 'nrc-dynamic-survey-renderer',
@@ -64,6 +65,7 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
 
     this.markAsDirty(this.form);
     if (!this.form.valid) {
+      AppService.scrollTo('form-control-feedback');
       return;
     }
 

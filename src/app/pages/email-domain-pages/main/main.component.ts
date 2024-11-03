@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomainInfo } from '@core/models';
 import { SignupFormComponent } from '@pages/home/signup-form/signup-form.component';
-import { OtherFooterComponent } from '../other-footer/other-footer.component';
-import { OtherHeaderComponent } from '../other-header/other-header.component';
 
 @Component({
   selector: 'nrc-main',
   standalone: true,
-  imports: [SignupFormComponent, OtherHeaderComponent, OtherFooterComponent],
+  imports: [SignupFormComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',
 })

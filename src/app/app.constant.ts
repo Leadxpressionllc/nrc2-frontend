@@ -137,4 +137,16 @@ export const constants = {
     noClick: 'NO_CLICK',
     submit: 'SUBMIT',
   },
+
+  emailDomains: [
+    'zippystackedleads.com',
+    'trulyjobfriend.com',
+    'swiftmethodsapply.com',
+    'snappytasksdone.com',
+    'shortforgedsteel.com',
+    'rescuedreaching.com',
+    'leaninglogicly.com',
+    'mostcapablehire.com',
+    'kindestrecruit.com',
+  ],
 };

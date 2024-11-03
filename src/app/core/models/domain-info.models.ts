@@ -3,5 +3,4 @@ export interface DomainInfo {
   displayName: string;
   domain: string;
   theme: string;
-  fullDomain: string;
 }

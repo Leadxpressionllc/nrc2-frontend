@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { authGuard } from '@core/guards';
+import { authGuard, emailDomainGuard } from '@core/guards';
 import { domainInfoResolveFn, signupFlowResolveFn } from '@core/resolvers';
 
 export const routes: Routes = [
@@ -11,7 +11,7 @@ export const routes: Routes = [
   {
     path: 'home',
     loadChildren: async () => (await import('@pages/home')).routes,
-    canActivate: [authGuard],
+    canActivate: [emailDomainGuard, authGuard],
     resolve: {
       signupFlow: signupFlowResolveFn,
     },
@@ -22,50 +22,66 @@ export const routes: Routes = [
   {
     path: 'surveys',
     loadChildren: async () => (await import('@pages/surveys')).routes,
-    canActivate: [authGuard],
+    canActivate: [emailDomainGuard, authGuard],
+    resolve: {
+      domainInfo: domainInfoResolveFn,
+    },
   },
   {
     path: 'offers',
     loadChildren: async () => (await import('@pages/offers')).routes,
-    canActivate: [authGuard],
+    canActivate: [emailDomainGuard, authGuard],
+    resolve: {
+      domainInfo: domainInfoResolveFn,
+    },
   },
   {
     path: 'offer-redirect',
     loadChildren: async () => (await import('@pages/offer-redirect')).routes,
-    canActivate: [authGuard],
+    canActivate: [emailDomainGuard, authGuard],
+    resolve: {
+      domainInfo: domainInfoResolveFn,
+    },
   },
   {
     path: 'bw',
     loadChildren: async () => (await import('@pages/boardwalk-offers')).routes,
-    canActivate: [authGuard],
+    canActivate: [emailDomainGuard, authGuard],
   },
   {
     path: 'email-offer',
     loadChildren: async () => (await import('@pages/email-offer')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'redirect',
     loadChildren: async () => (await import('@pages/redirect')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'jobs',
     loadChildren: async () => (await import('@pages/jobs')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'terms-policy',
     loadChildren: async () => (await import('@pages/terms-policy')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'unsubscribe',
     loadChildren: async () => (await import('@pages/unsubscribe')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'marketing-associates',
     loadChildren: async () => (await import('@pages/marketing-associates')).routes,
+    canActivate: [emailDomainGuard],
   },
   {
     path: 'other',
-    loadChildren: async () => (await import('@pages/other-pages')).routes,
+    loadChildren: async () => (await import('@pages/email-domain-pages')).routes,
+    canActivate: [emailDomainGuard],
     resolve: {
       domainInfo: domainInfoResolveFn,
     },

@@ -23,17 +23,13 @@ export class CommonService {
     });
   }
 
-  getDomainInfo(fullDomain: string): Observable<DomainInfo> {
-    let domain = '';
-    if (fullDomain.includes('http') || fullDomain.includes('https')) {
-      domain = fullDomain.split('//')[1].split('/')[0];
-    }
-
-    return this.httpClient.get<DomainInfo[]>('/assets/json/other-domains.json').pipe(
+  getDomainInfo(domain: string): Observable<DomainInfo> {
+    return this.httpClient.get<DomainInfo[]>('/assets/json/email-domains.json').pipe(
       map((domains: DomainInfo[]) => {
         let domainInfo = <DomainInfo>domains.find((domainInfo: DomainInfo) => domainInfo.domain === domain);
-        document.documentElement.setAttribute('data-theme', domainInfo.theme);
-        domainInfo.fullDomain = fullDomain;
+        if (domainInfo) {
+          document.documentElement.setAttribute('data-theme', domainInfo.theme);
+        }
         return domainInfo;
       })
     );

@@ -1,4 +1,6 @@
 export * from './confirmation/confirmation.component';
+export * from './email-domain-footer/email-domain-footer.component';
+export * from './email-domain-header/email-domain-header.component';
 export * from './footer/footer.component';
 export * from './form-control/form-control.component';
 export * from './header/header.component';
