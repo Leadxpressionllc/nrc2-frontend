@@ -15,7 +15,7 @@ export class TermsComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.activatedRoute.data.subscribe((data) => {
+    this.activatedRoute.parent?.data.subscribe((data) => {
       if (data['domainInfo']) {
         this.domainInfo = data['domainInfo'];
       }

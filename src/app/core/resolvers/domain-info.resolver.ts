@@ -7,11 +7,6 @@ import { Observable } from 'rxjs';
 export const domainInfoResolveFn: ResolveFn<any> = (): Observable<DomainInfo> => {
   const commonService = inject(CommonService);
 
-  const domain: string = window.location.hostname.replaceAll('www.', '');
-  // if (!constants.emailDomains.includes(domain)) {
-  //   // redirect to NRC home page.
-  //   window.open('https://www.nationalresourceconnect.com/', '_self');
-  // }
-
+  let domain: string = window.location.hostname.replaceAll('www.', '');
   return commonService.getDomainInfo(domain);
 };
