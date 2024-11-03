@@ -10,7 +10,7 @@
 <!-- %%%%% SURVEYS SECTION %%%%%% -->
 <section class="survey-content-section py-3 bg-light position-relative">
   <div class="container pt-md-5" nrcLoader="offersLoader">
-    @if (surveyOffers) {
+    @if (surveyOffers && surveyOffers.length > 0) {
       <div class="col-xl-8 col-lg-10 mx-auto">
         <div class="d-flex flex-column bg-white rounded shadow">
           <!-- Body -->

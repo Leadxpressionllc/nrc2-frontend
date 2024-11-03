@@ -3,11 +3,11 @@
   flex-wrap: wrap;
   align-items: center;
   row-gap: 1rem;
-  width: min(650px, 100%);
+  width: min(750px, 100%);
 
   .nav-item {
     &:not(:last-child) {
-      width: min(3.5rem, 100%);
+      width: min(2rem, 100%);
       flex-grow: 1;
       .nav-link {
         &::before {

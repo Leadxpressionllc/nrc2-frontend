@@ -133,9 +133,9 @@ export class SurveysComponent implements OnInit {
     if (this.survey.surveyType === constants.surveyTypes.triggerOffersOnPageSubmit) {
       this.offerService.logUserReturnedFromLinkoutOffer(this.dynamicSurvey.id).subscribe();
       this._openLinkOutOffers(surveyPageResponses);
+    } else {
+      this.currentPage++;
     }
-
-    this.currentPage++;
   }
 
   onSubmit(surveyResponses: DynamicSurveyResponse[]): void {
@@ -207,6 +207,8 @@ export class SurveysComponent implements OnInit {
         }
       }
     }
+
+    this.currentPage++;
   }
 
   private _redirectUserToOffer(offerId: string, offerPoolId: string, surveyQuestionId: string) {

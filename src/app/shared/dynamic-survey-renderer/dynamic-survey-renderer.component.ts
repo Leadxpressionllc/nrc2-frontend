@@ -65,7 +65,9 @@ export class DynamicSurveyRendererComponent implements OnInit, AfterViewChecked 
 
     this.markAsDirty(this.form);
     if (!this.form.valid) {
-      AppService.scrollTo('form-control-feedback');
+      setTimeout(() => {
+        AppService.scrollTo('form-control-feedback');
+      }, 5);
       return;
     }
 
