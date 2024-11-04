@@ -12,7 +12,7 @@
 
 <div class="col-lg-7 mt-3" [formGroup]="form">
   @if (question.id !== 'phone') {
-    <input type="text" class="form-control" [formControlName]="question.id" (change)="onTextValueChange($event)" />
+    <input type="text" class="form-control fw-normal" [formControlName]="question.id" (change)="onTextValueChange($event)" />
   }
 
   @if (question.isUserDataQuestion && question.id === 'phone') {

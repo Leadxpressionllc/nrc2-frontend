@@ -10,8 +10,12 @@
       }
 
       @if (showPrivacyInfoPill) {
-        <p class="d-inline-flex align-items-center bg-gray-700 text-white px-2 py-1 rounded mb-0">
-          <span class="material-symbols-outlined">lock_person</span> <span class="ms-1"> Your information is kept 100% confidential.</span>
+        <p class="d-inline-flex align-items-center bg-gray-700 text-white px-2 py-1 rounded mb-0 text-nowrap fs-sm">
+          <span class="material-symbols-outlined">lock_person</span>
+          <span class="ms-1">
+            Your <span class="d-md-inline-block d-none">information</span> <span class="d-md-none d-inline-block">info.</span> is kept 100%
+            confidential.</span
+          >
         </p>
       }
     </div>

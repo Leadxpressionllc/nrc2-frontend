@@ -98,6 +98,10 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
     this.offerService.logUserReturnedFromLinkoutOffer(this.surveyId).subscribe();
     this._logOfferResponse(this.surveyOffers[this.currentIndex], constants.userOfferAction.noClick);
     this._proceedToNextOffer();
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scroll to top
+    });
   }
 
   onPressYes(offer: Offer): void {
@@ -123,6 +127,11 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
     }
 
     this._sendDataToMixPanel(offer);
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scroll to top
+    });
   }
 
   private _loadPixelQuestions(offer: Offer): void {
@@ -152,6 +161,11 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
 
     this.surveyService.submitSurveyPixelResponses(this.surveyId, pixel.id, pixelQuestionResponseData).subscribe(() => {
       this._proceedToNextOffer();
+    });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scroll to top
     });
   }
 
