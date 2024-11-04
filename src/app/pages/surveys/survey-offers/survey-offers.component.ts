@@ -140,6 +140,10 @@ export class SurveyOffersComponent extends AbstractOfferHelper implements OnInit
   }
 
   onSubmitPixelQuestionResponses(): void {
+    if (!this.dynamicPixelRendererComponent.isFormValid()) {
+      return;
+    }
+
     let pixelQuestionAnswers: PixelQuestionAnswer[] = this.dynamicPixelRendererComponent.getDynamicPixelAnswers();
 
     const offer = this.surveyOffers[this.currentIndex];

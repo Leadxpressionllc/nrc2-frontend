@@ -163,6 +163,11 @@ export class SurveysComponent implements OnInit {
       queryParamsHandling: 'merge', // remove to replace all query params by provided
       replaceUrl: true, // replacing the current state in history
     });
+
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth', // smooth scroll to top
+    });
   }
 
   private _navigationToAfterSurveyCompletionPage(): void {

@@ -1,6 +1,4 @@
 <div class="form-group" [formGroup]="form">
-  <!-- <app-date-picker placeholder=" " [formControlName]="question.id" [bsOptions]="datePickerOptions" (valueChange)="onDateValueChange($event)"></app-date-picker> -->
-
   @if (form.controls[question.id].dirty && form.controls[question.id].errors) {
     <div class="form-control-feedback">
       @if (form.controls[question.id].hasError('REQUIRED')) {
@@ -8,4 +6,20 @@
       }
     </div>
   }
+
+  <div class="col-lg-7 mt-3">
+    <input
+      type="text"
+      class="form-control input-ic-date input-ic-right"
+      onkeydown="event.preventDefault()"
+      formControlName="dob"
+      placeholder="Date of Birth"
+      autocomplete="off"
+      readonly
+      bsDatepicker
+      [minDate]="dobMinMaxDates.minDate"
+      [maxDate]="dobMinMaxDates.maxDate"
+      [bsConfig]="{ adaptivePosition: true, showWeekNumbers: false }"
+    />
+  </div>
 </div>

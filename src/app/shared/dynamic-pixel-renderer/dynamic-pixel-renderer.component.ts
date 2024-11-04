@@ -61,15 +61,18 @@ export class DynamicPixelRendererComponent implements OnInit {
     }
   }
 
-  getDynamicPixelAnswers(): PixelQuestionAnswer[] {
+  isFormValid(): boolean {
     this.markAsDirty(this.form);
-    if (!this.form.valid) {
+    return this.form.valid;
+  }
+
+  getDynamicPixelAnswers(): PixelQuestionAnswer[] {
+    if (!this.isFormValid()) {
       return [];
     }
 
     this._extractPixelQuestionAnswers(this.form.value);
     return this.pixelQuestionAnswers;
-    // this.onSubmit.emit(this.pixelQuestionAnswers);
   }
 
   private _extractPixelQuestionAnswers(selectedValues: any): void {

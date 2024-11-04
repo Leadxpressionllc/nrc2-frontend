@@ -5,7 +5,7 @@ import { DynamicQuestion } from '@shared/dynamic-question-renderer/models';
 
 export class DynamicPixelRendererService {
   public static getPixelQuestionAnswerFromSelectedValue(question: DynamicQuestion, selectedValue: any): any {
-    if (AppService.isUndefinedOrNull(selectedValue)) {
+    if (!selectedValue) {
       return null;
     }
 

@@ -1,11 +1,12 @@
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { DynamicQuestion } from '../../models';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'nrc-date',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, BsDatepickerModule],
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss'],
 })
@@ -13,7 +14,7 @@ export class DateComponent implements OnInit {
   question!: DynamicQuestion;
   form!: FormGroup;
 
-  datePickerOptions: any = { isAnimated: true, selectFromOtherMonth: true };
+  dobMinMaxDates!: { minDate: Date; maxDate: Date };
 
   valueChange!: EventEmitter<any>;
 
@@ -21,15 +22,16 @@ export class DateComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.question.id === 'dob') {
-      this._setupMinMaxDatesForDob();
+      this._setupMinMaxDatesForDOB();
     }
   }
 
-  private _setupMinMaxDatesForDob(): void {
+  private _setupMinMaxDatesForDOB(): void {
     const todayDate = new Date();
-    this.datePickerOptions.minDate = new Date(todayDate.getFullYear() - 100, 0, 1);
-    todayDate.setFullYear(todayDate.getFullYear() - 18);
-    this.datePickerOptions.maxDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate());
+    const minDate = new Date(todayDate.getFullYear() - 100, 0, 1);
+    const maxDate = new Date(todayDate.getFullYear() - 18, todayDate.getMonth(), todayDate.getDate());
+
+    this.dobMinMaxDates = { minDate, maxDate };
   }
 
   onDateValueChange($event: any): void {}
