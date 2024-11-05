@@ -99,26 +99,34 @@
     <input id="leadid_token" name="universal_leadid" type="hidden" #leadIdToken />
   </div>
 
-  @if (showDataPolicy) {
-    <p>
-      I understand the
-      <button class="btn btn-flat text-primary align-baseline" type="button" (click)="openDataPoliciesPopupComponent()">data policy</button>
-      that govern this site, how my data is used, disclosed, and shared & what I get as a user.
-    </p>
-  }
+  <p class="mt-3 d-flex gap-1">
+    <input class="form-check-input mt-0" type="checkbox" id="leadid_tcpa_disclosure" />
+    <small class="fs-sm lh-sm"
+      >By checking this box, I consent to the email, call and SMS receive automated texts from National Resource Connect. Message frequency
+      varies. Message and data rates may apply. I understand I may opt-out of SMS communication by replying 'STOP'. Consent to receive texts
+      is not required as a condition of purchasing any products or services. I understand I will receive marketing communications to the
+      phone number provided to National Resource Connect, which includes wireless numbers and, if applicable, numbers previously registered
+      on the DNC registry. Carriers are not liable for any delayed or undelivered messages. I agree with the
+      <a href="/terms-policy/terms-and-conditions" target="_blank" rel="noopener noreferrer">Terms and Conditions</a> and
+      <a href="/terms-policy/privacy-policy" target="_blank" rel="noopener noreferrer">Privacy Policy</a>.
 
-  <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon w-100" type="submit">
+      @if (showDataPolicy) {
+        I understand the
+        <button
+          class="btn btn-flat text-primary align-baseline fs-sm fw-normal lh-sm"
+          type="button"
+          (click)="openDataPoliciesPopupComponent()"
+        >
+          data policy
+        </button>
+        that govern this site, how my data is used, disclosed, and shared & what I get as a user.
+      }
+    </small>
+  </p>
+
+  <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon w-100 mb-3" type="submit">
     {{ signUpButtonText }} <span class="material-symbols-outlined">arrow_forward</span>
   </button>
-  <p class="mt-3 fs-sm">
-    <input type="hidden" id="leadid_tcpa_disclosure" />
-    <em
-      >By clicking "Check If You Qualify", I represent that I am 18+ years of age; I understand that this site is privately owned and is not
-      affiliated with, nor endorsed by any government agency, I agree that the personal information I provide you with may be shared with
-      third parties for other marketing purposes, and agree to the Terms & Conditions and Privacy Policy; and agree to receive email
-      marketing from our Marketing Partners.</em
-    >
-  </p>
 
   <div class="text-center">
     <p class="d-inline-flex align-items-center bg-primary text-white px-2 py-1 rounded-top mb-0">
