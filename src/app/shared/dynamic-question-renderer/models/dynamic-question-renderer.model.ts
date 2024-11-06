@@ -7,6 +7,7 @@ export interface DynamicQuestion {
   isRequired: boolean;
   sortOrder?: number;
   visible?: boolean;
+  hideQuestion?: boolean;
   number?: number;
   questionOptions?: DynamicQuestionOption[];
   interlinkedQuestions?: DynamicInterlinkedQuestion[];

@@ -65,6 +65,11 @@ export class DynamicSurveyRendererService {
   }
 
   public static isQuestionVisible(question: DynamicQuestion, surveyResponses: DynamicSurveyResponse[]): boolean {
+    // If the question is hidden, then it is not visible
+    if (question.hideQuestion) {
+      return false;
+    }
+
     // If there are no interlinked questions, the question is always visible
     if (!question.interlinkedQuestions?.length) {
       return true;

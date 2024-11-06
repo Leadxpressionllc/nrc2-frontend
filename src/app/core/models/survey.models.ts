@@ -24,6 +24,7 @@ export interface SurveyPage {
 export interface SurveyQuestion {
   id: string;
   sortOrder: number;
+  hideQuestion: boolean;
   question: Question;
   interlinkedQuestions: InterlinkedQuestion[];
   surveyQuestionOfferPools: SurveyQuestionOfferPool[];

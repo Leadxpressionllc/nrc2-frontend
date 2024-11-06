@@ -75,6 +75,7 @@ export class DynamicSurveyRendererMapperService {
         text: surveyQuestion.question.text,
         type: surveyQuestion.question.htmlElement,
         isRequired: false,
+        hideQuestion: surveyQuestion.hideQuestion,
         sortOrder: surveyQuestion.sortOrder,
         questionOptions: this._getQuestionOptions(surveyQuestion),
         interlinkedQuestions: this._getInterlinkedQuestions(surveyQuestion),
