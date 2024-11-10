@@ -11,47 +11,53 @@
       </nav>
 
       <!-- ### Unsubscribe form -->
-      <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
-        <span class="material-symbols-outlined show-outlined">unsubscribe</span>
-      </div>
-
-      <h1 class="h2 mb-0">Unsubscribe</h1>
-      <p class="fs-5 text-gray-600">We're sorry to see you go</p>
-
-      <form class="col-sm-9 col-12 mx-auto" [formGroup]="unsubscribeForm" (submit)="onSubmit()">
-        @if (error !== '') {
-          <alert type="danger" [dismissible]="true">{{ error }}</alert>
-        }
-
-        <nrc-form-control name="Email">
-          <div class="form-floating">
-            <input type="email" class="form-control" formControlName="email" placeholder="Email Address" autocomplete="off" />
-            <label for="email">Email Address</label>
-          </div>
-        </nrc-form-control>
-
-        <div class="text-center mt-4">
-          <button class="btn btn-secondary btn-lg px-md-5 px-5" type="submit">Unsubscribe</button> <br />
-          <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+      @if (!showSuccessAlert) {
+        <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
+          <span class="material-symbols-outlined show-outlined">unsubscribe</span>
         </div>
-      </form>
 
-      <div class="text-center">
-        <p>
-          By unsubscribing, you will no longer receive updates and notifications from us. If you have any concerns or feedback, feel free to
-          contact us.
+        <h1 class="h2 mb-0">Unsubscribe</h1>
+        <p class="fs-5 text-gray-600">We're sorry to see you go</p>
+
+        <form class="col-sm-9 col-12 mx-auto" [formGroup]="unsubscribeForm" (submit)="onSubmit()">
+          @if (error !== '') {
+            <alert type="danger" [dismissible]="true">{{ error }}</alert>
+          }
+
+          <nrc-form-control name="Email">
+            <div class="form-floating">
+              <input type="email" class="form-control" formControlName="email" placeholder="Email Address" autocomplete="off" />
+              <label for="email">Email Address</label>
+            </div>
+          </nrc-form-control>
+
+          <div class="text-center mt-4">
+            <button class="btn btn-secondary btn-lg px-md-5 px-5" type="submit">Unsubscribe</button> <br />
+            <a [routerLink]="['/home']" class="btn btn-flat text-primary my-4" type="button"> I'd rather stay </a>
+          </div>
+        </form>
+
+        <div class="text-center">
+          <p>
+            By unsubscribing, you will no longer receive updates and notifications from us. If you have any concerns or feedback, feel free
+            to contact us.
+          </p>
+          <small class="text-gray-600">Thank you for your past engagement with us.</small>
+        </div>
+      } @else {
+        <!-- ### Unsubscribe Success -->
+        <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
+          <span class="material-symbols-outlined show-outlined">check</span>
+        </div>
+
+        <h1 class="h2 mb-2">Unsubscribed Successfully.</h1>
+        <p class="fs-md col-lg-8 col-sm-10 mx-auto text-center">
+          Thank you for your past engagement with us. You have been removed from our mailing list.
         </p>
-        <small class="text-gray-600">Thank you for your past engagement with us.</small>
-      </div>
-
-      <!-- ### Unsubscribe Success -->
-      <!-- <div class="d-inline-flex bg-light text-primary display-5 rounded-pill p-4 mb-3">
-        <span class="material-symbols-outlined show-outlined">check</span>
-      </div>
-
-      <h1 class="h2 mb-2">Unsubscribed Successfully.</h1>
-      <p class="fs-md text-gray-600 col-lg-7 col-sm-10 mx-auto text-center">Thank you for your past engagement
-        with us. You have been removed from our mailing list. </p> -->
+        <div class="text-center">
+          <a [routerLink]="['/home']" class="btn btn-secondary btn-lg px-md-5 px-5" type="button"> Back to Home </a>
+        </div>
+      }
     </div>
   </div>
 </section>
