@@ -3,7 +3,7 @@
   // min-height: 650px;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: minmax(550px, auto);
+  grid-template-rows: minmax(480px, auto);
 
   @media all and (max-width: 992px) {
     background-size: cover !important;
