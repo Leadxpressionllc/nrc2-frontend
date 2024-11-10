@@ -7,11 +7,12 @@ import { AngularSvgIconModule } from 'angular-svg-icon';
 import { MixPanelService } from '@core/services';
 import { ActivatedRoute } from '@angular/router';
 import { AppService } from '@core/utility-services';
+import { CountUpModule } from 'ngx-countup';
 
 @Component({
   selector: 'nrc-home',
   standalone: true,
-  imports: [CommonModule, AccordionModule, AngularSvgIconModule, SignupFormComponent, FooterComponent, HeaderComponent],
+  imports: [CommonModule, AccordionModule, AngularSvgIconModule, CountUpModule, SignupFormComponent, FooterComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
