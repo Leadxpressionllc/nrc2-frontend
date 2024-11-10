@@ -36,7 +36,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   styleUrl: './signup-form.component.scss',
 })
 export class SignupFormComponent implements OnInit {
-  @Input() partnerName: string = 'National Resource Connect';
+  @Input() partnerName: string = 'nationalresourceconnect.com';
   @Input() signUpButtonText: string = 'Check If You Qualify';
   @Input() showDataPolicy: boolean = true;
 
@@ -56,6 +56,8 @@ export class SignupFormComponent implements OnInit {
   showPhoneField: boolean = false;
   showAddressField: boolean = false;
   showDobField: boolean = false;
+
+  isExpanded: boolean = false;
 
   dobMinMaxDates!: { minDate: Date; maxDate: Date };
 
