@@ -1,0 +1,23 @@
+.hero-section {
+  background: no-repeat var(--bs-light) 45% 35% / COVER;
+  min-height: 600px;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: minmax(480px, auto);
+
+  @media all and (max-width: 767px) {
+    .hero-heading {
+      font-size: 2.5rem;
+    }
+    .grant-logo {
+      width: 16rem;
+    }
+  }
+}
+
+.column-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(45%, 1fr));
+  row-gap: 1rem;
+  column-gap: 5rem;
+}
