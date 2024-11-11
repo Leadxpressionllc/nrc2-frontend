@@ -6,4 +6,9 @@ export const routes: Routes = [
     data: { title: 'Home' },
     loadComponent: async () => (await import('./home.component')).HomeComponent,
   },
+  {
+    path: 'grant',
+    data: { title: 'Home' },
+    loadComponent: async () => (await import('./grant/grant.component')).GrantComponent,
+  },
 ];

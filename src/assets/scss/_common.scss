@@ -14,6 +14,26 @@
   }
 }
 
+// Check list
+.check-list {
+  li {
+    padding-inline-start: 2rem;
+    &::before {
+      font-family: 'Material Symbols Outlined';
+      content: '\e5ca';
+      color: var(--bs-white);
+      line-height: 1;
+      width: 1em;
+      height: 1em;
+      background-color: var(--bs-primary);
+      position: absolute;
+      top: 0.3rem;
+      left: 0;
+      border-radius: 1em;
+    }
+  }
+}
+
 // Read More Container
 .read-more-container {
   display: flex;
