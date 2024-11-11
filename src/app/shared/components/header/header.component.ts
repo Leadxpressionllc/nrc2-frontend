@@ -1,10 +1,11 @@
 import { Component, Input } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { MixPanelService } from '@core/services';
 
 @Component({
   selector: 'nrc-header',
   standalone: true,
-  imports: [],
+  imports: [RouterModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

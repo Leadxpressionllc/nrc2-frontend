@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '@core/services';
@@ -15,10 +15,11 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   styleUrl: './unsubscribe.component.scss',
 })
 export class UnsubscribeComponent implements OnInit {
+  @Input('confirmed') showSuccessAlert = false;
+
   error = '';
 
   unsubscribeForm!: FormGroup;
-  showSuccessAlert = false;
 
   constructor(
     private fb: FormBuilder,
