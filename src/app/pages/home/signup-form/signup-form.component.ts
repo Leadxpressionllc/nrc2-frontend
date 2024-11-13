@@ -37,7 +37,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 })
 export class SignupFormComponent implements OnInit {
   @Input() partnerName: string = 'nationalresourceconnect.com';
-  @Input() signUpButtonText: string = 'Check If You Qualify';
+  @Input() signUpButtonText: string = 'Unlock My Benefits';
   @Input() showDataPolicy: boolean = true;
 
   @ViewChild('leadIdToken') leadIdToken!: ElementRef;

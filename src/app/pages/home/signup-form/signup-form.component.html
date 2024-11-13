@@ -103,10 +103,10 @@
     <input class="form-check-input mt-0" type="checkbox" id="leadid_tcpa_disclosure" />
     <div class="">
       <p class="read-more-container fs-sm mb-0">
-        <span class="read-more-text" [ngClass]="{ 'd-block': isExpanded }">
+        <span class="read-more-text" [ngClass]="{ 'h-auto': isExpanded }">
           <span class="read-more-action" [ngClass]="{ 'd-none': isExpanded }">
             <button class="btn btn-flat text-primary align-baseline fw-normal" type="button" (click)="isExpanded = !isExpanded">
-              Read More
+              ...Read More
             </button>
           </span>
           I have read and agree to be contractually bound to the
@@ -121,9 +121,10 @@
           Resource Providers (partners) at any telephone number or email address provided by me, including my wireless number if provided. I
           understand there may be a charge by my wireless carrier for such communications. I understand these communications may be
           generated using an automated system for the selection or dialing of telephone numbers and may contain pre-recorded messages and
-          that consent is not required to utilize {{ partnerName }}'s services. I understand that this authorization overrides any previous
-          registrations on a federal or state Do Not Call registry. For SMS message campaigns: Text STOP to stop and HELP for help. Msg &
-          data rates may apply. Periodic messages; max. 30/month. <br />
+          that consent is not required to utilize {{ partnerName }}'s services. Consent to receive texts is not required as a condition of
+          purchasing any products and services. I understand that this authorization overrides any previous registrations on a federal or
+          state Do Not Call registry. For SMS message campaigns: Text STOP to stop and HELP for help. Msg & data rates may apply. Periodic
+          messages; max. 30/month. <br />
           @if (showDataPolicy) {
             I understand the
             <button
