@@ -39,12 +39,9 @@
   display: flex;
   .read-more-text {
     width: 100%;
-    height: auto;
     overflow: hidden;
     margin-block-end: 0rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    height: 2.25em;
 
     .read-more-action {
       float: right;
@@ -58,7 +55,7 @@
       button {
         display: inline-block;
         width: auto;
-        height: 1.325em;
+        height: calc(1ex + 0.75em);
         cursor: pointer;
         text-decoration: none;
         font-size: 1em;
