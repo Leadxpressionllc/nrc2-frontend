@@ -8,6 +8,7 @@ export interface DynamicSurvey {
   isSurveyCompleted: boolean;
   surveyPages: DynamicSurveyPage[];
   surveyType?: string;
+  surveyFinishBtnText: string;
 }
 
 export interface DynamicSurveyPage {
