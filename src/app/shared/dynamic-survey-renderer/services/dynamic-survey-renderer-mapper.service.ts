@@ -6,7 +6,7 @@ import { DynamicSurveyRendererService } from './dynamic-survey-renderer.service'
 
 export class DynamicSurveyRendererMapperService {
   public static mapSurveyToDynamicSurvey(survey: Survey): DynamicSurvey {
-    const { id, name, description, surveyPages, surveyAnswers } = survey;
+    const { id, name, description, surveyPages, surveyAnswers, surveyFinishBtnText } = survey;
 
     // Initialize the DynamicSurvey object with basic properties
     const surveyData: DynamicSurvey = {
@@ -16,6 +16,7 @@ export class DynamicSurveyRendererMapperService {
       incompletePageNumber: 0,
       isSurveyCompleted: false,
       surveyPages: this._getSurveyPages(surveyPages),
+      surveyFinishBtnText,
     };
 
     if (!AppService.isUndefinedOrNull(surveyAnswers)) {

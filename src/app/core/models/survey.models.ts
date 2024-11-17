@@ -12,6 +12,7 @@ export interface Survey {
   surveyType: string;
   surveyPages: SurveyPage[];
   surveyAnswers: SurveyAnswer[];
+  surveyFinishBtnText: string;
 }
 
 export interface SurveyPage {
