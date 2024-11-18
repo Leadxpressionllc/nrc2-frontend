@@ -101,44 +101,30 @@
 
   <div class="d-flex gap-1 my-3">
     <input class="form-check-input mt-0" type="checkbox" id="leadid_tcpa_disclosure" />
-    <div class="">
-      <p class="read-more-container fs-sm mb-0">
-        <span class="read-more-text" [ngClass]="{ 'h-auto': isExpanded }">
-          <span class="read-more-action" [ngClass]="{ 'd-none': isExpanded }">
-            <button class="btn btn-flat text-primary align-baseline fw-normal" type="button" (click)="isExpanded = !isExpanded">
-              ...Read More
-            </button>
-          </span>
-          I have read and agree to be contractually bound to the
-          <a [href]="showDataPolicy ? '/terms-policy/terms-and-conditions' : '/other/terms'" target="_blank" rel="noopener noreferrer"
-            >Terms</a
-          >
-          and
-          <a [href]="showDataPolicy ? '/terms-policy/privacy-policy' : '/other/privacy'" target="_blank" rel="noopener noreferrer"
-            >Privacy Policy</a
-          >
-          , and agree to receive emails, phone calls and/or text message offers and communications from {{ partnerName }} and its network of
-          Resource Providers (partners) at any telephone number or email address provided by me, including my wireless number if provided. I
-          understand there may be a charge by my wireless carrier for such communications. I understand these communications may be
-          generated using an automated system for the selection or dialing of telephone numbers and may contain pre-recorded messages and
-          that consent is not required to utilize {{ partnerName }}'s services. Consent to receive texts is not required as a condition of
-          purchasing any products and services. I understand that this authorization overrides any previous registrations on a federal or
-          state Do Not Call registry. For SMS message campaigns: Text STOP to stop and HELP for help. Msg & data rates may apply. Periodic
-          messages; max. 30/month. <br />
-          @if (showDataPolicy) {
-            I understand the
-            <button
-              class="btn btn-flat text-primary align-baseline fs-sm fw-normal"
-              type="button"
-              (click)="openDataPoliciesPopupComponent()"
-            >
-              data policy
-            </button>
-            that govern this site, how my data is used, disclosed, and shared & what I get as a user.
-          }
-        </span>
-      </p>
-    </div>
+
+    <p class="fs-sm lh-1 mb-0">
+      By checking the box and clicking ‘Unlock My Benefits’ I confirm that I have read and agree to be contractually bound to the
+      <a [href]="showDataPolicy ? '/terms-policy/terms-and-conditions' : '/other/terms'" target="_blank" rel="noopener noreferrer">Terms</a>
+      and
+      <a [href]="showDataPolicy ? '/terms-policy/privacy-policy' : '/other/privacy'" target="_blank" rel="noopener noreferrer"
+        >Privacy Policy</a
+      >, and I expressly consent agree to receive recurring emails, phone calls and/or text message offers and communications from
+      nationalresourceconnect.com at any telephone number or email address provided by me, including my wireless number if provided. I
+      understand there may be a charge by my wireless carrier for such communications. I understand these communications may be generated
+      using an automated system for the selection or dialing of telephone numbers and may contain pre-recorded messages and that consent is
+      not required to utilize nationalresourceconnect.com's services. Consent to receive texts is not required as a condition of purchasing
+      any products and services. I understand that this authorization overrides any previous registrations on a federal or state Do Not Call
+      registry. For SMS message campaigns: Text STOP to stop and HELP for help. Msg & data rates may apply. Message frequency may vary; max.
+      30/month.
+      <br />
+      @if (showDataPolicy) {
+        I understand the
+        <button class="btn btn-flat text-primary align-baseline fs-sm fw-normal" type="button" (click)="openDataPoliciesPopupComponent()">
+          data policy
+        </button>
+        that govern this site, how my data is used, disclosed, and shared & what I get as a user.
+      }
+    </p>
   </div>
 
   <button class="btn btn-secondary px-md-5 px-4 btn-lg btn-icon w-100 mb-3" type="submit">
