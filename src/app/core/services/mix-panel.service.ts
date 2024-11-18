@@ -7,28 +7,38 @@ import mixpanel from 'mixpanel-browser';
 })
 export class MixPanelService {
   constructor() {
-    mixpanel.init(environment.mixPanelToken, {
-      track_pageview: true,
-      persistence: 'localStorage',
-    });
+    if (environment.production && environment.envName === 'PROD') {
+      mixpanel.init(environment.mixPanelToken, {
+        track_pageview: true,
+        persistence: 'localStorage',
+      });
+    }
   }
 
   // Track an event
   track(event: string, properties?: any): void {
-    mixpanel.track(event, properties);
+    if (environment.production && environment.envName === 'PROD') {
+      mixpanel.track(event, properties);
+    }
   }
 
   register(properties?: any): void {
-    mixpanel.register(properties);
+    if (environment.production && environment.envName === 'PROD') {
+      mixpanel.register(properties);
+    }
   }
 
   // Identify a user
   identify(id: string): void {
-    mixpanel.identify(id);
+    if (environment.production && environment.envName === 'PROD') {
+      mixpanel.identify(id);
+    }
   }
 
   // Set user properties
   peopleSet(properties: any): void {
-    mixpanel.people.set(properties);
+    if (environment.production && environment.envName === 'PROD') {
+      mixpanel.people.set(properties);
+    }
   }
 }

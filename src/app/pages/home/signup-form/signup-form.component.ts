@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
 import { AuthInfo, SignupFlow, SignupRequest, SignupSourceInfo } from '@core/models';
@@ -21,6 +21,7 @@ import { AlertModule } from 'ngx-bootstrap/alert';
   standalone: true,
   imports: [
     CommonModule,
+    FormsModule,
     ReactiveFormsModule,
     BsDatepickerModule,
     BsDropdownModule,
@@ -28,8 +29,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
     NgxMaskDirective,
     LoaderDirective,
     FormControlComponent,
-    PasswordConfirmationPopupComponent,
-    DataPoliciesPopupComponent,
   ],
   providers: [provideNgxMask()],
   templateUrl: './signup-form.component.html',
@@ -43,6 +42,9 @@ export class SignupFormComponent implements OnInit {
   @ViewChild('leadIdToken') leadIdToken!: ElementRef;
 
   isFormLoaded: boolean = false;
+
+  tcpaError = '';
+  tcpaChecked: boolean = false;
 
   error: string = '';
   surveyId!: string;
@@ -211,8 +213,15 @@ export class SignupFormComponent implements OnInit {
 
   onSubmit(): void {
     this.error = '';
+    this.tcpaError = '';
+
     AppService.markAsDirty(this.signupForm);
     if (!this.signupForm.valid) {
+      return;
+    }
+
+    if (!this.tcpaChecked) {
+      this.tcpaError = 'You must agree to the terms.';
       return;
     }
 
