@@ -2,7 +2,7 @@ import { Component, EventEmitter, OnInit } from '@angular/core';
 import { FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MixPanelService } from '@core/services';
-import { DynamicQuestion } from '../../models';
+import { DynamicQuestion, DynamicQuestionOption } from '../../models';
 
 @Component({
   selector: 'nrc-checkbox-group',
@@ -50,21 +50,58 @@ export class CheckboxGroupComponent implements OnInit {
     });
   }
 
-  onValueSelect($event: any, selectedOption: any): void {
-    if ($event.target.checked) {
-      this.selectedOptions.push(selectedOption.id);
-      this.selectedOptionLabels.push(selectedOption.text);
-    } else {
-      this.selectedOptions.forEach((option, index) => {
-        if (option === selectedOption.id) {
-          this.selectedOptions.splice(index, 1);
-          this.selectedOptionLabels.splice(index, 1);
-          return false;
+  onValueSelect(event: Event, optionIndex: number, selectedOption: DynamicQuestionOption): void {
+    // Cast event target to HTMLInputElement for proper typing
+    const isChecked = (event.target as HTMLInputElement).checked;
+
+    if (isChecked) {
+      // Handle checkbox selection
+      if (selectedOption.clearOtherOptions) {
+        // Clear all selections if this option requires exclusive selection
+        this.selectedOptions = [selectedOption.id];
+        this.selectedOptionLabels = [selectedOption.text];
+
+        // Reset all other form controls
+        this.formArray.controls.filter((_, index) => index !== optionIndex).forEach((control) => control.setValue(false));
+      } else {
+        // Handle cases where other options might need clearing
+        const clearableOptions = this.question.questionOptions?.filter((qo) => qo.clearOtherOptions) || [];
+
+        // Clear any exclusive options if they exist
+        if (clearableOptions.length) {
+          const clearableIndices = clearableOptions
+            .map((qo) => this.question.questionOptions?.findIndex((option) => option.id === qo.id))
+            .filter((index) => index !== -1);
+
+          // Update form controls for clearable options
+          clearableIndices.forEach((index) => {
+            if (index !== undefined) {
+              this.formArray.controls[index].setValue(false);
+            }
+          });
+
+          // Filter out cleared options from selections
+          const clearableIds = new Set(clearableOptions.map((qo) => qo.id));
+          const clearableLabels = new Set(clearableOptions.map((qo) => qo.text));
+
+          this.selectedOptions = this.selectedOptions.filter((id) => !clearableIds.has(id));
+          this.selectedOptionLabels = this.selectedOptionLabels.filter((text) => !clearableLabels.has(text));
         }
-        return true; // add a default return statement
-      });
+
+        // Add new selection
+        this.selectedOptions.push(selectedOption.id);
+        this.selectedOptionLabels.push(selectedOption.text);
+      }
+    } else {
+      // Handle checkbox deselection
+      const removeIndex = this.selectedOptions.indexOf(selectedOption.id);
+      if (removeIndex !== -1) {
+        this.selectedOptions.splice(removeIndex, 1);
+        this.selectedOptionLabels.splice(removeIndex, 1);
+      }
     }
 
+    // Emit value change event with updated selections
     this.valueChange.emit({
       surveyQuestionId: this.question.surveyQuestionId,
       questionId: this.question.id,
@@ -72,6 +109,7 @@ export class CheckboxGroupComponent implements OnInit {
       questionOptionsIds: this.selectedOptions,
     });
 
+    // Send analytics data
     this._sendDataToMixPanel();
   }
 

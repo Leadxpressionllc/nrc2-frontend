@@ -20,6 +20,7 @@ export interface DynamicQuestionOption {
   text: string;
   value: string;
   sortOrder: number;
+  clearOtherOptions: boolean;
 }
 
 export interface DynamicInterlinkedQuestion {

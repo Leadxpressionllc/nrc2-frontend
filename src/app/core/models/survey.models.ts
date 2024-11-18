@@ -8,11 +8,11 @@ export interface Survey {
   timeToComplete: number;
   live: boolean;
   active: boolean;
-  requiredUserData: string;
   surveyType: string;
+  requiredUserData: string;
+  surveyFinishBtnText: string;
   surveyPages: SurveyPage[];
   surveyAnswers: SurveyAnswer[];
-  surveyFinishBtnText: string;
 }
 
 export interface SurveyPage {
@@ -52,6 +52,7 @@ export interface QuestionOption {
   sortOrder: number;
   valueSameAsText: boolean;
   value: string;
+  clearOtherOptions: boolean;
   pixels: Pixel[];
 }
 

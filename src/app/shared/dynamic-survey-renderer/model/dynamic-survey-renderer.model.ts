@@ -6,9 +6,10 @@ export interface DynamicSurvey {
   description: string;
   incompletePageNumber: number;
   isSurveyCompleted: boolean;
-  surveyPages: DynamicSurveyPage[];
   surveyType?: string;
+  requiredUserData: string;
   surveyFinishBtnText: string;
+  surveyPages: DynamicSurveyPage[];
 }
 
 export interface DynamicSurveyPage {

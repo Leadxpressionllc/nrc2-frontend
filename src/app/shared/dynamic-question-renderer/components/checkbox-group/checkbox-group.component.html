@@ -17,7 +17,7 @@
           name="offers"
           [formControlName]="i"
           id="{{ question.questionOptions[i].id }}"
-          (change)="onValueSelect($event, question.questionOptions[i])"
+          (change)="onValueSelect($event, i, question.questionOptions[i])"
         />
         <label class="form-check-label" for="{{ question.questionOptions[i].id }}"> {{ question.questionOptions[i].text }} </label>
       </div>

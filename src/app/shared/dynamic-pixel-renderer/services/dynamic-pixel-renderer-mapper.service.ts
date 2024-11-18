@@ -48,6 +48,7 @@ export class DynamicPixelRendererMapperService {
         text: questionOption.text,
         value: questionOption.value,
         sortOrder: questionOption.sortOrder,
+        clearOtherOptions: questionOption.clearOtherOptions,
       });
     });
 
@@ -96,8 +97,8 @@ export class DynamicPixelRendererMapperService {
         // Add gender-specific options if the field is 'gender'
         if (field === 'gender') {
           newQuestion.questionOptions = [
-            { id: 'Male', text: 'Male', value: 'Male', sortOrder: 1 },
-            { id: 'Female', text: 'Female', value: 'Female', sortOrder: 2 },
+            { id: 'Male', text: 'Male', value: 'Male', sortOrder: 1, clearOtherOptions: false },
+            { id: 'Female', text: 'Female', value: 'Female', sortOrder: 2, clearOtherOptions: false },
           ];
         }
 

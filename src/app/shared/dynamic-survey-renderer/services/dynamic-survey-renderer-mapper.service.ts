@@ -6,7 +6,7 @@ import { DynamicSurveyRendererService } from './dynamic-survey-renderer.service'
 
 export class DynamicSurveyRendererMapperService {
   public static mapSurveyToDynamicSurvey(survey: Survey): DynamicSurvey {
-    const { id, name, description, surveyPages, surveyAnswers, surveyFinishBtnText } = survey;
+    const { id, name, description, surveyFinishBtnText, requiredUserData, surveyPages, surveyAnswers } = survey;
 
     // Initialize the DynamicSurvey object with basic properties
     const surveyData: DynamicSurvey = {
@@ -15,8 +15,9 @@ export class DynamicSurveyRendererMapperService {
       description,
       incompletePageNumber: 0,
       isSurveyCompleted: false,
-      surveyPages: this._getSurveyPages(surveyPages),
       surveyFinishBtnText,
+      requiredUserData,
+      surveyPages: this._getSurveyPages(surveyPages),
     };
 
     if (!AppService.isUndefinedOrNull(surveyAnswers)) {
@@ -96,6 +97,7 @@ export class DynamicSurveyRendererMapperService {
         text: questionOption.text,
         value: questionOption.value,
         sortOrder: questionOption.sortOrder,
+        clearOtherOptions: questionOption.clearOtherOptions,
       });
     });
 
