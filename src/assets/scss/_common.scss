@@ -363,3 +363,19 @@ ngx-spinner {
 .alert-dismissible .btn-close {
   font-size: 0.75rem;
 }
+
+.sponsored-badge {
+  display: inline-block;
+  padding: 0.35em 0.65em;
+  font-size: 1em;
+  font-weight: 700;
+  line-height: 1;
+  color: #fff;
+  background-color: #f77f52;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
