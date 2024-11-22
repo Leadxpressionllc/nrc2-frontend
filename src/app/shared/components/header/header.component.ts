@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { MixPanelService } from '@core/services';
@@ -15,6 +16,12 @@ export class HeaderComponent {
   @Input() showPrivacyInfoPill: boolean = false;
 
   constructor(private mixPanelService: MixPanelService) {}
+
+  get financialAidExtendedDate(): string {
+    const currentDate = new Date();
+    const extendedDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+    return formatDate(extendedDate, 'MMM dd, yyyy', 'en-US');
+  }
 
   trackApplyButtonClicks(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
