@@ -8,6 +8,7 @@ export interface Survey {
   timeToComplete: number;
   live: boolean;
   active: boolean;
+  showExitSurveyButton: boolean;
   surveyType: string;
   requiredUserData: string;
   surveyFinishBtnText: string;

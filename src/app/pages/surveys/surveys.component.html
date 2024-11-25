@@ -27,6 +27,12 @@
           </nrc-dynamic-survey-renderer>
         }
       </div>
+
+      @if (survey && survey.showExitSurveyButton) {
+        <div class="w-100 text-center mt-2">
+          <a role="button" class="fs-5 text-danger" (click)="showExitSurveyConfirmation()">Exit Survey</a>
+        </div>
+      }
     </div>
   </div>
 </section>

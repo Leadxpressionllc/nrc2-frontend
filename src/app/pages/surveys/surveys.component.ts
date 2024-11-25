@@ -1,11 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router, RouterModule } from '@angular/router';
 import { constants } from '@app/constant';
 import { Survey, User } from '@core/models';
-import { AuthService, MixPanelService, OfferService, SurveyService } from '@core/services';
+import { AuthService, MixPanelService, OfferService, PopupService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
-import { FooterComponent, HeaderComponent } from '@shared/components';
+import { ConfirmationComponent, FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
 import {
   DynamicSurvey,
@@ -18,7 +18,7 @@ import { firstValueFrom, map, tap } from 'rxjs';
 @Component({
   selector: 'nrc-surveys',
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent, LoaderDirective],
+  imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent, LoaderDirective],
   templateUrl: './surveys.component.html',
   styleUrl: './surveys.component.scss',
 })
@@ -44,7 +44,8 @@ export class SurveysComponent implements OnInit {
     private authService: AuthService,
     private surveyService: SurveyService,
     private offerService: OfferService,
-    private mixPanelService: MixPanelService
+    private mixPanelService: MixPanelService,
+    private popupService: PopupService
   ) {}
 
   ngOnInit(): void {
@@ -290,6 +291,22 @@ export class SurveysComponent implements OnInit {
       $name: firstName,
       $email: email,
       $zip_code: zipCode,
+    });
+  }
+
+  showExitSurveyConfirmation(): void {
+    const modalRef = this.popupService.openWithComponent(ConfirmationComponent, {
+      heading: '',
+      message: 'Are you sure you want to leave this survey?',
+      icon: 'warning',
+      yesButtonText: 'Leave this page',
+      cancelButtontext: 'Stay on this page',
+    });
+
+    modalRef.eventEmitter.subscribe((result: boolean) => {
+      if (result) {
+        this.router.navigate(['/offers']);
+      }
     });
   }
 }
