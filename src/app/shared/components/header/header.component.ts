@@ -1,7 +1,8 @@
 import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
-import { ActivatedRoute, RouterModule } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, RouterModule } from '@angular/router';
 import { MixPanelService } from '@core/services';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'nrc-header',
@@ -18,6 +19,7 @@ export class HeaderComponent implements OnInit {
   surveyId!: string;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private mixPanelService: MixPanelService
   ) {}
@@ -29,6 +31,22 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    // Listen to navigation events
+    this.router.events.pipe(filter((event) => event instanceof NavigationEnd)).subscribe(() => {
+      this._readSurveyIdParam();
+    });
+
+    this._readSurveyIdParam();
+  }
+
+  private _readSurveyIdParam(): void {
+    this.route.params.subscribe((params) => {
+      const surveyId = params['id'];
+      if (surveyId) {
+        this.surveyId = surveyId;
+      }
+    });
+
     this.route.firstChild?.params.subscribe((params) => {
       const surveyId = params['id'];
       if (surveyId) {
