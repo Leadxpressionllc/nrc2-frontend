@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
-import { Component, Input } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { MixPanelService } from '@core/services';
 
 @Component({
@@ -10,17 +10,38 @@ import { MixPanelService } from '@core/services';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   @Input() showSignUpButton: boolean = false;
   @Input() showStickyAlert: boolean = false;
   @Input() showPrivacyInfoPill: boolean = false;
 
-  constructor(private mixPanelService: MixPanelService) {}
+  surveyId!: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    private mixPanelService: MixPanelService
+  ) {}
 
   get financialAidExtendedDate(): string {
     const currentDate = new Date();
     const extendedDate = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
     return formatDate(extendedDate, 'MMM dd, yyyy', 'en-US');
+  }
+
+  ngOnInit(): void {
+    this.route.firstChild?.params.subscribe((params) => {
+      const surveyId = params['id'];
+      if (surveyId) {
+        this.surveyId = surveyId;
+      }
+    });
+
+    this.route.queryParams.subscribe((queryParams) => {
+      const surveyId = queryParams['surveyId'];
+      if (!this.surveyId && surveyId) {
+        this.surveyId = surveyId;
+      }
+    });
   }
 
   trackApplyButtonClicks(): void {

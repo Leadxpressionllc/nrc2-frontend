@@ -11,12 +11,9 @@ export const routes: Routes = [
   {
     path: 'home',
     loadChildren: async () => (await import('@pages/home')).routes,
-    canActivate: [emailDomainGuard, authGuard],
+    canActivate: [emailDomainGuard],
     resolve: {
       signupFlow: signupFlowResolveFn,
-    },
-    data: {
-      authParams: { blockAfterAuthentication: true, publicRoute: true },
     },
   },
   {

@@ -3,7 +3,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { constants } from '@app/constant';
-import { AuthInfo, SignupFlow, SignupRequest, SignupSourceInfo } from '@core/models';
+import { AuthInfo, SignupFlow, SignupRequest, SignupSourceInfo, User } from '@core/models';
 import { AuthService, MixPanelService, PopupService } from '@core/services';
 import { AppService, ValidatorService } from '@core/utility-services';
 import { FormControlComponent } from '@shared/components';
@@ -93,7 +93,12 @@ export class SignupFormComponent implements OnInit {
     });
 
     this._loadDynamicFields();
-    this._populateFormDataFromQueryParams();
+
+    if (this.authService.isAuthenticated()) {
+      this._populateFormDataFromUserInfo();
+    } else {
+      this._populateFormDataFromQueryParams();
+    }
 
     this.isFormLoaded = true;
   }
@@ -172,6 +177,16 @@ export class SignupFormComponent implements OnInit {
         this.signupForm.get(formField)?.setValue(this.queryParams[queryParamKey]);
       }
     });
+  }
+
+  private _populateFormDataFromUserInfo(): void {
+    const user = <User>this.authService.getAuthInfo()?.user;
+    this.signupForm.patchValue(user);
+
+    if (user.dob) {
+      const dob = new Date(user.dob);
+      this.signupForm.get('dob')?.setValue(dob);
+    }
   }
 
   private _loadQueryParams(): void {
