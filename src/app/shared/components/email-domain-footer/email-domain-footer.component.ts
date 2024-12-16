@@ -3,7 +3,6 @@ import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-email-domain-footer',
-  standalone: true,
   imports: [],
   templateUrl: './email-domain-footer.component.html',
   styleUrl: './email-domain-footer.component.scss',

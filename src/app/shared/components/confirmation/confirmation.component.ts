@@ -5,7 +5,6 @@ import { DialogBaseDirective } from '../popup/dialogbase.directive';
 
 @Component({
   selector: 'nrc-confirmation',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './confirmation.component.html',
   styleUrls: ['./confirmation.component.scss'],

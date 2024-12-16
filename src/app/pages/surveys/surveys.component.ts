@@ -17,8 +17,7 @@ import { firstValueFrom, map, tap } from 'rxjs';
 
 @Component({
   selector: 'nrc-surveys',
-  standalone: true,
-  imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent, DynamicSurveyRendererComponent, LoaderDirective],
+  imports: [CommonModule, RouterModule, DynamicSurveyRendererComponent, LoaderDirective],
   templateUrl: './surveys.component.html',
   styleUrl: './surveys.component.scss',
 })

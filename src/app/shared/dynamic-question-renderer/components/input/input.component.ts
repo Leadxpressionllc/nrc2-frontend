@@ -5,7 +5,6 @@ import { DynamicQuestion } from '../../models';
 
 @Component({
   selector: 'nrc-input',
-  standalone: true,
   imports: [ReactiveFormsModule, NgxMaskDirective],
   providers: [provideNgxMask()],
   templateUrl: './input.component.html',

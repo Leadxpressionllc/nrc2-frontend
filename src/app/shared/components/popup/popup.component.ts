@@ -4,7 +4,6 @@ import { DialogBaseDirective } from './dialogbase.directive';
 
 @Component({
   selector: 'so-popup',
-  standalone: true,
   imports: [CommonModule],
   templateUrl: './popup.component.html',
   styleUrls: ['./popup.component.scss'],

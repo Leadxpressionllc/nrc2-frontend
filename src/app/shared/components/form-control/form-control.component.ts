@@ -8,7 +8,6 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'nrc-form-control',
-  standalone: true,
   imports: [CommonModule, TranslateMessagePipe],
   templateUrl: './form-control.component.html',
   styleUrls: ['./form-control.component.scss'],

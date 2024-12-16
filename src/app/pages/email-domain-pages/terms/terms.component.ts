@@ -4,7 +4,6 @@ import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-terms',
-  standalone: true,
   imports: [],
   templateUrl: './terms.component.html',
   styleUrl: './terms.component.scss',

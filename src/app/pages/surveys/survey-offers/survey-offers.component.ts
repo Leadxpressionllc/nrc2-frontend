@@ -5,7 +5,6 @@ import { constants } from '@app/constant';
 import { Offer, OfferCallBack, OfferLog, Pixel, PixelAnswer, PixelQuestionAnswer, PixelQuestionSubmission, User } from '@core/models';
 import { MixPanelService, SurveyService } from '@core/services';
 import { AppService } from '@core/utility-services';
-import { FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
 import { DynamicPixel, DynamicPixelRendererComponent, DynamicPixelRendererMapperService } from '@shared/dynamic-pixel-renderer';
 import { AbstractOfferHelper } from '@shared/extendables';
@@ -13,8 +12,7 @@ import { forkJoin, take } from 'rxjs';
 
 @Component({
   selector: 'nrc-survey-offers',
-  standalone: true,
-  imports: [CommonModule, LoaderDirective, HeaderComponent, FooterComponent, DynamicPixelRendererComponent],
+  imports: [CommonModule, LoaderDirective, DynamicPixelRendererComponent],
   templateUrl: './survey-offers.component.html',
   styleUrl: './survey-offers.component.scss',
 })

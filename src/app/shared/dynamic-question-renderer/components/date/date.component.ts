@@ -5,7 +5,6 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'nrc-date',
-  standalone: true,
   imports: [ReactiveFormsModule, BsDatepickerModule],
   templateUrl: './date.component.html',
   styleUrls: ['./date.component.scss'],

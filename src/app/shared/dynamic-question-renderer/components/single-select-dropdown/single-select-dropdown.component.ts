@@ -6,7 +6,6 @@ import { DynamicQuestion } from '../../models';
 
 @Component({
   selector: 'nrc-single-select-dropdown',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './single-select-dropdown.component.html',
   styleUrls: ['./single-select-dropdown.component.scss'],

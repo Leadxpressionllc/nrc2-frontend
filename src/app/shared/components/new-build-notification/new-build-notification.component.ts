@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 
 @Component({
   selector: 'nrc-new-build-notification',
-  standalone: true,
   imports: [CommonModule, AlertModule],
   templateUrl: './new-build-notification.component.html',
   styleUrls: ['./new-build-notification.component.scss'],

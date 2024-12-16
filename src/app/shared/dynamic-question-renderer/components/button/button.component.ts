@@ -4,7 +4,6 @@ import { DynamicQuestion } from '../../models';
 
 @Component({
   selector: 'nrc-button',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './button.component.html',
   styleUrls: ['./button.component.scss'],

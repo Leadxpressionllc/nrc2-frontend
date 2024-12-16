@@ -9,7 +9,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'nrc-unsubscribe',
-  standalone: true,
   imports: [ReactiveFormsModule, RouterModule, AlertModule, LoaderDirective, FormControlComponent],
   templateUrl: './unsubscribe.component.html',
   styleUrl: './unsubscribe.component.scss',

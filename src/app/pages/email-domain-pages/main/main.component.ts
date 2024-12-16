@@ -5,7 +5,6 @@ import { SignupFormComponent } from '@pages/home/signup-form/signup-form.compone
 
 @Component({
   selector: 'nrc-main',
-  standalone: true,
   imports: [SignupFormComponent],
   templateUrl: './main.component.html',
   styleUrl: './main.component.scss',

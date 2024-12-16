@@ -3,7 +3,6 @@ import { FooterComponent, HeaderComponent } from '@shared/components';
 
 @Component({
   selector: 'nrc-terms-and-conditions',
-  standalone: true,
   imports: [HeaderComponent, FooterComponent],
   templateUrl: './terms-and-conditions.component.html',
   styleUrl: './terms-and-conditions.component.scss',

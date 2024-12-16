@@ -9,7 +9,6 @@ import { DynamicPixelRendererService } from './services/dynamic-pixel-renderer.s
 
 @Component({
   selector: 'nrc-dynamic-pixel-renderer',
-  standalone: true,
   imports: [ReactiveFormsModule, DynamicQuestionRendererDirective],
   templateUrl: './dynamic-pixel-renderer.component.html',
   styleUrls: ['./dynamic-pixel-renderer.component.scss'],

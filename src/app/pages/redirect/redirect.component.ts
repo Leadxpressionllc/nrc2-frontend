@@ -6,7 +6,6 @@ import { AppService } from '@core/utility-services';
 
 @Component({
   selector: 'nrc-redirect',
-  standalone: true,
   imports: [],
   templateUrl: './redirect.component.html',
   styleUrl: './redirect.component.scss',

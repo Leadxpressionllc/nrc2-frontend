@@ -9,7 +9,6 @@ import { TimeAgoPipe } from '@shared/pipes';
 
 @Component({
   selector: 'nrc-jobs',
-  standalone: true,
   imports: [FormsModule, LoaderDirective, TimeAgoPipe, HeaderComponent, FooterComponent],
   templateUrl: './jobs.component.html',
   styleUrl: './jobs.component.scss',

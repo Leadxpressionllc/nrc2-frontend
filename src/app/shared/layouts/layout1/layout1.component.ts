@@ -6,7 +6,6 @@ import { EmailDomainFooterComponent, EmailDomainHeaderComponent, FooterComponent
 
 @Component({
   selector: 'nrc-layout1',
-  standalone: true,
   imports: [CommonModule, RouterModule, HeaderComponent, FooterComponent, EmailDomainHeaderComponent, EmailDomainFooterComponent],
   templateUrl: './layout1.component.html',
   styleUrls: ['./layout1.component.scss'],

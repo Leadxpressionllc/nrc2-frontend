@@ -6,7 +6,6 @@ import { LoaderDirective } from '@shared/directives';
 
 @Component({
   selector: 'nrc-marketing-associates',
-  standalone: true,
   imports: [LoaderDirective, HeaderComponent, FooterComponent],
   templateUrl: './marketing-associates.component.html',
   styleUrl: './marketing-associates.component.scss',

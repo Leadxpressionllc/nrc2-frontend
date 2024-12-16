@@ -2,13 +2,11 @@ import { Component, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Offer } from '@core/models';
 import { MixPanelService, OfferService } from '@core/services';
-import { FooterComponent, HeaderComponent } from '@shared/components';
 import { LoaderDirective } from '@shared/directives';
 
 @Component({
   selector: 'nrc-offers',
-  standalone: true,
-  imports: [LoaderDirective, HeaderComponent, FooterComponent],
+  imports: [LoaderDirective],
   templateUrl: './offers.component.html',
   styleUrl: './offers.component.scss',
 })

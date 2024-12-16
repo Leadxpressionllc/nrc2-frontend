@@ -7,7 +7,6 @@ import { constants } from './app.constant';
 
 @Component({
   selector: 'nrc-root',
-  standalone: true,
   imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

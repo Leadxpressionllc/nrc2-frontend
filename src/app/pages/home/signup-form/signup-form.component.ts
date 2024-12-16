@@ -18,7 +18,6 @@ import { AlertModule } from 'ngx-bootstrap/alert';
 
 @Component({
   selector: 'nrc-signup-form',
-  standalone: true,
   imports: [
     CommonModule,
     FormsModule,

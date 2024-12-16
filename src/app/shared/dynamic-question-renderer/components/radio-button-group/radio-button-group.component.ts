@@ -6,7 +6,6 @@ import { DynamicQuestion, DynamicQuestionOption } from '../../models';
 
 @Component({
   selector: 'nrc-radio-button-group',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './radio-button-group.component.html',
   styleUrls: ['./radio-button-group.component.scss'],

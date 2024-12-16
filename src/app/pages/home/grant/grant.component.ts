@@ -4,7 +4,6 @@ import { FooterComponent } from '../../../shared/components/footer/footer.compon
 
 @Component({
   selector: 'nrc-grant',
-  standalone: true,
   imports: [SignupFormComponent, FooterComponent],
   templateUrl: './grant.component.html',
   styleUrl: './grant.component.scss',

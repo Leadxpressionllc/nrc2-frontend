@@ -4,7 +4,6 @@ import { AbstractOfferHelper } from '@shared/extendables';
 
 @Component({
   selector: 'nrc-offer-redirect',
-  standalone: true,
   imports: [],
   templateUrl: './offer-redirect.component.html',
   styleUrl: './offer-redirect.component.scss',

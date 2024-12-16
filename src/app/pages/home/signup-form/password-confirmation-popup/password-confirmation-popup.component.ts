@@ -4,7 +4,6 @@ import { DialogBaseDirective } from '@shared/components';
 
 @Component({
   selector: 'nrc-password-confirmation-popup',
-  standalone: true,
   imports: [FormsModule],
   templateUrl: './password-confirmation-popup.component.html',
   styleUrls: ['./password-confirmation-popup.component.scss'],

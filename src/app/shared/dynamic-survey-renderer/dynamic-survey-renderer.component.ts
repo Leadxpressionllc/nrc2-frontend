@@ -10,7 +10,6 @@ import { AppService } from '@core/utility-services';
 
 @Component({
   selector: 'nrc-dynamic-survey-renderer',
-  standalone: true,
   imports: [CommonModule, ReactiveFormsModule, DynamicPageRendererComponent],
   templateUrl: './dynamic-survey-renderer.component.html',
   styleUrls: ['./dynamic-survey-renderer.component.scss'],

@@ -11,7 +11,6 @@ import { CountUpModule } from 'ngx-countup';
 
 @Component({
   selector: 'nrc-home',
-  standalone: true,
   imports: [CommonModule, AccordionModule, AngularSvgIconModule, CountUpModule, SignupFormComponent, FooterComponent, HeaderComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

@@ -12,7 +12,6 @@ import { MixPanelService } from '@core/services';
 
 @Component({
   selector: 'nrc-dynamic-page-renderer',
-  standalone: true,
   imports: [ReactiveFormsModule, DynamicQuestionRendererDirective],
   templateUrl: './dynamic-page-renderer.component.html',
   styleUrls: ['./dynamic-page-renderer.component.scss'],

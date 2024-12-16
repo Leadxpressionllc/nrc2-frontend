@@ -4,7 +4,6 @@ import { AbstractOfferHelper } from '@shared/extendables';
 
 @Component({
   selector: 'nrc-email-offer',
-  standalone: true,
   imports: [],
   templateUrl: './email-offer.component.html',
   styleUrl: './email-offer.component.scss',

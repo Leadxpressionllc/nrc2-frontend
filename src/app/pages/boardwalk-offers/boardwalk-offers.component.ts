@@ -6,7 +6,6 @@ import { FooterComponent, HeaderComponent } from '@shared/components';
 
 @Component({
   selector: 'nrc-boardwalk-offers',
-  standalone: true,
   imports: [HeaderComponent, FooterComponent],
   templateUrl: './boardwalk-offers.component.html',
   styleUrl: './boardwalk-offers.component.scss',

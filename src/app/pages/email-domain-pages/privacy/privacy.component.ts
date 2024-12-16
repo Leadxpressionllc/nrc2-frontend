@@ -4,7 +4,6 @@ import { DomainInfo } from '@core/models';
 
 @Component({
   selector: 'nrc-privacy',
-  standalone: true,
   imports: [],
   templateUrl: './privacy.component.html',
   styleUrl: './privacy.component.scss',

@@ -6,7 +6,6 @@ import { DynamicQuestion, DynamicQuestionOption } from '../../models';
 
 @Component({
   selector: 'nrc-checkbox-group',
-  standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './checkbox-group.component.html',
   styleUrls: ['./checkbox-group.component.scss'],
