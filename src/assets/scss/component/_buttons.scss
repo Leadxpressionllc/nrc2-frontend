@@ -2,6 +2,7 @@
   --label-v-align: calc(1ex - 1cap);
   white-space: nowrap;
   height: 3rem;
+  line-height: 1.5;
   vertical-align: var(--label-v-align, 1);
   &:active {
     border-color: transparent !important;
