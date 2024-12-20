@@ -16,6 +16,13 @@
 <section class="py-3 bg-light">
   <div class="container-lg position-relative" nrcLoader="offersLoader" style="min-height: 200px">
     <div class="d-flex gap-3 flex-column col-xl-10 mx-auto">
+      @if (specialOffers.length > 0) {
+        <div class="d-flex align-items-center flex-column rounded p-4 border-primary border shadow">
+          <h3 class="h3 mb-3">Your Free Personal Finance Resources</h3>
+          <a (click)="openRandomOffer()" class="btn btn-warning text-white btn-lg px-md-5 px-5"> ACCESS FOR FREE </a>
+        </div>
+      }
+
       @for (offer of specialOffers; track offer.id) {
         <!-- ### Offer Card -->
         <div class="bg-white rounded shadow-sm hover-shadow-lg p-md-3 pe-md-4 p-4 position-relative">

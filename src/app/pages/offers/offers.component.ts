@@ -2,6 +2,7 @@ import { Component, NgZone, OnInit, Renderer2 } from '@angular/core';
 import { Router } from '@angular/router';
 import { Offer } from '@core/models';
 import { MixPanelService, OfferService } from '@core/services';
+import { AppService } from '@core/utility-services';
 import { LoaderDirective } from '@shared/directives';
 
 @Component({
@@ -11,7 +12,7 @@ import { LoaderDirective } from '@shared/directives';
   styleUrl: './offers.component.scss',
 })
 export class OffersComponent implements OnInit {
-  specialOffers!: Offer[];
+  specialOffers: Offer[] = [];
 
   googleAdsLoaded: boolean = false;
 
@@ -64,5 +65,10 @@ export class OffersComponent implements OnInit {
       program_special: offer.specialOffer,
     };
     this.mixPanelService.track('apply_now_program', mixpanelEventData);
+  }
+
+  openRandomOffer(): void {
+    const offerIndex = AppService.getRandomInt(0, this.specialOffers.length - 1);
+    this.goToOffer(this.specialOffers[offerIndex]);
   }
 }
