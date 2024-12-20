@@ -51,6 +51,11 @@ export const routes: Routes = [
     canActivate: [emailDomainGuard],
   },
   {
+    path: 'email-survey',
+    loadChildren: async () => (await import('@pages/email-survey')).routes,
+    canActivate: [emailDomainGuard],
+  },
+  {
     path: 'redirect',
     loadChildren: async () => (await import('@pages/redirect')).routes,
     canActivate: [emailDomainGuard],
