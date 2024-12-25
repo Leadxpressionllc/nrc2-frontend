@@ -11,4 +11,9 @@ export const routes: Routes = [
     data: { title: 'Home' },
     loadComponent: async () => (await import('./grant/grant.component')).GrantComponent,
   },
+  {
+    path: 'guide',
+    data: { title: 'Home' },
+    loadComponent: async () => (await import('./guide/guide.component')).GuideComponent,
+  },
 ];
