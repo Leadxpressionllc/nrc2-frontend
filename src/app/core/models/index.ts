@@ -2,6 +2,7 @@ export * from './app-version.models';
 export * from './auth.models';
 export * from './domain-info.models';
 export * from './job.models';
+export * from './listicle-page.models';
 export * from './marketing-associate.models';
 export * from './offer-pool.models';
 export * from './offer.models';

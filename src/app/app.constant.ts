@@ -37,6 +37,10 @@ export const constants = {
     jobs: {
       base: '/jobs',
     },
+
+    listiclePages: {
+      base: '/listicle-pages',
+    },
   },
 
   apiRequestHeaders: {

@@ -19,7 +19,9 @@ export abstract class AbstractOfferHelper implements OnDestroy {
     this.offerService = inject(OfferService);
     this.authService = inject(AuthService);
 
-    this.user = <User>this.authService.getAuthInfo()?.user;
+    if (this.authService.isAuthenticated()) {
+      this.user = <User>this.authService.getAuthInfo()?.user;
+    }
   }
 
   ngOnDestroy(): void {

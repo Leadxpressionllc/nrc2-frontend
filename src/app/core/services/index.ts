@@ -3,6 +3,7 @@ export * from './auth.service';
 export * from './common.service';
 export * from './emitter.service';
 export * from './job.service';
+export * from './listicle-page.service';
 export * from './local-storage.service';
 export * from './mix-panel.service';
 export * from './offer.service';
