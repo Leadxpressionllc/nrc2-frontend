@@ -81,6 +81,11 @@ export const routes: Routes = [
     canActivate: [emailDomainGuard],
   },
   {
+    path: 'lp',
+    loadChildren: async () => (await import('@pages/listicle-page')).routes,
+    canActivate: [emailDomainGuard],
+  },
+  {
     path: 'other',
     loadChildren: async () => (await import('@pages/email-domain-pages')).routes,
     canActivate: [emailDomainGuard, authGuard],
