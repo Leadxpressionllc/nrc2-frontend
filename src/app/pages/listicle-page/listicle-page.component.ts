@@ -2,11 +2,12 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ListiclePage, Offer } from '@core/models';
 import { ListiclePageService } from '@core/services';
+import { LoaderDirective } from '@shared/directives';
 import { AbstractOfferHelper } from '@shared/extendables';
 
 @Component({
   selector: 'nrc-listicle-page',
-  imports: [],
+  imports: [LoaderDirective],
   templateUrl: './listicle-page.component.html',
   styleUrl: './listicle-page.component.scss',
 })

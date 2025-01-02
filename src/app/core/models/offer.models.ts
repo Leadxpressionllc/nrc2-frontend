@@ -18,6 +18,10 @@ export interface Offer {
   yesButtonText: string;
   noButtonText: string;
 
+  listiclePageHeading: string;
+  listiclePageDescription: string;
+  listiclePageButtonText: string;
+
   offerPoolId: string;
   surveyPageId: string;
   surveyPageOrder: number;

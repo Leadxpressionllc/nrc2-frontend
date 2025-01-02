@@ -1,71 +1,41 @@
 <section class="py-3 pb-5 bg-light">
   <div class="container">
-    <div class="col-xl-7 col-md-9 mx-auto bg-white p-lg-3 p-2 rounded-4 shadow-sm">
+    <div class="col-xl-7 col-md-9 mx-auto bg-white p-lg-3 p-2 rounded-4 shadow-sm" nrcLoader="listiclePageLoader">
       <header class="mt-2 mb-4">
         <img class="img-fluid" src="../../../../assets/images/nrc-logo.svg" alt="NRC" width="150" height="60" />
       </header>
 
-      <!-- ### Main Section -->
-      <div class="bg-gray-100 p-lg-4 p-3 border border-gray-400 rounded-3 mb-5">
-        <h1 class="h2 text-primary">Lorem ipsum dolor sit amet consectetur. Turpis duis volutpat malesuada at cras fames.</h1>
+      @if (listiclePage) {
+        <!-- ### Main Section -->
+        <div class="bg-gray-100 p-lg-4 p-3 border border-gray-400 rounded-3 mb-5">
+          <h1 class="h2 text-primary">{{ listiclePage.heading }}</h1>
 
-        <figure class="figure my-3">
-          <img src="../../../assets/images/hero-image-grant.png" class="figure-img img-fluid rounded" alt="..." />
-          <figcaption class="figure-caption">A caption for the above image.</figcaption>
-        </figure>
+          <figure class="figure my-3 d-flex justify-content-center">
+            <img [src]="listiclePage.imageUrl" class="figure-img img-fluid rounded" alt="..." />
+            <!-- <figcaption class="figure-caption">A caption for the above image.</figcaption> -->
+          </figure>
 
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ducimus reiciendis harum dignissimos perferendis eos quam
-          praesentium. Aspernatur in nisi eos veniam, veritatis tempore recusandae vero temporibus animi magnam velit possimus, ratione
-          architecto repudiandae magni qui, eligendi assumenda et fugit dignissimos impedit! Provident ratione at sequi, ex odio maxime
-          voluptatem?
-        </p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repudiandae, id!</p>
-        <p>
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis placeat error, consequatur quidem possimus saepe qui sapiente at
-          atque corrupti sequi quam non! Perferendis, ullam.
-        </p>
-      </div>
+          <p>{{ listiclePage.description }}</p>
+        </div>
 
-      <!-- ### List Section -->
-      <ul class="list-container d-flex flex-column gap-5 list-unstyled">
-        <li class="list-item p-4 rounded-4 border border-dark position-relative">
-          <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, blanditiis.</h2>
+        <!-- ### List Section -->
+        <ul class="list-container d-flex flex-column gap-5 list-unstyled">
+          @for (offer of listiclePage.offers; track $index) {
+            <li class="list-item p-4 rounded-4 border border-dark position-relative">
+              <h2>{{ offer.listiclePageHeading ? offer.listiclePageHeading : offer.title }}</h2>
 
-          <img src="../../../assets/images/hero-image-grant.png" class="img-fluid rounded my-3" alt="..." />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ducimus reiciendis harum dignissimos perferendis eos quam
-            praesentium. Aspernatur in nisi eos veniam, veritatis tempore recusandae vero temporibus animi magnam velit possimus, ratione
-            architecto repudiandae magni qui, eligendi assumenda et fugit dignissimos impedit! Provident ratione at sequi, ex odio maxime
-            voluptatem?
-          </p>
-          <button class="btn btn-primary bg-gradient btn-lg w-100 mt-3">Lorem ipsum dolor sit amet.</button>
-        </li>
-        <li class="list-item p-4 rounded-4 border border-dark position-relative">
-          <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, blanditiis.</h2>
+              <div class="d-flex justify-content-center">
+                <img [src]="offer.imageUrl" class="img-fluid rounded my-3" [alt]="offer.title" />
+              </div>
 
-          <img src="../../../assets/images/hero-image-grant.png" class="img-fluid rounded my-3" alt="..." />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ducimus reiciendis harum dignissimos perferendis eos quam
-            praesentium. Aspernatur in nisi eos veniam, veritatis tempore recusandae vero temporibus animi magnam velit possimus, ratione
-            architecto repudiandae magni qui, eligendi assumenda et fugit dignissimos impedit! Provident ratione at sequi, ex odio maxime
-            voluptatem?
-          </p>
-          <button class="btn btn-primary bg-gradient btn-lg w-100 mt-3">Lorem ipsum dolor sit amet.</button>
-        </li>
-        <li class="list-item p-4 rounded-4 border border-dark position-relative">
-          <h2>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, blanditiis.</h2>
-
-          <img src="../../../assets/images/hero-image-grant.png" class="img-fluid rounded my-3" alt="..." />
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur ducimus reiciendis harum dignissimos perferendis eos quam
-            praesentium. Aspernatur in nisi eos veniam, veritatis tempore recusandae vero temporibus animi magnam velit possimus, ratione
-            architecto repudiandae magni qui, eligendi assumenda et fugit dignissimos impedit! Provident ratione at sequi, ex odio maxime
-            voluptatem?
-          </p>
-          <button class="btn btn-primary bg-gradient btn-lg w-100 mt-3">Lorem ipsum dolor sit amet.</button>
-        </li>
-      </ul>
+              <p>{{ offer.listiclePageDescription ? offer.listiclePageDescription : offer.description }}</p>
+              <button class="btn btn-primary bg-gradient btn-lg w-100 mt-3" (click)="onClickOffer(offer)">
+                {{ offer.listiclePageButtonText ? offer.listiclePageButtonText : 'Learn More' }}
+              </button>
+            </li>
+          }
+        </ul>
+      }
     </div>
   </div>
 </section>
