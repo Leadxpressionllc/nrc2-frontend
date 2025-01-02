@@ -1,0 +1,28 @@
+.list-number {
+  font-size: 1.5rem;
+  width: 3rem;
+  height: 3rem;
+  position: absolute;
+  top: -1.5rem;
+}
+
+.list-container {
+  counter-reset: item-counter;
+  .list-item {
+    &::after {
+      counter-increment: item-counter;
+      content: '0' counter(item-counter);
+      position: absolute;
+      top: -1.5rem;
+      left: 25px;
+      background: #fff;
+      padding: 0 10px;
+      // font-family: 'Tinos', serif;
+      font-style: italic;
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--bs-gray-900);
+      border-radius: 5px;
+    }
+  }
+}
